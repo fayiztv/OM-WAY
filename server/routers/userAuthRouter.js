@@ -7,6 +7,7 @@ router.post('/sign-up',userRegister)
 router.post('/register/verify',userRegisterVerify)
 router.post('/login',userLogin)
 router.get('/check',checkUserLoggedIn)
+router.get('/logout',userLogout)
 
 
 export default router

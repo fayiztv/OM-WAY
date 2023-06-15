@@ -126,3 +126,13 @@ export async function checkUserLoggedIn(req,res){
         return res.json({loggedIn:false,error:err})
       }
 }
+
+export async function userLogout(req,res){
+    res.cookie("userToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+    console.log("logged in");
+}
