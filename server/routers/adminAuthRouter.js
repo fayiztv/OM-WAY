@@ -4,5 +4,6 @@ import { adminLogin, adminLogout, checkAdminLoggedIn } from "../controllers/admi
 const router = express.Router()
 
 router.post("/login",adminLogin)
+router.get("/check",checkAdminLoggedIn)
 
 export default router

@@ -4,7 +4,7 @@ import express  from "express"
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import userAuthRouter from './routers/userAuthRouter.js'
-// import adminAuthRouter from './routers/adminAuthRouter.js'
+import adminAuthRouter from './routers/adminAuthRouter.js'
 
 const app=express();
 
@@ -23,7 +23,7 @@ app.use(
 dbConnect();
 
 app.use('/user/auth/',userAuthRouter)
-// app.use('/admin/auth/',adminAuthRouter)
+app.use('/admin/auth/',adminAuthRouter)
  
 
 
