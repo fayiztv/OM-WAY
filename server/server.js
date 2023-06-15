@@ -3,7 +3,7 @@ import dbConnect from "./config/dbConnect.js"
 import express  from "express"
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
-// import userAuthRouter from './routers/userAuthRouter.js'
+import userAuthRouter from './routers/userAuthRouter.js'
 // import adminAuthRouter from './routers/adminAuthRouter.js'
 
 const app=express();
