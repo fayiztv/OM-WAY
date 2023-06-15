@@ -22,7 +22,7 @@ app.use(
 );
 dbConnect();
 
-// app.use('/user/auth/',userAuthRouter)
+app.use('/user/auth/',userAuthRouter)
 // app.use('/admin/auth/',adminAuthRouter)
  
 
