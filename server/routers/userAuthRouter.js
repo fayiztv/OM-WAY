@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.post('/sign-up',userRegister)
 router.post('/register/verify',userRegisterVerify)
+router.post('/login',userLogin)
 
 
 export default router

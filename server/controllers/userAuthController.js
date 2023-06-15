@@ -72,3 +72,36 @@ export async function userRegisterVerify(req,res){
         res.json({ error: err, err: true, message: "something went wrong" })
     }
 }
+
+export async function userLogin(req,res){
+    try{
+
+        const {email,password} = req.body
+        const user = await UserModel.findOne({email}).lean()
+        if(!user){
+            return res.json({err:true,message:"No user found"})
+        }
+        if(user.admin){
+            return res.json({ err: true, message: "no user found" })
+        }
+
+        const valideUser = bcrypt.compareSync(password,user.password)
+        if(!valideUser){
+            return res.json({err:true,message:"Wrong password"})
+        }
+        const token = jwt.sign({
+            id:user._id
+        },"myJwtSecretKey")
+
+        return res.cookie("userToken",token,{
+            httpOnly: true,
+                    secure: true,
+                    maxAge: 1000 * 60 * 60 * 24 * 7,
+                    sameSite: "none",
+        }).json({err:false})
+
+    }catch(err){
+        console.log(err)
+        return res.json({error:true,message:"somthing went wrong"})
+    }
+}
