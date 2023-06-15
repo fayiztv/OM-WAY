@@ -1,35 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import UserSignupPage from "./pages/user/UserSignupPage";
+import { Navigate, Route, Routes } from "react-router-dom";
+import UserLoginpage from "./pages/user/UserLoginpage";
+import UserHomePage from "./pages/user/UserHomePage";
+import "./App.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import UserForgotPage from "./pages/user/UserForgotPage";
+import AdminHomePage from "./pages/admin/AdminHomePage"
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
 
 function App() {
-  const [count, setCount] = useState(0)
+  axios.defaults.baseURL = "http://localhost:2000/";
+  axios.defaults.withCredentials = true;
+  const { user, admin, refresh, serviceCenter, worker } = useSelector(
+    (state) => {
+      return state;
+    }
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async function () {
+      let { data } = await axios.get("user/auth/check")
+      dispatch({ type: "user", payload: { login: data.loggedIn, detials: data.user } })
+      let {data:adminData} = await axios.get("/admin/auth/check")
+      dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
+    })()
+  }, [refresh])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Routes>
+
+        {
+          admin.login && 
+          <>
+          <Route path="/admin/" element={<AdminHomePage/>}/>
+          <Route path="/admin/login" element={<Navigate to="/admin/"/>}/>
+          </>
+        }
+
+        {
+          admin.login === false &&
+          <>
+          <Route path="/admin/login" element={<AdminLoginPage/>}/>
+          <Route path="/admin/" element={<Navigate to="/admin/login"/>}/>
+          </>
+        }
+        
+        {
+          user.login && 
+          <>
+            <Route path="/" element={<UserHomePage />} />
+            <Route path="/login" element={<Navigate to="/" />} />
+            <Route path="/sign-up" element={<Navigate to="/" />} />
+          </>
+        }
+
+        {
+          user.login == false &&
+          <>
+          <Route path='/' element={<Navigate to='/login'/>}/>
+          <Route path='/login' element={<UserLoginpage/>} />
+          <Route path='/sign-up' element={<UserSignupPage/>}/>
+          <Route path="/forgot" element={<UserForgotPage/>}/>
+          </>
+        }
+
+        <Route path="/admin/login" element={<AdminHomePage/>}/>
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
