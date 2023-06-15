@@ -136,3 +136,46 @@ export async function userLogout(req,res){
     }).json({ message: "logged out", error: false });
     console.log("logged in");
 }
+
+export async function forgot(req,res){
+    const {email} = req.body
+    const user = await UserModel.findOne({email:email}).lean()
+    if(!user){
+        return res.json({err:true,message:"no user found"})
+       }
+       let otp = Math.ceil(Math.random() * 10000)
+       let otpSent = await sentOtp(email, otp)
+       console.log(otp)
+       const token = jwt.sign(
+           {
+               otp: otp
+           },"myJwtSecretKey"
+           
+       )
+       return res.cookie("tempToken", token, {
+           httpOnly: true,
+           secure: true,
+           maxAge: 1000 * 60,
+           sameSite: "none",
+       }).json({ err: false })
+}
+
+export async function verifyForgot(req,res){
+    try {
+        const { otp } = req.body;
+        const tempToken = req.cookies.tempToken;
+    
+        if (!tempToken) {
+            return res.json({ err: true, message: "OTP Session Timed Out" });
+        }
+    
+        const verifiedTempToken = jwt.verify(tempToken, "myJwtSecretKey");
+        if (otp != verifiedTempToken.otp) {
+            return res.json({ err: true, message: "Invalid OTP" });
+        }
+        return res.json({ err: false })
+    }catch(err){
+        console.log(err)
+        res.json({ error: err, err: true, message: "something went wrong" })
+    }
+}
