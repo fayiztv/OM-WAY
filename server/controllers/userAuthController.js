@@ -179,3 +179,29 @@ export async function verifyForgot(req,res){
         res.json({ error: err, err: true, message: "something went wrong" })
     }
 }
+
+export async function resetUserPassword(req,res){
+    try{
+
+        const { email, password, otp } = req.body;
+        const tempToken = req.cookies.tempToken;
+        if (!tempToken) {
+            return res.json({ err: true, message: "OTP Session Timed Out" });
+        }
+        const verifiedTempToken = jwt.verify(tempToken, 'myJwtSecretKey');
+        if (otp != verifiedTempToken.otp) {
+            return res.json({ err: true, message: "Invalid OTP" });
+        }      
+
+        const hashPassword = bcrypt.hashSync(password, salt);
+        await UserModel.updateOne({ email }, {
+            $set: {
+                password: hashPassword
+            }
+        })
+        return res.json({ err: false })
+    }catch (err) {
+        console.log(err)
+        res.json({ err: err, err: true, message: "something went wrong" })
+    }
+}

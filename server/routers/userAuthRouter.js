@@ -10,6 +10,6 @@ router.get('/check',checkUserLoggedIn)
 router.get('/logout',userLogout)
 router.post('/forgot',forgot)
 router.post('/forgot/verify',verifyForgot)
-
+router.post('/forgot/reset',resetUserPassword)
 
 export default router
