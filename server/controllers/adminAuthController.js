@@ -56,3 +56,13 @@ export async function checkAdminLoggedIn(req, res) {
 
     }
 }
+
+export async function adminLogout(req, res) {
+    res.cookie("adminToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+    console.log("logged out");
+}
