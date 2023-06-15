@@ -39,3 +39,38 @@ export async function guideRegister(req,res){
         res.json({ error: err, err: true, message: "something went wrong" })
     }
 }
+
+export async function guideLogin(req,res){
+    try{
+
+        const {email,password} = req.body
+        const guide = await GuideModel.findOne({email}).lean()
+        
+        if(!guide){
+            return res.json({err:true,message:"No guide found"})
+        }
+
+        if(guide.active === false){
+            return res.json({ err: true, message: "oops! you should wait until admin accept your request" })
+        }
+
+        const valideGuide = bcrypt.compareSync(password,guide.password)
+        if(!valideGuide){
+            return res.json({err:true,message:"Wrong password"})
+        }
+        const token = jwt.sign({
+            id:guide._id
+        },"myJwtSecretKey")
+
+        return res.cookie("guideToken",token,{
+            httpOnly: true,
+                    secure: true,
+                    maxAge: 1000 * 60 * 60 * 24,
+                    sameSite: "none",
+        }).json({err:false})
+
+    }catch(err){
+        console.log(err)
+        return res.json({error:true,message:"somthing went wrong"})
+    }
+}

@@ -3,5 +3,7 @@ import { checkGuideLoggedIn, guideLogin, guideLogout, guideRegister } from "../c
 const router = express.Router()
 
 router.post('/register',guideRegister)
+router.post('/login',guideLogin)
+
 
 export default router 
