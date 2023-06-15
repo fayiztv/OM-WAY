@@ -74,3 +74,24 @@ export async function guideLogin(req,res){
         return res.json({error:true,message:"somthing went wrong"})
     }
 }
+
+export async function checkGuideLoggedIn(req,res){
+    try{
+
+        const token = req.cookies.guideToken
+        if(!token){
+            return res.json({loggedIn:false,error:true,message:"no token"})
+        }
+
+        const verifiedJWT = jwt.verify(token,"myJwtSecretKey")
+        const guide = await GuideModel.findById(verifiedJWT.id,{password:0})
+        if(!guide){
+            return res.json({loggedIn:false})
+        }
+        return res.json({guide,loggedIn:true})
+
+    }catch(err){
+        console.log(err);
+        return res.json({loggedIn:false,error:err})
+      }
+}

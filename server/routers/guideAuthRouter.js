@@ -4,6 +4,8 @@ const router = express.Router()
 
 router.post('/register',guideRegister)
 router.post('/login',guideLogin)
+router.get('/check',checkGuideLoggedIn)
+
 
 
 export default router 
