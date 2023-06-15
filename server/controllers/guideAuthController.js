@@ -95,3 +95,13 @@ export async function checkGuideLoggedIn(req,res){
         return res.json({loggedIn:false,error:err})
       }
 }
+
+export async function guideLogout(req,res){
+    res.cookie("guideToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+    console.log("logged out");
+}
