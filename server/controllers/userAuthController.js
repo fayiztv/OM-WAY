@@ -105,3 +105,24 @@ export async function userLogin(req,res){
         return res.json({error:true,message:"somthing went wrong"})
     }
 }
+
+export async function checkUserLoggedIn(req,res){
+    try{
+
+        const token = req.cookies.userToken
+        if(!token){
+            return res.json({loggedIn:false,error:true,message:"no token"})
+        }
+
+        const verifiedJWT = jwt.verify(token,"myJwtSecretKey")
+        const user = await UserModel.findById(verifiedJWT.id,{password:0})
+        if(!user){
+            return res.json({loggedIn:false})
+        }
+        return res.json({user,loggedIn:true})
+
+    }catch(err){
+        console.log(err);
+        return res.json({loggedIn:false,error:err})
+      }
+}
