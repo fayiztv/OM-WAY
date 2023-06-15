@@ -2,12 +2,11 @@ import axios from 'axios';
 import React from 'react'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
-import "./adminhead.css"
 
+function GuideHome() {
 
-function Adminheader() {
-    const dispatch=useDispatch();
-    async function handleLogout(e) { 
+  const dispatch=useDispatch();
+  async function handleLogout(e) { 
     e.preventDefault()
     Swal.fire({
       title: 'Are you sure? logout',
@@ -19,22 +18,19 @@ function Adminheader() {
       confirmButtonText: 'Yes, Logout!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.get("/admin/auth/logout")
+        await axios.get("/guide/auth/logout")
         dispatch({type:"refresh"})
       }
     })
   }
+
   return (
-
-  <nav className="navbar">
-  <div className="container-fluid">
-    {/* <img src={image} alt="" /> */}
-  <button onClick={handleLogout} type="button" class="btn btn-info">Logout</button>
-
-  </div>
-</nav>
+    <div>
+      <h1>Guide Home</h1>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
     
   )
 }
 
-export default Adminheader
+export default GuideHome
