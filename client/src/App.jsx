@@ -8,12 +8,19 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import UserForgotPage from "./pages/user/UserForgotPage";
 import AdminHomePage from "./pages/admin/AdminHomePage"
+import AdminUsersPage from "./pages/admin/AdminUsersPage"
+import AdminGuidesPage from "./pages/admin/AdminGuidesPage"
+import AdminRegistrationsPage from "./pages/admin/AdminRegistrationsPage"
+import AdminComplaintsPage from "./pages/admin/AdminComplaintsPage"
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import GuideRegisterPage from "./pages/guide/GuideRegisterPage";
+import GuideLoginPage from "./pages/guide/GuideLoginPage";
+import GuideHomePage from "./pages/guide/GuideHomePage";
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:2000/";
+  axios.defaults.baseURL = "http://localhost:2005/";
   axios.defaults.withCredentials = true;
-  const { user, admin, refresh, serviceCenter, worker } = useSelector(
+  const { user, admin, guide ,refresh } = useSelector(
     (state) => {
       return state;
     }
@@ -23,8 +30,10 @@ function App() {
     (async function () {
       let { data } = await axios.get("user/auth/check")
       dispatch({ type: "user", payload: { login: data.loggedIn, detials: data.user } })
-      let {data:adminData} = await axios.get("/admin/auth/check")
+      let { data:adminData } = await axios.get("/admin/auth/check")
       dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
+      let { data:guideData } = await axios.get("guide/auth/check")
+      dispatch({ type: "guide", payload: { login: guideData.loggedIn, detials: guideData.guide } })
     })()
   }, [refresh])
 
@@ -35,8 +44,12 @@ function App() {
         {
           admin.login && 
           <>
-          <Route path="/admin/" element={<AdminHomePage/>}/>
-          <Route path="/admin/login" element={<Navigate to="/admin/"/>}/>
+          <Route path="/admin/dashboard" element={<AdminHomePage/>}/>
+          <Route path="/admin/users" element={<AdminUsersPage/>}/>
+          <Route path="/admin/guides" element={<AdminGuidesPage/>}/>
+          <Route path="/admin/registrations" element={<AdminRegistrationsPage/>}/>
+          <Route path="/admin/complaints" element={<AdminComplaintsPage/>}/>
+          <Route path="/admin/login" element={<Navigate to="/admin/dashboard"/>}/>
           </>
         }
 
@@ -44,7 +57,11 @@ function App() {
           admin.login === false &&
           <>
           <Route path="/admin/login" element={<AdminLoginPage/>}/>
-          <Route path="/admin/" element={<Navigate to="/admin/login"/>}/>
+          <Route path="/admin/dashboard" element={<Navigate to="/admin/login"/>}/>
+          <Route path="/admin/users" element={<Navigate to="/admin/login"/>}/>
+          <Route path="/admin/guides" element={<Navigate to="/admin/login"/>}/>
+          <Route path="/admin/registrations" element={<Navigate to="/admin/login"/>}/>
+          <Route path="/admin/complaints" element={<Navigate to="/admin/login"/>}/>
           </>
         }
         
@@ -63,11 +80,28 @@ function App() {
           <Route path='/' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginpage/>} />
           <Route path='/sign-up' element={<UserSignupPage/>}/>
-          <Route path="/forgot" element={<UserForgotPage/>}/>
+          <Route path="/forgot-password" element={<UserForgotPage/>}/>
           </>
         }
 
-        <Route path="/admin/login" element={<AdminHomePage/>}/>
+        {
+          guide.login && 
+          <>
+          <Route path="/guide/" element={<GuideHomePage/>}/>
+          <Route path="/guide/login" element={<Navigate to="/guide/"/>}/>
+          <Route path="/guide/register" element={<Navigate to="/guide/"/>}/>
+          </>
+        }
+
+        {
+          guide.login === false &&
+          <>
+          <Route path="/guide/" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/login" element={<GuideLoginPage/>}/>
+          <Route path="/guide/register" element={<GuideRegisterPage/>}/>
+          </>
+        }
+        
       </Routes>
     </div>
   );

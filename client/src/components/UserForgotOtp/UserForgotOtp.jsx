@@ -21,7 +21,7 @@ function UserForgotOtp({ email }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
-    let { data } = await axios.post("/user/auth/forgot/verify", { otp });
+    let { data } = await axios.post("/user/auth/forgot-password/verify", { otp });
     if (data.err) {
       setErrMessage(data.message);
     } else {

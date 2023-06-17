@@ -20,7 +20,7 @@ export default function UserReset({ email, otp }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
-    const { data } = await axios.post("/user/auth/forgot/reset", {
+    const { data } = await axios.post("/user/auth/forgot-password/reset", {
       otp,
       email,
       password,

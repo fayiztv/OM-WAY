@@ -50,9 +50,9 @@ export async function guideLogin(req,res){
             return res.json({err:true,message:"No guide found"})
         }
 
-        if(guide.active === false){
-            return res.json({ err: true, message: "oops! you should wait until admin accept your request" })
-        }
+        // if(guide.active === false){
+        //     return res.json({ err: true, message: "oops! you should wait until admin accept your request" })
+        // }
 
         const valideGuide = bcrypt.compareSync(password,guide.password)
         if(!valideGuide){

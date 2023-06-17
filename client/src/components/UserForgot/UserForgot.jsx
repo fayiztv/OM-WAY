@@ -25,7 +25,7 @@ function UserForgot() {
     setLoading(true);
     e.preventDefault();
     if (validForm()) {
-      const { data } = await axios.post("/user/auth/forgot", { email });
+      const { data } = await axios.post("/user/auth/forgot-password", { email });
       if (data.err) {
         setErrMessage(data.message);
       } else {
@@ -104,7 +104,7 @@ function UserForgot() {
         </Row>
       )}
     </div>
-  );
+  )
 }
 
 export default UserForgot;

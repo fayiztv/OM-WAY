@@ -7,4 +7,6 @@ router.post('/login',guideLogin)
 router.get('/check',checkGuideLoggedIn)
 router.get('/logout',guideLogout)
 
+
+
 export default router 

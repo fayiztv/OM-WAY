@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { TextField } from "@mui/material";
-import adminLoginImage from "../../assets/images/adminLogin.png";
+import { useDispatch } from "react-redux";
 import "../UserSignup/signup.css";
+import adminLoginImage from "../../assets/images/adminLogin.png";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 function Adminlogin() {
   const [email, setEmail] = useState("");
@@ -56,9 +56,6 @@ function Adminlogin() {
               </div>
             </Col>
             <Col md={6}>
-              {/* <div className="login-row head">
-                                        <h3>Admin</h3>
-                                    </div> */}
               <div className="login-sec">
                 <form onSubmit={handleSubmit} className="login-box">
                   <div className="login-row head">

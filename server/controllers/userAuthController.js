@@ -50,7 +50,7 @@ export async function userRegisterVerify(req,res){
             return res.json({ err: true, message: "Invalid OTP" });
         }
         
-        const hashPassword = bcrypt.hashSync(password, salt);  
+        const hashPassword = bcrypt.hashSync(password, salt);
 
         const newUser = new UserModel({ name, email, password: hashPassword,contact:number })
         await newUser.save();
@@ -77,12 +77,12 @@ export async function userLogin(req,res){
     try{
 
         const {email,password} = req.body
-        const user = await UserModel.findOne({email}).lean()
+        const user = await UserModel.findOne({email,admin:false}).lean()
         if(!user){
             return res.json({err:true,message:"No user found"})
         }
-        if(user.admin){
-            return res.json({ err: true, message: "no user found" })
+        if(user.block){
+            return res.json({ err: true, message: "oopss! you are blocked" })
         }
 
         const valideUser = bcrypt.compareSync(password,user.password)
@@ -134,7 +134,7 @@ export async function userLogout(req,res){
         secure: true,
         sameSite: "none",
     }).json({ message: "logged out", error: false });
-    console.log("logged in");
+    console.log("logged out");
 }
 
 export async function forgot(req,res){
@@ -205,3 +205,6 @@ export async function resetUserPassword(req,res){
         res.json({ err: err, err: true, message: "something went wrong" })
     }
 }
+
+
+

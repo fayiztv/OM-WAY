@@ -3,6 +3,8 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import "./adminhead.css"
+import 'bootstrap/dist/css/bootstrap.css';
+import logo from "../../assets/images/logo.png"
 
 
 function Adminheader() {
@@ -26,13 +28,12 @@ function Adminheader() {
   }
   return (
 
-  <nav className="navbar">
-  <div className="container-fluid">
-    {/* <img src={image} alt="" /> */}
-  <button onClick={handleLogout} type="button" class="btn btn-info">Logout</button>
-
-  </div>
-</nav>
+    <nav style={{paddingLeft:"20px"}} className="navbar navbar-expand-lg navbar-light bg-light">
+        <img src={logo} alt="" />
+      <div style={{paddingRight:"20px"}} className="navbar-collapse justify-content-end">
+        <button className="btn btn-outline-primary" onClick={handleLogout} type="button">Logout</button>
+      </div>
+    </nav>
     
   )
 }

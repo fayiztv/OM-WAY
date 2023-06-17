@@ -1,9 +1,9 @@
 import React from 'react'
 import AdminHeader from '../AdminHeader/AdminHeader';
 import AdminSideBar from '../AdminSideBar/AdminSideBar';
-import "./adminhome.css"
+// import "./adminhome.css"
 
-function AdminHome() {
+function AdminComplaints() {
   return (
    <div className="container-scroller">
       <AdminHeader/>
@@ -11,7 +11,7 @@ function AdminHome() {
             <AdminSideBar/>
           <div className="main-panel">
             <div  className="content-wrapper">
-              <h2>DashBoard</h2>
+              <h2>Complaints</h2>
             <div style={{width:'1000px',marginTop:'30px'}} className="col-lg-6 grid-margin stretch-card">
                 <div style={{paddingBottom:'20px'}} className="table-responsive">
                   <table className="table table-hover">
@@ -65,4 +65,4 @@ function AdminHome() {
   )
 }
 
-export default AdminHome
+export default AdminComplaints

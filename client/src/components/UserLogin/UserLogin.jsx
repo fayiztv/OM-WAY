@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
-import { CircularProgress, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import "../UserSignup/signup.css"
 import axios from 'axios';
@@ -17,8 +16,6 @@ function UserLogin() {
     const [loading, setLoading] = useState({
         submit: false
     })
-
-
     const validForm = () => {
         if (password.trim() === "" || email.trim() === "") {
             return false
@@ -90,7 +87,7 @@ function UserLogin() {
                                                 </div>
                                             }
                                     <div className="login-row d-flex mt-1 justify-content-start">
-                                        <Link to="/forgot">Forgot Password</Link>
+                                        <Link to="/forgot-password">Forgot Password</Link>
                                     </div>
                                     <div className="login-row">
                                         <button type='submit' className='w-100' disabled={!validForm()}>
@@ -100,6 +97,9 @@ function UserLogin() {
                                     </div>
                                     <div className="login-row mt-3">
                                         <Link to="/sign-up">Don't Have an Account? Signin</Link>
+                                    </div>
+                                    <div className="login-row mt-3">
+                                        <Link to="/guide/register">Register as a Guide? Register</Link>
                                     </div>
                                 </form>
                             </div>

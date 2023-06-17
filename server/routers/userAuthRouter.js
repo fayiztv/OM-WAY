@@ -8,8 +8,13 @@ router.post('/register/verify',userRegisterVerify)
 router.post('/login',userLogin)
 router.get('/check',checkUserLoggedIn)
 router.get('/logout',userLogout)
-router.post('/forgot',forgot)
-router.post('/forgot/verify',verifyForgot)
-router.post('/forgot/reset',resetUserPassword)
+router.post('/forgot-password',forgot)
+router.post('/forgot-password/verify',verifyForgot)
+router.post('/forgot-password/reset',resetUserPassword) 
+
 
 export default router
+
+
+
+
