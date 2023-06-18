@@ -71,3 +71,15 @@ export async function getunBlockGuide(req, res) {
     }
 }
 
+export async function getAdminRegistrations(req, res) {
+
+    try {
+        const name = req.query.name ?? ""
+        let registrations = await GuideModel.find({ firstName: new RegExp(name, 'i'),active:false}).lean()
+        res.json(registrations)
+
+    } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+}
+
