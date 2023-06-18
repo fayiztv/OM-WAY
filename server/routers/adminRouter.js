@@ -7,6 +7,7 @@ router.get('/users',getAdminUsers)
 router.patch('/users/block',getBlockUser)
 router.patch('/users/unblock',getunBlockUser)
 router.get('/guides',getAdminGuides)
+router.patch('/guide/block',getBlockGuide)
 
 
 export default router

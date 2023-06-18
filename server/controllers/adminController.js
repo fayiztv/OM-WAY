@@ -50,3 +50,13 @@ export async function getAdminGuides(req, res) {
     }
 }
 
+export async function getBlockGuide(req, res) {
+    try{
+        const id = req.body.id
+        await GuideModel.findByIdAndUpdate(id, { $set: { block: true } }).lean()
+        res.json({ err: false })
+    } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+
+}
