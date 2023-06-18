@@ -96,3 +96,12 @@ export async function getAcceptRegistration(req, res) {
 
 }
 
+export async function getRejectRegistration(req, res) {
+    try{
+        const id = req.body.id
+        await GuideModel.deleteOne({ _id: id }).lean();
+        res.json({ err: false })
+    } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+}
