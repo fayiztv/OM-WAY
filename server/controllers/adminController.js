@@ -83,3 +83,16 @@ export async function getAdminRegistrations(req, res) {
     }
 }
 
+export async function getAcceptRegistration(req, res) {
+    try{
+        const id = req.body.id
+        const guide =  await GuideModel.findByIdAndUpdate(id, { $set: { active: true } }).lean()
+        let passSent = await sentPass(guide.email,guide.password)
+        console.log("password send"+guide.password);
+        res.json({ err: false })
+    } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+
+}
+
