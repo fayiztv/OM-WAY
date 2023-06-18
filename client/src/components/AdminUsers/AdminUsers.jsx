@@ -28,7 +28,7 @@ function AdminUsers() {
   async function blockUser(id) {
     Swal.fire({
       title: "Are you sure?",
-      text: "Block this service center",
+      text: "Block this User",
       icon: "info",
       showCancelButton: true,
       confirmButtonColor: "#2C457E",
@@ -45,7 +45,7 @@ function AdminUsers() {
   async function unBlockUser(id) {
     Swal.fire({
       title: "Are you sure?",
-      text: "Block this service center",
+      text: "Unblock this User",
       icon: "info",
       showCancelButton: true,
       confirmButtonColor: "#2C457E",
@@ -79,7 +79,7 @@ function AdminUsers() {
                 style={{ paddingBottom: "20px" }}
                 className="table-responsive"
               >
-                <table class="table striped mt-5">
+                <table className="table striped mt-5">
                   <thead className="thead-dark">
                     <tr className="table-head">
                       <th scope="col">SI No</th>

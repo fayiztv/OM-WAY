@@ -1,8 +1,6 @@
 import GuideModel from "../models/GuideModel.js";
 import UserModel from "../models/UserModel.js";
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-
+import sentPass from '../helpers/sentPassword.js'
 
 export async function getAdminUsers(req, res) {
 
@@ -39,3 +37,16 @@ export async function getunBlockUser(req, res) {
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }
+
+export async function getAdminGuides(req, res) {
+
+    try {
+        const name = req.query.name ?? ""
+        let guides = await GuideModel.find({ firstName: new RegExp(name, 'i'),active:true}).lean()
+        res.json(guides)
+
+    } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+}
+

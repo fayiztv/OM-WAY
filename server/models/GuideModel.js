@@ -25,6 +25,10 @@ const GuideSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    block:{
+        type:Boolean,
+        default:false
+    },
     active:{
         type:Boolean,
         default:false

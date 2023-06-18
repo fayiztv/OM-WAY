@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { CircularProgress, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import image from "/src/assets/images/guideregister.png";
 import "../UserSignup/signup.css";
 import { Link } from "react-router-dom";
@@ -81,6 +81,7 @@ function GuideRegister() {
                     </div>
                     <div style={{paddingRight:"2px"}} className="login-row w-100 mt-3">
                       <TextField
+                        style={{width:"150px",marginRight:"5px"}}
                         id="filled-textarea"
                         label="First name"
                         variant="standard"
@@ -89,6 +90,7 @@ function GuideRegister() {
                         onChange={(e) => setFirstName(e.target.value)}
                       />
                       <TextField
+                        style={{width:"150px",marginLeft:"5px"}}
                         id="filled-textarea"
                         label="Last name"
                         variant="standard"

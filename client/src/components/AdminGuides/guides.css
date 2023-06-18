@@ -1,0 +1,45 @@
+*{
+    box-shadow: none;
+}
+.section{
+    box-shadow: none;
+}
+
+table .table-head{
+    font-size: 22px;
+    text-align: center;
+    background:#212A3E !important;
+    color:white;
+}
+
+table tbody{
+    text-align: center;
+}
+
+.admin-search-box input{
+    width:200px;
+    height:40px;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.admin-search-box button{
+    height: 40px;
+    width:100px !important;
+    margin-left:5px;
+    background-color:#212A3E ;
+    color:white;
+    border-radius: 5px;
+}
+
+table button{
+    width:80px;
+    height: 35px;
+    background-color: #212A3E;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+}

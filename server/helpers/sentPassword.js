@@ -18,7 +18,8 @@ export default function sentPassword(email, password){
               subject: "onMyWay Guide Temp Password",
               html: `
               <h1>Login with this password </h1>
-                <h3>if you got a mail that you are selected as guide use this password to login , and you can also change it</h3>
+              <h2>now you can login</h2>
+                <h3>use this password to login , and you can also change it</h3>
                 <h2>${password}</h2>
               `,
             }
@@ -29,7 +30,7 @@ export default function sentPassword(email, password){
                 reject(error)
 
               } else {
-                console.log("password sent")
+                console.log("sent")
                 resolve({success:true, message:"Email sent successfull"})
               }
             });

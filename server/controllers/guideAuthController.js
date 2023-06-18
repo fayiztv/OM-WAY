@@ -1,9 +1,6 @@
 import GuideModel from '../models/GuideModel.js'
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
-import sentPass from '../helpers/sentPassword.js'
-
-var salt = bcrypt.genSaltSync(10);
 
 export async function guideRegister(req,res){
     try{
@@ -15,11 +12,8 @@ export async function guideRegister(req,res){
         }
         let tempPassword = Math.random().toString(36).substring(2, 10 + 2)
         console.log(tempPassword);
-        let passSent = await sentPass(email,tempPassword)
 
-        const hashPassword = bcrypt.hashSync(tempPassword, salt);
-
-        const newGuide = new GuideModel({firstName,lastName,email,password:hashPassword,contact:number,about})
+        const newGuide = new GuideModel({firstName,lastName,email,password:tempPassword,contact:number,about})
         await newGuide.save()
 
         const token = jwt.sign(
@@ -49,13 +43,15 @@ export async function guideLogin(req,res){
         if(!guide){
             return res.json({err:true,message:"No guide found"})
         }
+        if(guide.block){
+            return res.json({err:true,message:"Oops! you are blocked by admin"})
+        }
 
-        // if(guide.active === false){
-        //     return res.json({ err: true, message: "oops! you should wait until admin accept your request" })
-        // }
+        if(guide.active === false){
+            return res.json({ err: true, message: "oops! registration not accepted" })
+        }
 
-        const valideGuide = bcrypt.compareSync(password,guide.password)
-        if(!valideGuide){
+        if(password != guide.password){
             return res.json({err:true,message:"Wrong password"})
         }
         const token = jwt.sign({
