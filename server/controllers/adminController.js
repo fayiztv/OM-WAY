@@ -1,6 +1,6 @@
 import GuideModel from "../models/GuideModel.js";
 import UserModel from "../models/UserModel.js";
-import sentPass from '../helpers/sentPassword.js'
+import sentMail from '../helpers/sentMail.js'
 
 export async function getAdminUsers(req, res) {
 
@@ -87,7 +87,7 @@ export async function getAcceptRegistration(req, res) {
     try{
         const id = req.body.id
         const guide =  await GuideModel.findByIdAndUpdate(id, { $set: { active: true } }).lean()
-        let Sent = await sentPass(guide.email,guide.password)
+        let Sent = await sentMail(guide.email)
         res.json({ err: false })
     } catch (err) {
         return res.json({ err: true, message: "Something went wrong", error: err })
@@ -98,7 +98,9 @@ export async function getAcceptRegistration(req, res) {
 export async function getRejectRegistration(req, res) {
     try{
         const id = req.body.id
+        const message = "haaai"
         await GuideModel.deleteOne({ _id: id }).lean();
+        let Sent = await sentRejection(guide.email,message)
         res.json({ err: false })
     } catch (err) {
         return res.json({ err: true, message: "Something went wrong", error: err })

@@ -2,31 +2,22 @@ import GuideModel from '../models/GuideModel.js'
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
 
+
+var salt = bcrypt.genSaltSync(10);
+
 export async function guideRegister(req,res){
     try{
-
-        const { firstName,lastName, email, about,number } = req.body;
+        
+        const { firstName,lastName, email, password, about,number } = req.body;
         const guide = await GuideModel.findOne({email})
         if(guide){
             return res.json({err:true,message:"Email already registered"})
         }
-        let tempPassword = Math.random().toString(36).substring(2, 10 + 2)
-        console.log(tempPassword);
-
-        const newGuide = new GuideModel({firstName,lastName,email,password:tempPassword,contact:number,about})
+        
+        const hashPassword = bcrypt.hashSync(password, salt);
+        const newGuide = new GuideModel({firstName,lastName,email,password:hashPassword,contact:number,about})
         await newGuide.save()
-
-        const token = jwt.sign(
-            {
-                id: newGuide._id
-            },'myJwtSecretKey'
-        )
-        return res.cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: "none",
-        }).json({ err: false })
+        return res.json({ err: false })
 
     }catch (err) {
         console.log(err)
@@ -51,7 +42,9 @@ export async function guideLogin(req,res){
             return res.json({ err: true, message: "oops! registration not accepted" })
         }
 
-        if(password != guide.password){
+        const valideGuide = bcrypt.compareSync(password,guide.password)
+
+        if(!valideGuide){
             return res.json({err:true,message:"Wrong password"})
         }
         const token = jwt.sign({

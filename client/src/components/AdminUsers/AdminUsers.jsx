@@ -79,7 +79,7 @@ function AdminUsers() {
                 style={{ paddingBottom: "20px" }}
                 className="table-responsive"
               >
-                <table className="table striped mt-5">
+                <table className="table table-hover mt-5">
                   <thead className="thead-dark">
                     <tr className="table-head">
                       <th scope="col">SI No</th>

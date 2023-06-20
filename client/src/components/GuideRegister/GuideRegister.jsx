@@ -14,6 +14,7 @@ function GuideRegister() {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [about, setAbout] = useState("");
+  const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [loading, setLoading] = useState({
@@ -41,6 +42,7 @@ function GuideRegister() {
           firstName,
           lastName,
           email,
+          password,
           number,
           about,
         });
@@ -108,6 +110,17 @@ function GuideRegister() {
                         fullWidth
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="login-row w-100">
+                      <TextField
+                        id="filled-textarea"
+                        label="Password"
+                        variant="standard"
+                        type="password"
+                        fullWidth
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                     <div className="login-row">

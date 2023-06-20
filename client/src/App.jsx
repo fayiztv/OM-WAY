@@ -45,6 +45,7 @@ function App() {
           admin.login && 
           <>
           <Route path="/admin/dashboard" element={<AdminHomePage/>}/>
+          <Route path="/admin/" element={<Navigate to="/admin/dashboard"/>}/>
           <Route path="/admin/users" element={<AdminUsersPage/>}/>
           <Route path="/admin/guides" element={<AdminGuidesPage/>}/>
           <Route path="/admin/registrations" element={<AdminRegistrationsPage/>}/>
@@ -58,6 +59,7 @@ function App() {
           <>
           <Route path="/admin/login" element={<AdminLoginPage/>}/>
           <Route path="/admin/dashboard" element={<Navigate to="/admin/login"/>}/>
+          <Route path="/admin/" element={<Navigate to="/admin/login"/>}/>
           <Route path="/admin/users" element={<Navigate to="/admin/login"/>}/>
           <Route path="/admin/guides" element={<Navigate to="/admin/login"/>}/>
           <Route path="/admin/registrations" element={<Navigate to="/admin/login"/>}/>

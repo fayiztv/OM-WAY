@@ -28,7 +28,7 @@ function Adminheader() {
   }
   return (
 
-    <nav style={{paddingLeft:"20px"}} className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav style={{paddingLeft:"20px"}} className="navbar navbar-expand-lg navbar-light fixed bg-light">
         <img src={logo} alt="" />
       <div style={{paddingRight:"20px"}} className="navbar-collapse justify-content-end">
         <button className="btn btn-outline-primary" onClick={handleLogout} type="button">Logout</button>

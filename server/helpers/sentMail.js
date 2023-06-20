@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 
-export default function sentPassword(email, password){
+export default function sentMail(email){
     return new Promise((resolve, reject)=>{
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
@@ -15,12 +15,12 @@ export default function sentPassword(email, password){
             var mailOptions={
               from: 'onmyway748@gmail.com',
               to: email,
-              subject: "onMyWay Guide Temp Password",
+              subject: "onmyWay",
               html: `
-              <h1>Login with this password </h1>
-              <h2>now you can login</h2>
-                <h3>use this password to login , and you can also change it</h3>
-                <h2>${password}</h2>
+              <h1>Congratulations</h1>
+              <h2>Your registration is accepted</h2>
+                <h2>now you can login into your guide account</h2>
+                <h2>have a nice day</h2>
               `,
             }
         

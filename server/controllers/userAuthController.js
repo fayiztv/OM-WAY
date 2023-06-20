@@ -54,18 +54,7 @@ export async function userRegisterVerify(req,res){
 
         const newUser = new UserModel({ name, email, password: hashPassword,contact:number })
         await newUser.save();
-
-        const token = jwt.sign(
-            {
-                id: newUser._id
-            },'myJwtSecretKey'
-        )
-        return res.cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 1000 * 60 * 60 * 24 * 7,
-            sameSite: "none",
-        }).json({ err: false })
+        return res.json({ err: false })
 
     }catch (err) {
         console.log(err)
@@ -107,6 +96,7 @@ export async function userLogin(req,res){
 }
 
 export async function checkUserLoggedIn(req,res){
+    
     try{
 
         const token = req.cookies.userToken
