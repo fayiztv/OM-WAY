@@ -176,7 +176,7 @@ export async function resetUserPassword(req,res){
         const { email, password, otp } = req.body;
         const tempToken = req.cookies.tempToken;
         if (!tempToken) {
-            return res.json({ err: true, message: "OTP Session Timed Out" });
+            return res.json({ err: true, message: "Session Timed Out" });
         }
         const verifiedTempToken = jwt.verify(tempToken, 'myJwtSecretKey');
         if (otp != verifiedTempToken.otp) {

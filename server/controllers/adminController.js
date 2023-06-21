@@ -1,6 +1,7 @@
 import GuideModel from "../models/GuideModel.js";
 import UserModel from "../models/UserModel.js";
 import sentMail from '../helpers/sentMail.js'
+import sentRejection from '../helpers/SentRejection.js'
 
 export async function getAdminUsers(req, res) {
 
@@ -98,9 +99,11 @@ export async function getAcceptRegistration(req, res) {
 export async function getRejectRegistration(req, res) {
     try{
         const id = req.body.id
-        const message = "haaai"
-        await GuideModel.deleteOne({ _id: id }).lean();
+        const message = req.body.text
+        console.log(id+"            "+message);
+        const guide = await GuideModel.findOne({ _id: id }).lean()
         let Sent = await sentRejection(guide.email,message)
+        await GuideModel.deleteOne({_id:id})
         res.json({ err: false })
     } catch (err) {
         return res.json({ err: true, message: "Something went wrong", error: err })

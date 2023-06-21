@@ -1,0 +1,37 @@
+.user-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
+.user-navbar .logo{
+  display:flex;
+}
+.user-navbar .logo img{
+  padding-left:50px;
+  padding-right:30px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap:30px;
+  margin-top:20px;
+}
+
+.nav-links li {
+  margin-right: 10px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #147E7D;
+  font-weight: bold;
+}
+
+.profile-logo img {
+  width: 40px;
+  height: 40px;
+  margin-top:10ppx;
+  border-radius: 50%;
+  margin-right:30px;
+}
