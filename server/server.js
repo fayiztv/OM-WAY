@@ -6,6 +6,7 @@ import cors from 'cors'
 import userAuthRouter from './routers/userAuthRouter.js'
 import adminAuthRouter from './routers/adminAuthRouter.js'
 import adminRouter from './routers/adminRouter.js'
+import userRouter from './routers/userRouter.js'
 import guideAuthRouter from './routers/guideAuthRouter.js'
 
 const app=express();
@@ -27,6 +28,7 @@ dbConnect();
 app.use('/admin/auth/',adminAuthRouter)
 app.use('/admin',adminRouter)
 app.use('/user/auth/',userAuthRouter)
+app.use('/user/',userRouter)
 app.use('/guide/auth/',guideAuthRouter)
  
 
