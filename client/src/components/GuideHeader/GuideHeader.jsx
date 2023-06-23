@@ -28,7 +28,7 @@ function GuideHeader() {
       <div className="group">
       <ul className="nav-links">
           <li>
-            <Link to="/guide/profile">Profile</Link>
+            <Link to="/guide">Profile</Link>
           </li>
           <li>
             <Link to="/guide/packages">Packages</Link>

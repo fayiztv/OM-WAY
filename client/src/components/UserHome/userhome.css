@@ -15,7 +15,7 @@ body{
     background-color: rgb(255, 255, 255);
 }
 
-.packages .packages-body{
+.user-main .packages .packages-body{
     width:90%;
     height:350px;
     display: flex;
@@ -23,7 +23,7 @@ body{
     box-shadow: 3px 3px 41px 34px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-.packages-body .packages-text-body{
+.user-main .packages .packages-body .packages-text-body{
     height:350px;
     width:400px;
     display: flex;
@@ -32,7 +32,7 @@ body{
     justify-content: center;
     padding-left:40px;
 }
-.packages-body .packages-details{
+.user-main .packages .packages-body .packages-details{
     height:350px;
     width:950px;
     display: flex;

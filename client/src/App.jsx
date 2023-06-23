@@ -17,6 +17,10 @@ import GuideRegisterPage from "./pages/guide/GuideRegisterPage";
 import GuideLoginPage from "./pages/guide/GuideLoginPage";
 import GuideHomePage from "./pages/guide/GuideHomePage";
 import UserGuidesPage from "./pages/user/UserGuidesPage";
+import GuidePackages from "./components/GuidePackages/GuidePackages";
+import GuideBookings from "./components/GuideBookings/GuideBookings";
+import GuideReviews from "./components/GuideReviews/GuideReviews";
+import GuideAddPackage from "./components/GuideAddPackage/GuideAddPackage";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2005/";
@@ -93,6 +97,10 @@ function App() {
           guide.login && 
           <>
           <Route path="/guide" element={<GuideHomePage/>}/>
+          <Route path="/guide/packages" element={<GuidePackages/>}/>
+          <Route path="/guide/add-package" element={<GuideAddPackage/>}/>
+          <Route path="/guide/bookings" element={<GuideBookings/>}/>
+          <Route path="/guide/reviews" element={<GuideReviews/>}/>
           <Route path="/guide/login" element={<Navigate to="/guide"/>}/>
           <Route path="/guide/register" element={<Navigate to="/guide"/>}/>
           </>
@@ -102,6 +110,10 @@ function App() {
           guide.login === false &&
           <>
           <Route path="/guide" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/packages" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/add-package" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/bookings" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/reviews" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/login" element={<GuideLoginPage/>}/>
           <Route path="/guide/register" element={<GuideRegisterPage/>}/>
           </>
