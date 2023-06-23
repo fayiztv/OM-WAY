@@ -6,13 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Swal from 'sweetalert2'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 
 const UserNavbar = () => {
-  const dispatch=useDispatch();
 
+  const user=useSelector((state)=>{
+    return state.user.detials
+
+  });
+  const dispatch=useDispatch();
   async function handleLogout(e) { 
   e.preventDefault()
   Swal.fire({
@@ -54,7 +58,7 @@ const UserNavbar = () => {
         <FontAwesomeIcon className="user-icon" icon={faUser} />
         <NavDropdown
           className="nav-dropdown"
-          title="User"
+          title={user.name}
           >
           <NavDropdown.Item><Link to='/user/profile'>Profile</Link></NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

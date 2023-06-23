@@ -1,0 +1,58 @@
+body{
+    overflow-x: hidden;
+}
+.user-main .guides-main{
+    height:650px;
+    width:100%;
+}
+.guides-main .guides-head{
+    display: flex;
+    padding-left:80px;
+    align-items:end;
+    height:70px;
+    width:100%;
+}
+
+.guides-main .guide-body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top:50px;
+}
+
+.guide-body col{
+    margin-left:80px;
+    margin-bottom:40px;
+}
+
+.guide-body .guides-card{
+    cursor: pointer;
+    display: flex;
+    flex-direction:row;
+    margin-bottom:40px;
+    width:400px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.guides-card .guide-profile{
+    height:100%;
+    width:170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.guides-card .guide-details{
+    height:100%;
+    width:300px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+
+.guide-profile img{
+    height:70%;
+    width:55%;
+    border-radius:100%;
+}

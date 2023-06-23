@@ -1,0 +1,360 @@
+.GUID-HOME {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height:100%;
+  }
+  
+  .GUID-HOME .div {
+    border: 1px none;
+    position: relative;
+    width: 1280px;
+  }
+  
+  .GUID-HOME .overlap {
+    height: 66px;
+    left: 100px;
+    position: absolute;
+    display: flex;
+    justify-content:center;
+    top: 26px;
+    width:90%px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .overlap .group {
+    height:100%;
+    width: 80vw;
+  }
+  .GUID-HOME .overlap-wrapper {
+    height: 51px;
+    top: 5px;
+    width: 104px;
+    display: flex;
+    align-items: center;
+    margin-right:10px;
+    margin-top:10px;
+  }       
+  .GUID-HOME .overlap-4 {
+    left: 18px;
+    position: absolute;
+    top: 134px;
+    width: 1242px;
+    height: fit-content;
+  }
+  
+  .GUID-HOME .group-3 {
+    height: 250px;
+    left: 120px;
+    position: absolute;
+    top: 157px;
+    width: 250px;
+    border-radius:100%;
+  }
+
+  .group-3 img{
+    height:250px;
+    width:250px;
+    border-radius:100%;
+  }
+  
+  .GUID-HOME .overlap-5 {
+    height: 450px;
+    left: 527px;
+    position: absolute;
+    top: 134px;
+    width: 594px;
+  }
+  
+  .GUID-HOME .group-4 {
+    height: 316px;
+    left: 5px;
+    position: absolute;
+    top: 0;
+    width: 589px;
+  }
+  
+  .GUID-HOME .group-5 {
+    height: 170px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 197px;
+  }
+  
+  .GUID-HOME .text-wrapper-4 {
+    color: #000000;
+    font-family: "Ubuntu-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-shadow: 3px 2px 4px #00000040;
+    top: 0;
+    white-space: nowrap;
+    width: 150px;
+  }
+  
+  .GUID-HOME .text-wrapper-5 {
+    color: #000000;
+    font-family: "Ubuntu-Light", Helvetica;
+    font-size: 20px;
+    font-weight: 300;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 33px;
+    white-space: nowrap;
+    width: 193px;
+  }
+  
+  .GUID-HOME .group-6 {
+    height: 46px;
+    left: 0;
+    position: absolute;
+    top: 124px;
+    width: 197px;
+  }
+  
+  .GUID-HOME .text-wrapper-6 {
+    color: #000000;
+    font-family: "Ubuntu-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-shadow: 3px 2px 4px #00000040;
+    top: 0;
+    white-space: nowrap;
+    width: 150px;
+  }
+  
+  .GUID-HOME .text-wrapper-7 {
+    color: #000000;
+    font-family: "Ubuntu-Light", Helvetica;
+    font-size: 20px;
+    font-weight: 300;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 33px;
+    white-space: nowrap;
+    width: 193px;
+  }
+  
+  .GUID-HOME .group-7 {
+    height: 309px;
+    left: 341px;
+    position: absolute;
+    top: 7px;
+    width: 252px;
+  }
+  
+  .GUID-HOME .text-wrapper-8 {
+    color: #000000;
+    font-family: "Ubuntu-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    left: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-shadow: 3px 2px 4px #00000040;
+    top: 0;
+    white-space: nowrap;
+    width: 150px;
+  }
+  
+  .GUID-HOME .text-wrapper-9 {
+    color: #000000;
+    font-family: "Ubuntu-Light", Helvetica;
+    font-size: 20px;
+    font-weight: 300;
+    left: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 28px;
+    white-space: nowrap;
+    width: 193px;
+  }
+  
+  .GUID-HOME .group-8 {
+    height: 191px;
+    left: 0;
+    position: absolute;
+    top: 118px;
+    width: 252px;
+  }
+  
+  .GUID-HOME .text-wrapper-10 {
+    color: #000000;
+    font-family: "Ubuntu-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-shadow: 3px 2px 4px #00000040;
+    top: 0;
+    white-space: nowrap;
+    width: 192px;
+  }
+  
+  .GUID-HOME .roaming-the-world-i {
+    color: #000000;
+    font-family: "Ubuntu-Light", Helvetica;
+    font-size: 15px;
+    font-weight: 300;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 31px;
+    width: 248px;
+  }
+  
+  .GUID-HOME .group-9 {
+    height: 45px;
+    left: 2px;
+    position: absolute;
+    top: 217px;
+    width: 296px;
+  }
+  
+  .GUID-HOME .text-wrapper-11 {
+    color: #000000;
+    font-family: "Ubuntu-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-shadow: 3px 2px 4px #00000040;
+    top: 0;
+    white-space: nowrap;
+    width: 183px;
+  }
+  
+  .GUID-HOME .p {
+    color: #000000;
+    font-family: "Ubuntu-Light", Helvetica;
+    font-size: 20px;
+    font-weight: 300;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 32px;
+    white-space: nowrap;
+    width: 292px;
+  }
+  
+  .GUID-HOME .div-wrapper {
+    height: 31px;
+    left: 0;
+    position: absolute;
+    top: 294px;
+    width: 197px;
+  }
+  
+  .GUID-HOME .overlap-6 {
+    height: 31px;
+    position: relative;
+  }
+  
+  .GUID-HOME .group-10 {
+    height: 30px;
+    left: 0;
+    position: absolute;
+    top: 1px;
+    width: 197px;
+  }
+  
+  .GUID-HOME .star-fill {
+    height: 30px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 30px;
+  }
+  
+  .GUID-HOME .star-fill-2 {
+    height: 30px;
+    left: 37px;
+    position: absolute;
+    top: 0;
+    width: 30px;
+  }
+  
+  .GUID-HOME .star-fill-3 {
+    height: 30px;
+    left: 71px;
+    position: absolute;
+    top: 0;
+    width: 30px;
+  }
+  
+  .GUID-HOME .star-fill-4 {
+    height: 30px;
+    left: 104px;
+    position: absolute;
+    top: 0;
+    width: 30px;
+  }
+  
+  .GUID-HOME .vector {
+    height: 31px;
+    left: 136px;
+    position: absolute;
+    top: 0;
+    width: 29px;
+  }
+  
+  .GUID-HOME .text-wrapper-12 {
+    color: #000000;
+    font-family: "Ubuntu-Medium", Helvetica;
+    font-size: 18px;
+    font-weight: 500;
+    left: 172px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-shadow: 2px 3px 4px #00000040;
+    top: 112px;
+    white-space: nowrap;
+  }
+  
+  .GUID-HOME .overlap-7 {
+    height: 47px;
+    left: 1171px;
+    position: absolute;
+    top: 20px;
+    width: 46px;
+  }
+  
+  .GUID-HOME .rectangle-5 {
+    height: 47px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 46px;
+  }
+  
+  .GUID-HOME .img-2 {
+    height: 40px;
+    left: 4px;
+    position: absolute;
+    top: 7px;
+    width: 40px;
+  }
+  

@@ -74,6 +74,7 @@ body{
 }
 
 .guides-div .card {
+    cursor: pointer;
     display: flex;
     flex-direction:row;
     width:400px;
@@ -89,7 +90,7 @@ body{
     align-items: center;
 }
 
-.card .guide-textes{
+.card .guide-details{
     height:100%;
     width:300px;
     display: flex;

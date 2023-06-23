@@ -16,6 +16,7 @@ import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import GuideRegisterPage from "./pages/guide/GuideRegisterPage";
 import GuideLoginPage from "./pages/guide/GuideLoginPage";
 import GuideHomePage from "./pages/guide/GuideHomePage";
+import UserGuidesPage from "./pages/user/UserGuidesPage";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2005/";
@@ -71,6 +72,7 @@ function App() {
           user.login && 
           <>
             <Route path="/" element={<UserHomePage />} />
+            <Route path="/guides" element={<UserGuidesPage />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/sign-up" element={<Navigate to="/" />} />
           </>
@@ -80,6 +82,7 @@ function App() {
           user.login == false &&
           <>
           <Route path='/' element={<Navigate to='/login'/>}/>
+          <Route path='/guides' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginpage/>} />
           <Route path='/sign-up' element={<UserSignupPage/>}/>
           <Route path="/forgot-password" element={<UserForgotPage/>}/>
@@ -89,16 +92,16 @@ function App() {
         {
           guide.login && 
           <>
-          <Route path="/guide/" element={<GuideHomePage/>}/>
-          <Route path="/guide/login" element={<Navigate to="/guide/"/>}/>
-          <Route path="/guide/register" element={<Navigate to="/guide/"/>}/>
+          <Route path="/guide" element={<GuideHomePage/>}/>
+          <Route path="/guide/login" element={<Navigate to="/guide"/>}/>
+          <Route path="/guide/register" element={<Navigate to="/guide"/>}/>
           </>
         }
 
         {
           guide.login === false &&
           <>
-          <Route path="/guide/" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/login" element={<GuideLoginPage/>}/>
           <Route path="/guide/register" element={<GuideRegisterPage/>}/>
           </>

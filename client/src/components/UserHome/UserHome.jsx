@@ -14,6 +14,8 @@ import first from "../../assets/images/mysoor-palac.jpg";
 import sec from "../../assets/images/goa.jpg";
 import third from "../../assets/images/tajmahal.jpg";
 import profile from "../../assets/images/face1.jpg";
+import Row from 'react-bootstrap/esm/Row'
+import Col from 'react-bootstrap/esm/Col'
 
 function UserHome() {
 
@@ -110,7 +112,7 @@ function UserHome() {
             <div className="guide-profile">
               <img src={profile} alt="" />
             </div>
-            <div className="guide-textes">
+            <div className="guide-details">
               <p>
                 Name : {item.firstName} <br/>Contact : {item.contact} <br/> Ratings:
                 <FontAwesomeIcon icon={faStar} />
