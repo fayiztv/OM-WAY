@@ -1,0 +1,51 @@
+.overlap-4 .heading{
+    height:50px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlap-4 .fields{
+    height:500px;
+    width:100%;
+}
+
+.fields .first-div{
+    height:40%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:30px;
+}
+
+.fields .second-div{
+    height:30%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:90px;
+}
+
+.fields .third-div{
+    height:30%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:90px;
+}
+
+.first-div .login-row .textarea{
+    width:250px;
+}
+
+.second-div .login-row .textarea{
+    width:250px;
+}
+
+.third-div .login-row .textarea{
+    width:250px;
+}

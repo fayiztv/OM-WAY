@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { CircularProgress, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import loginImage from "/src/assets/images/login2.png";
 import "../UserSignup/signup.css";
 import { Link } from "react-router-dom";
