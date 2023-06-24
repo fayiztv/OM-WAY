@@ -1,11 +1,29 @@
-import React from 'react'
+import axios from "axios";
+import React, { useState } from "react";
 import GuideHeader from '../GuideHeader/GuideHeader'
 import image from '../../assets/images/tajmahal.jpg'
 import './guidepackages.css'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 
 function GuidePackages() {
+  const [packages, setPackages] = useState([""]);
+  const [refresh, setRefresh] = useState(false);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        const { data } = await axios.get("/guide/packages");
+
+        if (!data.err) {
+          setPackages(data.packages);
+          console.log(packages);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [refresh]);
   return (
     <div className="GUID-HOME">
         <GuideHeader/>
@@ -16,28 +34,22 @@ function GuidePackages() {
             </Link>
           </div>
             <div className="guide-packages-body">
-                <div className="guide-packages">
-                <div className="guide-package-img">
-                    <img src={image} alt="" />
-                </div>
-                <div className="guide-packages-details">
-                    <h6>DELHI</h6>
-                    <h5>₹-5999</h5>
-                    <p>4 Days , 6 Destintaions , 9+ Activites</p>
-                    <p>package includes 3 nights accommodation on <br/> three star hotel in delhi</p>
-                </div>
-                </div>
-                <div className="guide-packages">
-                <div className="guide-package-img">
-                    <img src={image} alt="" />
-                </div>
-                <div className="guide-packages-details">
-                    <h6>DELHI</h6>
-                    <h5>₹-5999</h5>
-                    <p>4 Days , 6 Destintaions , 9+ Activites</p>
-                    <p>package includes 3 nights accommodation on <br/> three star hotel in delhi</p>
-                </div>
-                </div>
+              {packages.map((item,index)=>{
+                return(
+                  <div className="guide-packages">
+                  <div className="guide-package-img">
+                      <img src={item.image.secure_url} alt='img' />
+                  </div>
+                  <div className="guide-packages-details">
+                      <h6>{item.destionation}</h6>
+                      <h5>{item.price}</h5>
+                      <p>{item.days} Days  , Destintaions : {item.places}</p> 
+                      <p>Activites : {item.activites}</p>
+                      <p>{item.descrption}</p>
+                  </div>
+                  </div>
+                )
+              })}
             </div>
         </div>
     </div>

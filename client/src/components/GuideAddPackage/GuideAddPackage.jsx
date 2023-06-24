@@ -35,7 +35,6 @@ function GuideAddPackage() {
           setImage(e.target.files[0])
           setErrMessage("")
           ImageTOBase(e.target.files[0])
-          console.log("image handled");
         } else {
           setErrMessage("Invalid File type") 
         }
@@ -46,24 +45,9 @@ function GuideAddPackage() {
         reader.readAsDataURL(file);
         reader.onloadend = () => {
           setFinalImage(reader.result)
-          console.log("image changed");
         }
     }
-
-    // const validForm = () => {
-    //     if (
-    //       destionation.trim() === "" ||
-    //       price.trim() === "" ||
-    //       activites.trim() == [] ||
-    //       days.trim() === "" ||
-    //       nights.trim() === "" ||
-    //       places.trim() == [] ||
-    //       descrption.trim() === ""
-    //     ) {
-    //       return false;
-    //     }
-    //     return true;
-    //   };
+    
 
       async function handleSubmit(e) {
         e.preventDefault();
@@ -74,15 +58,14 @@ function GuideAddPackage() {
           })
     
           if (!data.err) {
-            console.log(data)
             dispatch({ type: "refresh" })
             navigate('/guide/packages')
     
           } else {
             setErrMessage(data.message)
           }
-        }
-    //   }
+        // }
+      }
   return (
     <div className="GUID-HOME">
       <GuideHeader />
@@ -173,6 +156,7 @@ function GuideAddPackage() {
                 variant="standard"
                 type="text"
                 fullWidth
+                multiline
                 value={places}
                 onChange={(e) => setPlaces(e.target.value)}
               />
