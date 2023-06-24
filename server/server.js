@@ -8,6 +8,7 @@ import adminAuthRouter from './routers/adminAuthRouter.js'
 import adminRouter from './routers/adminRouter.js'
 import userRouter from './routers/userRouter.js'
 import guideAuthRouter from './routers/guideAuthRouter.js'
+import guideRouter from './routers/guideRouter.js'
 
 const app=express();
 
@@ -30,9 +31,10 @@ app.use('/admin',adminRouter)
 app.use('/user/auth/',userAuthRouter)
 app.use('/user/',userRouter)
 app.use('/guide/auth/',guideAuthRouter)
+app.use('/guide/',guideRouter)
  
 
 
-app.listen(2005,()=>{
-    console.log("server running on port 2005");
+app.listen(2004,()=>{
+    console.log("server running on port 2004");
 })

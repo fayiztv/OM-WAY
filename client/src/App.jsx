@@ -23,7 +23,7 @@ import GuideReviews from "./components/GuideReviews/GuideReviews";
 import GuideAddPackage from "./components/GuideAddPackage/GuideAddPackage";
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:2005/";
+  axios.defaults.baseURL = "http://localhost:2004/";
   axios.defaults.withCredentials = true;
   const { user, admin, guide ,refresh } = useSelector(
     (state) => {

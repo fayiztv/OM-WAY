@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import GuideHeader from "../GuideHeader/GuideHeader";
 import { TextField } from "@mui/material";
 import "./addpackage.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function GuideAddPackage() {
 
@@ -9,11 +14,75 @@ function GuideAddPackage() {
     const [price,setPrice] = useState('')
     const [activites,setActivites] = useState([])
     const [days,setDays] = useState('')
-    const [nigths,setNights] = useState('')
+    const [nights,setNights] = useState('')
     const [places,setPlaces] = useState([])
-    const [time,setTime] = useState('')
     const [descrption,setDescrption] = useState('')
+    const [image,setImage] = useState(null)
+    const [finalImage, setFinalImage] = useState(null)
+    const [errMessage, setErrMessage] = useState("");
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    
+    const isValidFileUploaded = (file) => {
+        const validExtensions = ['png', 'jpeg', 'jpg']
+        const fileExtension = file.type.split('/')[1]
+        return validExtensions.includes(fileExtension)
+      }
+
+    const handleImage = (e) => {
+        if (isValidFileUploaded(e.target.files[0])) {
+          setImage(e.target.files[0])
+          setErrMessage("")
+          ImageTOBase(e.target.files[0])
+          console.log("image handled");
+        } else {
+          setErrMessage("Invalid File type") 
+        }
+      }
+    
+      const ImageTOBase = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          setFinalImage(reader.result)
+          console.log("image changed");
+        }
+    }
+
+    // const validForm = () => {
+    //     if (
+    //       destionation.trim() === "" ||
+    //       price.trim() === "" ||
+    //       activites.trim() == [] ||
+    //       days.trim() === "" ||
+    //       nights.trim() === "" ||
+    //       places.trim() == [] ||
+    //       descrption.trim() === ""
+    //     ) {
+    //       return false;
+    //     }
+    //     return true;
+    //   };
+
+      async function handleSubmit(e) {
+        e.preventDefault();
+        // if (validForm()) {
+            console.log(finalImage);
+          let { data } = await axios.post("/guide/add-package", {
+            destionation , price , activites , days , nights , places , descrption , packageImage: finalImage,
+          })
+    
+          if (!data.err) {
+            console.log(data)
+            dispatch({ type: "refresh" })
+            navigate('/guide/packages')
+    
+          } else {
+            setErrMessage(data.message)
+          }
+        }
+    //   }
   return (
     <div className="GUID-HOME">
       <GuideHeader />
@@ -30,6 +99,7 @@ function GuideAddPackage() {
           <h2 style={{ color: "#14505C", opacity: "80%" }}>Add Package</h2>
         </div>
         <div className="fields">
+            <form onSubmit={handleSubmit}>
           <div className="first-div">
             <div className="login-row w-100 mt-3">
               <TextField
@@ -39,8 +109,8 @@ function GuideAddPackage() {
                 variant="standard"
                 type="text"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={destionation}
+                onChange={(e) => setDestination(e.target.value)}
               />
             </div>
             <div className="login-row w-100 mt-3">
@@ -51,8 +121,8 @@ function GuideAddPackage() {
                 variant="standard"
                 type="text"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
             <div className="login-row w-100 mt-3">
@@ -63,9 +133,11 @@ function GuideAddPackage() {
                 variant="standard"
                 type="text"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                multiline
+                value={activites}
+                onChange={(e) => setActivites(e.target.value)}
               />
+              <FontAwesomeIcon icon={faAdd} className="add-icon" />
             </div>
           </div>
           <div className="second-div">
@@ -77,8 +149,8 @@ function GuideAddPackage() {
                 variant="standard"
                 type="number"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={days}
+                onChange={(e) => setDays(e.target.value)}
               />
             </div>
             <div className="login-row w-100 mt-3">
@@ -89,8 +161,8 @@ function GuideAddPackage() {
                 variant="standard"
                 type="number"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={nights}
+                onChange={(e) => setNights(e.target.value)}
               />
             </div>
             <div className="login-row w-100 mt-3">
@@ -101,35 +173,24 @@ function GuideAddPackage() {
                 variant="standard"
                 type="text"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={places}
+                onChange={(e) => setPlaces(e.target.value)}
               />
+              <FontAwesomeIcon icon={faAdd} className="add-icon" />
             </div>
           </div>
           <div className="third-div">
             <div className="login-row w-100 mt-3">
               <TextField
-                className="textarea"
-                label="Time"
-                placeholder="Starting time"
-                variant="standard"
-                type="time"
-                fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="login-row w-100 mt-3">
-              <TextField
-                className="textarea"
+                className="d-textarea"
                 label="Descrption"
                 placeholder="Enter Descriptions"
                 variant="standard"
                 type="text"
                 multiline
-                // fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                fullWidth
+                value={descrption}
+                onChange={(e) => setDescrption(e.target.value)}
               />
             </div>
             <div className="login-row w-100 mt-3">
@@ -140,11 +201,12 @@ function GuideAddPackage() {
                 variant="standard"
                 type="file"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleImage}
               />
             </div>
           </div>
+          <button type="submit">submit</button>
+          </form>
         </div>
       </div>
     </div>
