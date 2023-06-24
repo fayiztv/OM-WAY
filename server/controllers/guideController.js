@@ -12,14 +12,11 @@ export async function addPackage(req, res) {
       places,
       descrption,
     } = req.body;
-    console.log(req.body.packageImage);
     const image = await cloudinary.uploader.upload(req.body.packageImage, {
       folder: "onmyWay",
     });
-    console.log(image);
 
     const packages = await packageModel.create({ ...req.body, image });
-    console.log("saved");
     res.json({ err: false });
   } catch (err) {
     console.log(err);
