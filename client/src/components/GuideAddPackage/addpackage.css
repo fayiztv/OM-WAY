@@ -59,3 +59,8 @@
     margin-top:20px;
     cursor: pointer;
 }
+.fields .submit-buttonn{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

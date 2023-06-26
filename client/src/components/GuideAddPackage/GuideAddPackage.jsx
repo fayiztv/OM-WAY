@@ -21,6 +21,21 @@ function GuideAddPackage() {
     const [finalImage, setFinalImage] = useState(null)
     const [errMessage, setErrMessage] = useState("");
 
+    const validForm = () => {
+      if (
+        destionation.trim() === "" ||
+        price === "" ||
+        activites.length == 0 ||
+        days.trim() === "" ||
+        nights.trim() === "" ||
+        places.length == 0 ||
+        descrption.trim() === "" 
+      ) {
+        return false;
+      }
+      return true;
+    };
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -51,8 +66,7 @@ function GuideAddPackage() {
 
       async function handleSubmit(e) {
         e.preventDefault();
-        // if (validForm()) {
-            console.log(finalImage);
+        if (validForm()) {
           let { data } = await axios.post("/guide/add-package", {
             destionation , price , activites , days , nights , places , descrption , packageImage: finalImage,
           })
@@ -64,7 +78,7 @@ function GuideAddPackage() {
           } else {
             setErrMessage(data.message)
           }
-        // }
+        }
       }
   return (
     <div className="GUID-HOME">
@@ -189,7 +203,9 @@ function GuideAddPackage() {
               />
             </div>
           </div>
-          <button type="submit">submit</button>
+          <div className="submit-buttonn">
+          <button type="submit" disabled={!validForm()}>submit</button>
+          </div>
           </form>
         </div>
       </div>

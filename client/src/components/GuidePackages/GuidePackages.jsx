@@ -4,11 +4,33 @@ import GuideHeader from '../GuideHeader/GuideHeader'
 import image from '../../assets/images/tajmahal.jpg'
 import './guidepackages.css'
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import Swal from "sweetalert2";
 
 
 function GuidePackages() {
   const [packages, setPackages] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  
+
+  async function deletePackage(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Delete this package",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#2C457E",
+      cancelButtonColor: " #9BA4B5",
+      confirmButtonText: "Yes, Sure!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.patch("/guide/packages/delete", { id });
+        setRefresh(!refresh);
+      }
+    });
+  }
 
   React.useEffect(() => {
     (async function () {
@@ -17,7 +39,6 @@ function GuidePackages() {
 
         if (!data.err) {
           setPackages(data.packages);
-          console.log(packages);
         }
       } catch (err) {
         console.log(err);
@@ -37,17 +58,25 @@ function GuidePackages() {
               {packages.map((item,index)=>{
                 return(
                   <div className="guide-packages">
-                  <div className="guide-package-img">
-                      <img src={item.image.secure_url} alt='img' />
-                  </div>
+                    {
+                      item.image&&
+                      <div className="guide-package-img">
+                      <img src={item.image.url} alt="" />
+                      </div>
+                    }
+                  
                   <div className="guide-packages-details">
                       <h6>{item.destionation}</h6>
                       <h5>{item.price}</h5>
-                      <p>{item.days} Days  , Destintaions : {item.places}</p> 
+                      <p>{item.days} Days  , Destintaions : {item.places}</p>
                       <p>Activites : {item.activites}</p>
                       <p>{item.descrption}</p>
                   </div>
+                  <div className="package-managment-icons">
+                  <FontAwesomeIcon icon={faEdit} />
+                  <FontAwesomeIcon onClick={()=>{deletePackage(item._id)}} style={{marginTop:'20px'}} icon={faTrashAlt} />
                   </div>
+                  </div> 
                 )
               })}
             </div>
