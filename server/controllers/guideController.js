@@ -29,3 +29,20 @@ export async function getGuidePackages(req,res){
   const packages = await packageModel.find().lean()
   res.json({err:false,packages})
 }
+
+export async function deletePackage(req, res) {
+  try{
+      const id = req.body.id
+      await packageModel.deleteOne({_id:id})
+      res.json({ err: false })
+  } catch (err) {
+      return res.json({ err: true, message: "Something went wrong", error: err })
+  }
+}
+
+export async function getPackageEdit(req,res){
+  const id=req.params.id
+
+  const packages =await packageModel.findById(id).lean()
+  res.json(guide)
+}
