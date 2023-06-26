@@ -7,7 +7,7 @@ const packageSchema = new mongoose.Schema({
     type: String,
   },
   activites: {
-    type: Array,
+    type: String,
   },
   days: {
     type:Number,
@@ -16,7 +16,7 @@ const packageSchema = new mongoose.Schema({
     type:Number,
   },
   places: {
-    type: Array,
+    type: String,
     required: true,
   },
   descrption: {

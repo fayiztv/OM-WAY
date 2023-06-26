@@ -1,42 +1,45 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom'
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import GuideHeader from "../GuideHeader/GuideHeader";
 import { TextField } from "@mui/material";
 import "../GuideAddPackage/addpackage.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { ClipLoader } from "react-spinners";
 
 function EditPackage() {
-
-  const [destionation,setDestination] = useState('')
-  const [price,setPrice] = useState('')
-  const [activites,setActivites] = useState([])
-  const [days,setDays] = useState('')
-  const [nights,setNights] = useState('')
-  const [places,setPlaces] = useState([])
-  const [descrption,setDescrption] = useState('')
-  const [image,setImage] = useState(null)
-  const [finalImage, setFinalImage] = useState(null)
+  const [destionation, setDestination] = useState("");
+  const [price, setPrice] = useState("");
+  const [activites, setActivites] = useState([]);
+  const [days, setDays] = useState("");
+  const [nights, setNights] = useState("");
+  const [places, setPlaces] = useState([]);
+  const [descrption, setDescrption] = useState("");
+  const [image, setImage] = useState(null);
+  const [finalImage, setFinalImage] = useState(null);
   const [errMessage, setErrMessage] = useState("");
+  const [loading, setLoading] = useState({
+    submit: false,
+  });
 
   const validForm = () => {
     if (
       destionation.trim() === "" ||
       price.trim() === "" ||
-      activites.length == 0 ||
+      activites.trim() === "" ||
       days === "" ||
       nights === "" ||
-      places.length == 0 ||
-      descrption.trim() === "" 
+      places.trim() === "" ||
+      descrption.trim() === ""
     ) {
       return false;
     }
     return true;
   };
-  const {id}=useParams()
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -65,36 +68,44 @@ function EditPackage() {
   };
 
   async function handleSubmit(e) {
-    console.log("hiii")
     e.preventDefault();
     if (validForm()) {
-      let {data}=await axios.post("/guide/edit-package",{
-        destionation, price , activites , days , nights , places , descrption ,packageImage: finalImage,id
-    });
-    console.log(data)
-      if(!data.error){
-
-          dispatch({type:"refresh"})
-          return navigate("/guide/packages")
-      }else{
-        setErrMessage(data.message)
+      if (!loading.submit) {
+        let { data } = await axios.post("/guide/edit-package", {
+          destionation,
+          price,
+          activites,
+          days,
+          nights,
+          places,
+          descrption,
+          packageImage: finalImage,
+          id,
+        });
+        if (!data.error) {
+          dispatch({ type: "refresh" });
+          return navigate("/guide/packages");
+        } else {
+          setErrMessage(data.message);
+        }
+        console.log(loading);
+        setLoading({ ...loading, submit: false });
       }
     }
   }
 
-
-  useEffect(()=>{
-    (async function(){
-        let {data}=await axios.get('/guide/edit-package/'+id)
-        setDestination(data.destionation)
-        setPrice(data.price)
-        setActivites(data.activites)
-        setDays(data.days)
-        setNights(data.nights)
-        setPlaces(data.places)
-        setDescrption(data.descrption)
-    })()
-},[])
+  useEffect(() => {
+    (async function () {
+      let { data } = await axios.get("/guide/edit-package/" + id);
+      setDestination(data.destionation);
+      setPrice(data.price);
+      setActivites(data.activites);
+      setDays(data.days);
+      setNights(data.nights);
+      setPlaces(data.places);
+      setDescrption(data.descrption);
+    })();
+  }, []);
 
   return (
     <div className="GUID-HOME">
@@ -223,13 +234,14 @@ function EditPackage() {
             <div className="submit-buttonn">
               <button type="submit" disabled={!validForm()}>
                 submit
+                <ClipLoader size={20} color="white" loading={loading.submit} />
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default EditPackage
+export default EditPackage;

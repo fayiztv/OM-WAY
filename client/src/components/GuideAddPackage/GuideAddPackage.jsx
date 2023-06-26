@@ -7,6 +7,7 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 function GuideAddPackage() {
   const [destionation, setDestination] = useState("");
@@ -19,15 +20,18 @@ function GuideAddPackage() {
   const [image, setImage] = useState(null);
   const [finalImage, setFinalImage] = useState(null);
   const [errMessage, setErrMessage] = useState("");
+  const [loading, setLoading] = useState({
+    submit: false,
+  });
 
   const validForm = () => {
     if (
       destionation.trim() === "" ||
-      price === "" ||
-      activites.length == 0 ||
-      days.trim() === "" ||
-      nights.trim() === "" ||
-      places.length == 0 ||
+      price.trim() === "" ||
+      activites.trim() === "" ||
+      days === "" ||
+      nights === "" ||
+      places.trim() === "" ||
       descrption.trim() === ""
     ) {
       return false;
@@ -65,6 +69,7 @@ function GuideAddPackage() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (validForm()) {
+      if (!loading.submit) {
       let { data } = await axios.post("/guide/add-package", {
         destionation,
         price,
@@ -82,7 +87,9 @@ function GuideAddPackage() {
       } else {
         setErrMessage(data.message);
       }
+      setLoading({ ...loading, submit: false });
     }
+  }
   }
 
   return (
@@ -212,6 +219,7 @@ function GuideAddPackage() {
             <div className="submit-buttonn">
               <button type="submit" disabled={!validForm()}>
                 submit
+                <ClipLoader size={20} color="white" loading={loading.submit} />
               </button>
             </div>
           </form>
