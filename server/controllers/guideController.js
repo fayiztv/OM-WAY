@@ -4,7 +4,7 @@ import  cloudinary from '../config/cloudinary.js'
 export async function addPackage(req, res) {
   try {
     const {
-      destinastion,
+      destination,
       price,
       activites,
       days,
@@ -44,5 +44,25 @@ export async function getPackageEdit(req,res){
   const id=req.params.id
 
   const packages =await packageModel.findById(id).lean()
-  res.json(guide)
+  res.json(packages)
+}
+
+export async function postEditPackage(req,res){
+  try{
+    const id=req.body.id
+    const { destination,price,activites,days,nights,places,descrption } = req.body
+
+    const image = await cloudinary.uploader.upload(req.body.packageImage, {
+      folder: "onmyWay",
+    });
+
+    await packageModel.findByIdAndUpdate(id,{$set:{
+      destination,price,activites,days,nights,places,descrption , image
+    }})
+
+    return res.json({err:false})
+  }catch(err){
+    return res.json({ err: true, message: "Something went wrong", error: err })
+    console.log(err);
+  }
 }

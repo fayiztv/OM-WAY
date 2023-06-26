@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import GuideHeader from '../GuideHeader/GuideHeader'
-import image from '../../assets/images/tajmahal.jpg'
 import './guidepackages.css'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -73,7 +72,7 @@ function GuidePackages() {
                       <p>{item.descrption}</p>
                   </div>
                   <div className="package-managment-icons">
-                  <FontAwesomeIcon icon={faEdit} />
+                <Link to={`/guide/edit-package/${item._id}`}><FontAwesomeIcon  icon={faEdit} /></Link>
                   <FontAwesomeIcon onClick={()=>{deletePackage(item._id)}} style={{marginTop:'20px'}} icon={faTrashAlt} />
                   </div>
                   </div> 
