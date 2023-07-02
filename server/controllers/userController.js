@@ -10,3 +10,8 @@ export async function getUserGuides(req,res){
     const guides = await GuideModel.find({active:true}).lean()
    res.json({err:false,guides})
 }
+
+export async function getUserPackages(req,res){
+    const packages = await PackageModel.find().lean()
+   res.json({err:false,packages})
+}

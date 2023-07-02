@@ -33,7 +33,7 @@ function UserHome() {
       <div className="user-banner">
         <img src={banner} alt="" />
       </div>
-      <div className="packages">
+      <div data-aos="zoom-in-up" className="packages">
         <div className="packages-body">
           <div className="packages-text-body">
             <div className="textes">
