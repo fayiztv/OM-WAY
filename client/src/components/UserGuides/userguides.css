@@ -2,8 +2,10 @@ body{
     overflow-x: hidden;
 }
 .user-main .guides-main{
-    height:650px;
+    height:fit-content;
     width:100%;
+    margin-left:100px;
+    margin-right:100px;
 }
 .guides-main .guides-head{
     display: flex;
@@ -52,7 +54,7 @@ body{
 }
 
 .guide-profile img{
-    height:70%;
-    width:55%;
+    height:60%;
+    width:45%;
     border-radius:100%;
 }

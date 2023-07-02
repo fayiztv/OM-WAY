@@ -33,10 +33,10 @@ function UserGuides() {
           <h3>GUIDES</h3>
         </div>
         <div className="guide-body">
-          <Row>
+          <Row style={{marginRight:'170px'}}>
             {guides.map((item, index) => {
               return (
-                <Col xs={6} md={4}>
+                <Col sm={6} md={4} >
                   <div className="guides-card">
                     {/* <Link to={"/guide-details/" + item._id}> */}
                     <div className="guide-profile">

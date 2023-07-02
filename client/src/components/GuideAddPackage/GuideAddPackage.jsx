@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import GuideHeader from "../GuideHeader/GuideHeader";
 import { TextField } from "@mui/material";
 import "./addpackage.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +10,10 @@ import { ClipLoader } from "react-spinners";
 function GuideAddPackage() {
   const [destionation, setDestination] = useState("");
   const [price, setPrice] = useState("");
-  const [activites, setActivites] = useState([]);
+  const [activites, setActivites] = useState("");
   const [days, setDays] = useState("");
   const [nights, setNights] = useState("");
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState("");
   const [descrption, setDescrption] = useState("");
   const [image, setImage] = useState(null);
   const [finalImage, setFinalImage] = useState(null);
@@ -173,7 +171,6 @@ function GuideAddPackage() {
                   value={activites}
                   onChange={(e) => setActivites(e.target.value)}
                 />
-                <FontAwesomeIcon icon={faAdd} className="add-icon" />
               </div>
               <div className="login-row w-100 mt-3">
                 <TextField
@@ -187,7 +184,6 @@ function GuideAddPackage() {
                   value={places}
                   onChange={(e) => setPlaces(e.target.value)}
                 />
-                <FontAwesomeIcon icon={faAdd} className="add-icon" />
               </div>
             </div>
             <div className="third-div">

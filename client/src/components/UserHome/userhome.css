@@ -52,58 +52,6 @@ body{
     margin-top:10px;
     margin-bottom:10px;
 }
-
-.user-main .guides-body{
-    margin-top:30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding:20px;
-    flex-direction: column;
-    height:200px;
-    width:100%;
-}
-
-.guides-body .guides-div{
-    margin-bottom:20px;
-    height:700px;
-    width:90%;
-    margin-top:30px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.guides-div .card {
-    cursor: pointer;
-    display: flex;
-    flex-direction:row;
-    width:400px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-.card .guide-profile{
-    height:100%;
-    width:170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card .guide-details{
-    height:100%;
-    width:300px;
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    padding-top:20px;
-}
-
-.guide-profile img{
-    height:80%;
-    width:65%;
-    border-radius:100%;
-}
 .user-main .footer {
     padding: 20px;
     text-align: center;
