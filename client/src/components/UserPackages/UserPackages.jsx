@@ -11,7 +11,7 @@ function UserPackages() {
     const [refresh, setRefresh] = useState(false);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [appointmentsPerPage] = useState(4);
+    const [packagesPerPage] = useState(4);
 
     React.useEffect(() => {
         (async function () {
@@ -28,12 +28,11 @@ function UserPackages() {
       }, [refresh]);
 
       const count = packages.length
-      console.log(count);
 
-      const indexOfLastAppointment = currentPage * appointmentsPerPage;
-      const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
-      const currentAppointments = packages.slice(indexOfFirstAppointment, indexOfLastAppointment);
-      const startingNumber=(currentPage-1)*appointmentsPerPage;
+      const indexOfLastpackage = currentPage * packagesPerPage;
+      const indexOfFirstpackage = indexOfLastpackage - packagesPerPage;
+      const currentPackage = packages.slice(indexOfFirstpackage, indexOfLastpackage);
+      const startingNumber=(currentPage-1)*packagesPerPage;
       const calculateSiNo=(index)=>startingNumber+index;
     
       const handlePaginationClick = (pageNumber) => {
@@ -49,7 +48,7 @@ function UserPackages() {
         <div className="pkgs-body">
         <Row style={{marginRight:'170px'}}>
         {/* <Col sm={6} md={6} > */}
-        {currentAppointments.map((item, index) => {
+        {currentPackage.map((item, index) => {
             return ( 
             <Link to={"/package-details/" + item._id}>
             <div className="pkg-details">
@@ -73,8 +72,9 @@ function UserPackages() {
       </div>
             {
       packages &&<div className='pagination'>
-      {Array.from(Array(Math.ceil(count/appointmentsPerPage)).keys()).map((pageNumber) => (
+      {Array.from(Array(Math.ceil(count/packagesPerPage)).keys()).map((pageNumber) => (
         <button
+        style={{width:'50px',height:'40px',paddingBottom:'35px',marginRight:'10px', backgroundColor:'#147E7D'}}
           key={pageNumber}
           onClick={() => handlePaginationClick(pageNumber + 1)}
           disabled={currentPage === pageNumber + 1}
