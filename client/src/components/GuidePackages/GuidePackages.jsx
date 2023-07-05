@@ -7,12 +7,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 
 function GuidePackages() {
   const [packages, setPackages] = useState([""]);
   const [refresh, setRefresh] = useState(false);
   
+  const guide=useSelector((state)=>{
+    console.log(state.guide.detials);
+    return state.guide.detials
+  });
+
+  const id = guide._id
 
   async function deletePackage(id) {
     Swal.fire({
@@ -34,7 +41,7 @@ function GuidePackages() {
   React.useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("/guide/packages");
+        const { data } = await axios.get("/guide/packages/"+id);
 
         if (!data.err) {
           setPackages(data.packages);

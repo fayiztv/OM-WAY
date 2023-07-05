@@ -4,11 +4,14 @@ import UserNavbar from '../UserNavBar/UserNavBar';
 import "./userpackages.css";
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import image from "../../assets/images/images.jpeg";
+import { Link } from "react-router-dom";
 
 function UserPackages() {
     const [packages, setPackages] = useState([""]);
     const [refresh, setRefresh] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [appointmentsPerPage] = useState(4);
 
     React.useEffect(() => {
         (async function () {
@@ -23,6 +26,19 @@ function UserPackages() {
           }
         })();
       }, [refresh]);
+
+      const count = packages.length
+      console.log(count);
+
+      const indexOfLastAppointment = currentPage * appointmentsPerPage;
+      const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
+      const currentAppointments = packages.slice(indexOfFirstAppointment, indexOfLastAppointment);
+      const startingNumber=(currentPage-1)*appointmentsPerPage;
+      const calculateSiNo=(index)=>startingNumber+index;
+    
+      const handlePaginationClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+      };
   return (
     <div className="user-main">
       <UserNavbar />
@@ -33,8 +49,9 @@ function UserPackages() {
         <div className="pkgs-body">
         <Row style={{marginRight:'170px'}}>
         {/* <Col sm={6} md={6} > */}
-        {packages.map((item, index) => {
-              return (
+        {currentAppointments.map((item, index) => {
+            return ( 
+            <Link to={"/package-details/" + item._id}>
             <div className="pkg-details">
             <div className="pkg-image">
             <img src={item.image && item.image.url} alt="" />
@@ -46,12 +63,27 @@ function UserPackages() {
                <p>{item.descrption}</p>
             </div>
             </div>
+            </Link>
               );
             })}
             {/* </Col> */}
             </Row>
+
         </div>
       </div>
+            {
+      packages &&<div className='pagination'>
+      {Array.from(Array(Math.ceil(count/appointmentsPerPage)).keys()).map((pageNumber) => (
+        <button
+          key={pageNumber}
+          onClick={() => handlePaginationClick(pageNumber + 1)}
+          disabled={currentPage === pageNumber + 1}
+        >
+          {pageNumber + 1}
+        </button>
+      ))}
+    </div>
+    }
     </div>
   )
 }

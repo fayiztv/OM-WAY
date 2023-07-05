@@ -11,13 +11,13 @@ export async function addPackage(req, res) {
       nights,
       places,
       descrption,
+      guideId
     } = req.body;
     const image = await cloudinary.uploader.upload(req.body.packageImage, {
       folder: "onmyWay",
     });
 
     const packages = await packageModel.create({ ...req.body, image });
-    console.log("saved");
     res.json({ err: false });
   } catch (err) {
     console.log(err);
@@ -26,7 +26,8 @@ export async function addPackage(req, res) {
 }
 
 export async function getGuidePackages(req,res){
-  const packages = await packageModel.find().lean()
+  const id = req.params.id
+  const packages = await packageModel.find({guideId:id}).lean()
   res.json({err:false,packages})
 }
 

@@ -3,7 +3,7 @@ import GuideHeader from "../GuideHeader/GuideHeader";
 import { TextField } from "@mui/material";
 import "./addpackage.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 
@@ -20,6 +20,10 @@ function GuideAddPackage() {
   const [errMessage, setErrMessage] = useState("");
   const [loading, setLoading] = useState({
     submit: false,
+  });
+  const guide=useSelector((state)=>{
+    console.log(state.guide.detials);
+    return state.guide.detials
   });
 
   const validForm = () => {
@@ -76,6 +80,7 @@ function GuideAddPackage() {
         nights,
         places,
         descrption,
+        guideId:guide._id,
         packageImage: finalImage,
       });
 

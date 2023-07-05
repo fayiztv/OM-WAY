@@ -3,7 +3,7 @@ import { addPackage, deletePackage, getGuidePackages, getPackageEdit, postEditPa
 const router = express.Router()
 
 router.post('/add-package',addPackage)
-router.get('/packages',getGuidePackages)
+router.get('/packages/:id',getGuidePackages)
 router.patch('/packages/delete',deletePackage)
 router.get('/edit-package/:id',getPackageEdit)
 router.post('/edit-package',postEditPackage)

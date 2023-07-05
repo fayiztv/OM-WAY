@@ -92,5 +92,4 @@ export async function guideLogout(req,res){
         secure: true,
         sameSite: "none",
     }).json({ message: "logged out", error: false });
-    console.log("logged out");
 }

@@ -15,3 +15,9 @@ export async function getUserPackages(req,res){
     const packages = await PackageModel.find().lean()
    res.json({err:false,packages})
 }
+
+export async function getUserPackageDetails(req,res){
+    const id = req.params.id
+    const packages = await PackageModel.findById(id).lean()
+   res.json({err:false,packages})
+}

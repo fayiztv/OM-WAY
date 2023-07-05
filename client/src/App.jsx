@@ -23,6 +23,7 @@ import GuideReviews from "./components/GuideReviews/GuideReviews";
 import GuideAddPackage from "./components/GuideAddPackage/GuideAddPackage";
 import GuideEditPackage from "./components/GuideEditPackage/GuideEditPackage";
 import UserPackages from "./components/UserPackages/UserPackages";
+import UserPackageDetails from "./components/UserPackageDetails/UserPackageDetails";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2004/";
@@ -80,6 +81,7 @@ function App() {
             <Route path="/" element={<UserHomePage />} />
             <Route path="/guides" element={<UserGuidesPage />} />
             <Route path="/packages" element={<UserPackages />} />
+            <Route path="/package-details/:id" element={<UserPackageDetails />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/sign-up" element={<Navigate to="/" />} />
           </>
@@ -91,6 +93,7 @@ function App() {
           <Route path='/' element={<Navigate to='/login'/>}/>
           <Route path='/guides' element={<Navigate to='/login'/>}/>
           <Route path='/packages' element={<Navigate to='/login'/>}/>
+          <Route path='/package-details/:id' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginpage/>} />
           <Route path='/sign-up' element={<UserSignupPage/>}/>
           <Route path="/forgot-password" element={<UserForgotPage/>}/>
