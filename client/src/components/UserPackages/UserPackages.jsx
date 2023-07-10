@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import "./userpackages.css";
 import Row from "react-bootstrap/esm/Row";
-// import Col from 'react-bootstrap/esm/Col'
 import { Link } from "react-router-dom";
-// import TextField from "@mui/material/TextField";
-// import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -80,16 +79,17 @@ function UserPackages() {
       <div className="packages-main">
         <div className="packages-head">
           <h3>PACKAGES</h3>
-          {/* <TextField
+          <TextField
             className="searchbar"
             variant="outlined"
-            placeholder="Search..."
+            placeholder="Search....."
             value={name}
             onChange={(e) => setName(e.target.value)}
             InputProps={{
+              
               startAdornment: <SearchIcon />,
             }}
-          /> */}
+          />
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small" className="sort">
             <InputLabel id="demo-select-small-label">Sort price</InputLabel>
             <Select
