@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import UserNavbar from '../UserNavBar/UserNavBar';
 import "./userpackages.css";
 import Row from 'react-bootstrap/esm/Row'
-import Col from 'react-bootstrap/esm/Col'
+// import Col from 'react-bootstrap/esm/Col'
 import { Link } from "react-router-dom";
 
 function UserPackages() {

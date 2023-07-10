@@ -42,6 +42,7 @@ function UserPackageDetails() {
         </div>
         <div className="package-details">
           <h5>{packages.destionation}</h5>
+          <br />
           <h4>{packages.price}/- Per person</h4>
           <h5>
             {packages.days} Days , {packages.nights} Nights

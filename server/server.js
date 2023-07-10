@@ -9,6 +9,9 @@ import adminRouter from './routers/adminRouter.js'
 import userRouter from './routers/userRouter.js'
 import guideAuthRouter from './routers/guideAuthRouter.js'
 import guideRouter from './routers/guideRouter.js'
+import verifyAdmin from './middlewares/verifyAdmin.js';
+import verifyUser from './middlewares/verifyUser.js';
+import verifyGuide from './middlewares/verifyGuide.js';
 
 const app=express();
 
@@ -27,11 +30,11 @@ app.use(
 dbConnect();
 
 app.use('/admin/auth/',adminAuthRouter)
-app.use('/admin',adminRouter)
+app.use("/admin",verifyAdmin,adminRouter)
 app.use('/user/auth/',userAuthRouter)
-app.use('/user/',userRouter)
+app.use('/user',verifyUser,userRouter)
 app.use('/guide/auth/',guideAuthRouter)
-app.use('/guide/',guideRouter)
+app.use('/guide',verifyGuide,guideRouter)
  
 
 
