@@ -1,6 +1,6 @@
-body{
-    overflow-x: hidden;
-}
+/* body{
+    overflow-x: auto !important;
+} */
 .user-main .packages-main{
     width:100%;
     margin-left:100px;
@@ -8,10 +8,10 @@ body{
 }
 .packages-main .packages-head{
     display: flex;
-    padding-left:80px;
-    align-items:end;
-    height:70px;
-    width:100%;
+    align-items:center;
+    padding-top:10px;
+    margin-top:20px;
+    width:90%;
 }
 
 .packages-main .pkgs-body{
@@ -53,7 +53,6 @@ body{
     width:300px;
     display: flex;
     flex-direction:column;
-    /* align-items: center; */
     justify-content: center;
 }
 .pkg-textes p{
@@ -71,4 +70,22 @@ body{
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+}
+
+.packages-head .searchbar .MuiInputBase-root{
+    height:40px;
+    margin-bottom:10px;
+    width:300px;
+}
+
+.packages-head .searchbar{
+    height:40px;
+    margin-bottom:10px;
+    margin-left:50%;
+}
+
+.packages-head .sort{
+    margin-bottom:18px;
+    width:200px;
+    margin-left:50px;
 }

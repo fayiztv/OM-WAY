@@ -1,5 +1,6 @@
 import PackageModel from "../models/PackageModel.js";
 import GuideModel from "../models/GuideModel.js";
+import escapeStringRegexp from 'escape-string-regexp'
 
 export async function getUserHome(req,res){
     const packages = await PackageModel.find().limit(3).lean()
@@ -12,7 +13,9 @@ export async function getUserGuides(req,res){
 }
 
 export async function getUserPackages(req,res){
-    const packages = await PackageModel.find().lean()
+    const name=req.query.name?? ""
+    const escapedName = escapeStringRegexp(name);
+    const packages = await PackageModel.find({destionation:new RegExp(escapedName, 'i')}).lean()
    res.json({err:false,packages})
 }
 
