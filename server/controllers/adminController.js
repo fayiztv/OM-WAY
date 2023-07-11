@@ -22,7 +22,12 @@ export async function getBlockUser(req, res) {
     try{
         const id = req.body.id
         await UserModel.findByIdAndUpdate(id, { $set: { block: true } }).lean()
-        res.json({ err: false })
+        res.cookie("userToken", "", {
+            httpOnly: true,
+            expires: new Date(0),
+            secure: true,
+            sameSite: "none",
+        }).json({ message: "logged out", error: false })
     } catch (err) {
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
