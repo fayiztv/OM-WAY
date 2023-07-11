@@ -86,7 +86,6 @@ function UserPackages() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             InputProps={{
-              
               startAdornment: <SearchIcon />,
             }}
           />

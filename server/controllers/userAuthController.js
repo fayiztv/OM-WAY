@@ -124,7 +124,6 @@ export async function userLogout(req,res){
         secure: true,
         sameSite: "none",
     }).json({ message: "logged out", error: false });
-    console.log("logged out");
 }
 
 export async function forgot(req,res){

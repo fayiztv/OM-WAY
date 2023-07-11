@@ -32,6 +32,9 @@ const GuideSchema = new mongoose.Schema({
     active:{
         type:Boolean,
         default:false
+    },
+    img:{
+        type:Object,
     }
 })
 

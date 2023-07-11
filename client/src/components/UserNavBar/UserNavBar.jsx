@@ -60,7 +60,7 @@ const UserNavbar = () => {
           className="nav-dropdown"
           title={user.name}
           >
-          <NavDropdown.Item><Link to='/user/profile'>Profile</Link></NavDropdown.Item>
+          <NavDropdown.Item><Link to={'/edit-profile/'+user._id}>Profile</Link></NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </div>
