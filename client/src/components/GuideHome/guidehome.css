@@ -409,8 +409,28 @@
     align-items: center;
     font-size:12px;
     margin-left:170px;
-    background-color: #14505cec;
     width:40px;
     border: none;
     border-radius:100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+  }
+  .btn-div{
+    width:210px;
+    position: relative;
+  }
+
+  .btn-div .guide-edit{
+    height:40px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    font-size:12px;
+    margin-left:170px;
+    background-color: #14505cec;
+    width:40px;
+    color: #fff;
+    border: none;
+    border-radius:100%; 
   }

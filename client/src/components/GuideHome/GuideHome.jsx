@@ -68,22 +68,25 @@ function GuideHome() {
             style={{ marginLeft: "120px", marginTop: "20px" }}
           >
             <div className="profile-image">
-              {/* {
-                guide.image &&  */}
+             
               <img
                 className="img-fluid rounded-circle"
-                src={profile}
+                src={guide.image ? guide.image : profile}
                 style={{ height: "200px", width: "200px" }}
                 alt="Profile image"
               />
-              {/* } */}
+               
+               <div className="btn-div">
               <input
+              style={{opacity:'0'}}
                 type="file"
                 name="photo"
                 className="guide-edit-btn"
-                placeholder={<FiEdit2 size={14} />}
+                placeholder="edit"
                 onChange={handleImage}
-              />
+                />
+                {<FiEdit2 className="guide-edit" size={5} />}
+                </div>
             </div>
             <p className="profile-status">
               Status :
