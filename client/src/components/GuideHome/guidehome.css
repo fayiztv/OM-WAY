@@ -357,3 +357,60 @@
     width: 40px;
   }
   
+  .profile-card {
+    background-color: white;
+    padding: 3rem;
+  }
+  
+  .profile-image {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .profile-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .profile-status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .profile-status span {
+    margin-right: 1rem;
+  }
+  
+  .profile-data {
+    margin-top: 1rem;
+  }
+  
+  .profile-data span {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  
+  .profile-data-dynamic {
+    margin-top: 1rem;
+  }
+
+  .guide-edit-btn{
+    height:40px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    font-size:12px;
+    margin-left:170px;
+    
+    width:40px;
+    border: none;
+    border-radius:100%;
+  }

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { TextField } from "@mui/material";
-import image from "/src/assets/images/guideregister.png";
+import loginImage from "/src/assets/images/editprofile.png";
 import "../UserSignup/signup.css";
-import { Link } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
-import SuccessPage from "../GuideSuccess/GuideSuccess.jsx";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
-function GuideRegister() {
+function UserEditProfile() {
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
+  const [contact, setContact] = useState("");
   const [about, setAbout] = useState("");
-  const [password, setPassword] = useState("");
-  const [errMessage, setErrMessage] = useState("");
-  const [showSuccessPage, setShowSuccessPage] = useState(false);
+  const [errMessage, setErrMessage] = useState(null);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState({
     submit: false,
   });
@@ -26,35 +26,46 @@ function GuideRegister() {
       firstName.trim() === "" ||
       lastName.trim() === "" ||
       email.trim() === "" ||
-      number.toString().length !== 10 ||
+      contact.toString().length !== 10 ||
       about.trim() === "" 
     ) {
       return false;
     }
     return true;
   };
-  const handleSubmit = async (e) => {
+  const { id } = useParams();
+
+  async function handleSubmit(e) {
     e.preventDefault();
     if (validForm()) {
-      if (!loading.submit) {
-        setLoading({ ...loading, submit: true });
-        let { data } = await axios.post("/guide/auth/register", {
-          firstName,
-          lastName,
-          email,
-          password,
-          number,
-          about,
-        });
-        if (data.err) {
-          setErrMessage(data.message);
-        } else {
-          setShowSuccessPage(true);
-        }
-        setLoading({ ...loading, submit: false });
+      let { data } = await axios.post("/guide/edit-profile", {
+        firstName,
+        lastName,
+        email,
+        contact,
+        about,
+        id,
+      });
+      console.log(data);
+      if (!data.error) {
+        dispatch({ type: "refresh" });
+        return navigate("/guide");
+      } else {
+        setErrMessage(data.message);
       }
     }
-  };
+  }
+
+  useEffect(() => {
+    (async function () {
+      let { data } = await axios.get("/guide/edit-profile/" + id);
+      setFirstName(data.firstName);
+      setLastName(data.lastName);
+      setEmail(data.email);
+      setContact(data.contact);
+      setAbout(data.about);
+    })();
+  }, []);
   return (
     <div className="login-main">
       <Row>
@@ -66,43 +77,38 @@ function GuideRegister() {
           </Container>
         </nav>
       </Row>
-      {!showSuccessPage ? (
         <Row>
           <div className="login-container">
             <Row>
               <Col md={6} sm={4}>
-                <div className="login-sec bg">
-                  <img src={image} alt="" />
+                <div className="login-sec bg" style={{marginLeft:'200px'}}>
+                  <img src={loginImage} alt="" />
                 </div>
               </Col>
               <Col md={6} sm={8}>
                 <div className="login-sec">
                   <form className="login-box" onSubmit={handleSubmit}>
                     <div className="login-row head">
-                      <h3>Guide Registeration</h3>
+                      <h3>Edit your profile</h3>
                     </div>
-                    
-                    
-                    <div className="login-row w-100">
+                    <div style={{paddingRight:"2px"}} className="login-row w-100 mt-3">
                       <TextField
+                        style={{width:"150px",marginRight:"5px"}}
                         id="filled-textarea"
-                        label="Email"
+                        label="First name"
                         variant="standard"
-                        type="email"
-                        fullWidth
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
-                    </div>
-                    <div className="login-row w-100">
                       <TextField
+                        style={{width:"150px",marginLeft:"5px"}}
                         id="filled-textarea"
-                        label="Password"
+                        label="Last name"
                         variant="standard"
-                        type="password"
-                        fullWidth
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                     </div>
                     <div className="login-row">
@@ -112,10 +118,10 @@ function GuideRegister() {
                         variant="standard"
                         type="number"
                         fullWidth
-                        value={number}
+                        value={contact}
                         onChange={(e) => {
                           if (e.target.value.toString().length <= 10) {
-                            setNumber(e.target.value);
+                            setContact(e.target.value);
                           }
                         }}
                       />
@@ -146,7 +152,7 @@ function GuideRegister() {
                         type="submit"
                         disabled={!validForm()}
                       >
-                        Register
+                        Edit
                         <ClipLoader
                           size={20}
                           color="white"
@@ -154,23 +160,14 @@ function GuideRegister() {
                         />
                       </button>
                     </div>
-                    <div className="login-row mt-3">
-                      <Link to="/guide/login">Already Have an Guide Account? Login</Link>
-                    </div>
-                    <div className="login-row mt-3">
-                    <Link to="/login">Back to user login page</Link>
-                    </div>
                   </form>
                 </div>
               </Col>
             </Row>
           </div>
         </Row>
-      ) : (
-        <SuccessPage/>
-      )}
     </div>
-  );
+  )
 }
 
-export default GuideRegister;
+export default UserEditProfile;

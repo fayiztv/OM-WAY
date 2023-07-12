@@ -1,5 +1,6 @@
 import packageModel from "../models/PackageModel.js";
-import  cloudinary from '../config/cloudinary.js'
+import GuideModel from "../models/GuideModel.js";
+import cloudinary from "../config/cloudinary.js";
 
 export async function addPackage(req, res) {
   try {
@@ -11,7 +12,7 @@ export async function addPackage(req, res) {
       nights,
       places,
       descrption,
-      guideId
+      guideId,
     } = req.body;
     const image = await cloudinary.uploader.upload(req.body.packageImage, {
       folder: "onmyWay",
@@ -25,45 +26,81 @@ export async function addPackage(req, res) {
   }
 }
 
-export async function getGuidePackages(req,res){
-  const id = req.params.id
-  const packages = await packageModel.find({guideId:id}).lean()
-  res.json({err:false,packages})
+export async function getGuidePackages(req, res) {
+  const id = req.params.id;
+  const packages = await packageModel.find({ guideId: id }).lean();
+  res.json({ err: false, packages });
 }
 
 export async function deletePackage(req, res) {
-  try{
-      const id = req.body.id
-      await packageModel.deleteOne({_id:id})
-      res.json({ err: false })
+  try {
+    const id = req.body.id;
+    await packageModel.deleteOne({ _id: id });
+    res.json({ err: false });
   } catch (err) {
-      return res.json({ err: true, message: "Something went wrong", error: err })
+    return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
 
-export async function getPackageEdit(req,res){
-  const id=req.params.id
+export async function getPackageEdit(req, res) {
+  const id = req.params.id;
 
-  const packages =await packageModel.findById(id).lean()
-  res.json(packages)
+  const packages = await packageModel.findById(id).lean();
+  res.json(packages);
 }
 
-export async function postEditPackage(req,res){
-  try{
-    const id=req.body.id
-    const { destination,price,activites,days,nights,places,descrption } = req.body
+export async function postEditPackage(req, res) {
+  try {
+    const id = req.body.id;
+    const { destination, price, activites, days, nights, places, descrption } =
+      req.body;
 
     const image = await cloudinary.uploader.upload(req.body.packageImage, {
       folder: "onmyWay",
     });
 
-    await packageModel.findByIdAndUpdate(id,{$set:{
-      destination,price,activites,days,nights,places,descrption , image
-    }})
+    await packageModel.findByIdAndUpdate(id, {
+      $set: {
+        destination,
+        price,
+        activites,
+        days,
+        nights,
+        places,
+        descrption,
+        image,
+      },
+    });
 
-    return res.json({err:false})
-  }catch(err){
-    return res.json({ err: true, message: "Something went wrong", error: err })
+    return res.json({ err: false });
+  } catch (err) {
+    return res.json({ err: true, message: "Something went wrong", error: err });
     console.log(err);
+  }
+}
+
+export async function getGuideProfileEdit(req, res) {
+  const id = req.params.id;
+
+  const guide = await GuideModel.findById(id).lean();
+  res.json(guide);
+}
+
+export async function postGuideEditProfile(req, res) {
+  try {
+    const id = req.body.id;
+    const { firstName, lastName, email, contact, about } = req.body;
+    const guide = await GuideModel.findByIdAndUpdate(id, {
+      $set: {
+        firstName,
+        lastName,
+        email,
+        contact,
+        about,
+      },
+    });
+    return res.json({ error: false });
+  } catch (error) {
+    console.log(error);
   }
 }

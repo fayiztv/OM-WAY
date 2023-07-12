@@ -25,6 +25,7 @@ import GuideEditPackage from "./components/GuideEditPackage/GuideEditPackage";
 import UserPackages from "./components/UserPackages/UserPackages";
 import UserPackageDetails from "./components/UserPackageDetails/UserPackageDetails";
 import UserEditProfile from "./components/UserEditProfile/UserEditProfile";
+import GuideEditProfile from "./components/GuideEditProfile/GuideEditProfile";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2004/";
@@ -107,6 +108,7 @@ function App() {
           guide.login && 
           <>
           <Route path="/guide" element={<GuideHomePage/>}/>
+          <Route path="/guide/edit-profile/:id" element={<GuideEditProfile/>}/>
           <Route path="/guide/packages" element={<GuidePackages/>}/>
           <Route path="/guide/add-package" element={<GuideAddPackage/>}/>
           <Route path="/guide/edit-package/:id" element={<GuideEditPackage/>}/>
@@ -126,6 +128,7 @@ function App() {
           <Route path="/guide/edit-package" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/bookings" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/reviews" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/edit-profile:/id" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/login" element={<GuideLoginPage/>}/>
           <Route path="/guide/register" element={<GuideRegisterPage/>}/>
           </>
