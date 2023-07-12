@@ -81,7 +81,26 @@ function GuideRegister() {
                     <div className="login-row head">
                       <h3>Guide Registeration</h3>
                     </div>
-                    
+                    <div style={{paddingRight:"2px"}} className="login-row w-100 mt-3">
+                      <TextField
+                        style={{width:"150px",marginRight:"5px"}}
+                        id="filled-textarea"
+                        label="First name"
+                        variant="standard"
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                      <TextField
+                        style={{width:"150px",marginLeft:"5px"}}
+                        id="filled-textarea"
+                        label="Last name"
+                        variant="standard"
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                    </div>
                     
                     <div className="login-row w-100">
                       <TextField

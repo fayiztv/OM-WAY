@@ -60,7 +60,12 @@ export async function getBlockGuide(req, res) {
     try{
         const id = req.body.id
         await GuideModel.findByIdAndUpdate(id, { $set: { block: true } }).lean()
-        res.json({ err: false })
+        res.cookie("guideToken", "", {
+            httpOnly: true,
+            expires: new Date(0),
+            secure: true,
+            sameSite: "none",
+        }).res.json({ err: false })
     } catch (err) {
         return res.json({ err: true, message: "Something went wrong", error: err })
     }

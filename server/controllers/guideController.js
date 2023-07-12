@@ -104,3 +104,25 @@ export async function postGuideEditProfile(req, res) {
     console.log(error);
   }
 }
+
+export async function guideEditAvatar(req , res) {
+  try {
+    const guideImage = await cloudinary.uploader.upload(req.body.image, {
+      folder: "onmyWay",
+    });
+    console.log(guideImage.url);
+    const guide=await GuideModel.findById()
+    const updatedGuide = await GuideModel.findOneAndUpdate(
+      { _id: req.body.id },
+      { $set: { image: guideImage.url } },
+    );
+    console.log("updated");
+    res.json({err: false})
+
+  } catch (error) {
+    console.log(error);
+    res.json({err: true})
+  }
+
+}
+
