@@ -85,7 +85,7 @@ function GuideHome() {
                 placeholder="edit"
                 onChange={handleImage}
                 />
-                {<FiEdit2 className="guide-edit" size={5} />}
+                <h1 className="guide-edit">{<FiEdit2 size={20} />}</h1>
                 </div>
             </div>
             <p className="profile-status">

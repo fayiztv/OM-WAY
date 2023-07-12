@@ -32,10 +32,23 @@ body{
     display: flex;
     flex-direction:row;
     margin-bottom:40px;
+    /* height:70%; */
     width:400px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.guide-body .guides-card:hover{
+    background-color: rgba(0, 0, 0, 0.037);
+}
+
+.guide-body a{
+    color: #000000cb;
+}
+
+.guide-body a:hover {
+    color:#000000cb;
+  }
 
 .guides-card .guide-profile{
     height:100%;
@@ -43,6 +56,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top:13px;
 }
 .guides-card .guide-details{
     height:100%;
@@ -50,11 +64,23 @@ body{
     display: flex;
     flex-direction:column;
     align-items: center;
-    justify-content: center;
+    justify-content:end;
 }
 
 .guide-profile img{
     height:60%;
     width:45%;
     border-radius:100%;
+}
+
+.guides-head .searchbar .MuiInputBase-root{
+    height:40px;
+    margin-bottom:10px;
+    width:300px;
+}
+
+.guides-head .searchbar{
+    height:40px;
+    margin-bottom:10px;
+    margin-left:50%;
 }

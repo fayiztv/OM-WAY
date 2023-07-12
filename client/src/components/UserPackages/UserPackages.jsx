@@ -14,7 +14,6 @@ import Select from "@mui/material/Select";
 function UserPackages() {
   const [packages, setPackages] = useState([""]);
   const [refresh, setRefresh] = useState(false);
-  const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [packagesPerPage] = useState(4);
   const [name, setName] = useState("");

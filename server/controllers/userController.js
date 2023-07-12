@@ -4,12 +4,16 @@ import GuideModel from "../models/GuideModel.js";
 import escapeStringRegexp from 'escape-string-regexp'
 
 export async function getUserHome(req,res){
+    const name=req.query.name?? ""
+    const escapedName = escapeStringRegexp(name);
     const packages = await PackageModel.find().limit(3).lean()
    res.json({err:false,packages})
 }
 
 export async function getUserGuides(req,res){
-    const guides = await GuideModel.find({active:true}).lean()
+    const name=req.query.name?? ""
+    const escapedName = escapeStringRegexp(name);
+    const guides = await GuideModel.find({active:true,firstName:new RegExp(escapedName, 'i')}).lean()
    res.json({err:false,guides})
 }
 
