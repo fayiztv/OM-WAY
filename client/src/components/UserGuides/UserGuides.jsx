@@ -14,6 +14,8 @@ import SearchIcon from "@mui/icons-material/Search";
 function UserGuides() {
   const [guides, setGuides] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [guidesPerPage] = useState(9);
   const [name, setName] = useState("");
 
   React.useEffect(() => {
@@ -29,6 +31,21 @@ function UserGuides() {
       }
     })();
   }, [refresh,name]);
+
+  const count = guides.length;
+
+  const indexOfLastguide = currentPage * guidesPerPage;
+  const indexOfFirstguide = indexOfLastguide - guidesPerPage;
+  const currentguide = guides.slice(
+    indexOfFirstguide,
+    indexOfLastguide
+  );
+  const startingNumber = (currentPage - 1) * guidesPerPage;
+  const calculateSiNo = (index) => startingNumber + index;
+
+  const handlePaginationClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <div className="user-main">
       <UserNavbar />
@@ -48,7 +65,7 @@ function UserGuides() {
         </div>
         <div className="guide-body">
           <Row style={{marginRight:'170px'}}>
-            {guides.map((item, index) => {
+            {currentguide.map((item, index) => {
               return (
                 
                 <Col sm={6} md={4} >
@@ -76,6 +93,28 @@ function UserGuides() {
             })}
           </Row>
         </div>
+        {guides && (
+        <div className="paagination">
+          {Array.from(Array(Math.ceil(count / guidesPerPage)).keys()).map(
+            (pageNumber) => (
+              <button
+                style={{
+                  width: "50px",
+                  height: "40px",
+                  paddingBottom: "35px",
+                  marginRight: "10px",
+                  backgroundColor: "#147E7D",
+                }}
+                key={pageNumber}
+                onClick={() => handlePaginationClick(pageNumber + 1)}
+                disabled={currentPage === pageNumber + 1}
+              >
+                {pageNumber + 1}
+              </button>
+            )
+          )}
+        </div>
+      )}
       </div>
     </div>
   );
