@@ -110,13 +110,11 @@ export async function guideEditAvatar(req , res) {
     const guideImage = await cloudinary.uploader.upload(req.body.image, {
       folder: "onmyWay",
     });
-    console.log(guideImage.url);
-    const guide=await GuideModel.findById()
+
     const updatedGuide = await GuideModel.findOneAndUpdate(
       { _id: req.body.id },
       { $set: { image: guideImage.url } },
     );
-    console.log("updated");
     res.json({err: false})
 
   } catch (error) {

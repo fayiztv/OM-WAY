@@ -110,7 +110,6 @@ export async function getRejectRegistration(req, res) {
     try{
         const id = req.body.id
         const message = req.body.text
-        console.log(id+"            "+message);
         const guide = await GuideModel.findOne({ _id: id }).lean()
         let Sent = await sentRejection(guide.email,message)
         await GuideModel.deleteOne({_id:id})

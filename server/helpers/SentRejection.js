@@ -19,8 +19,7 @@ export default function sentRejection(email,message){
               html: `
               <h1>Sorry</h1>
               <h2>Your registration is rejected</h2>
-              <h5>Reason:</h5>
-                <h2>${message}</h2>
+              <h3>Reason : ${message}</h3>
                 <h2>have a nice day</h2>
               `,
             }

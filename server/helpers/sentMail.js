@@ -30,7 +30,6 @@ export default function sentMail(email){
                 reject(error)
 
               } else {
-                console.log("sent")
                 resolve({success:true, message:"Email sent successfull"})
               }
             });
