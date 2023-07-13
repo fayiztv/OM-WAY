@@ -357,9 +357,10 @@
     width: 40px;
   }
   
-  .profile-card {
+  .GUID-HOME .div .overlap-4 .profile-card{
     background-color: white;
     padding: 3rem;
+    box-shadow:none !important;
   }
   
   .profile-image {

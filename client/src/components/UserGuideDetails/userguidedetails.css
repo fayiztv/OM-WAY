@@ -1,0 +1,48 @@
+.user-main .details-main{
+    width:95%;
+    height:500px;
+    margin:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+}
+
+.profile-card {
+    background-color: white;
+    padding: 3rem;
+    box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
+  }
+
+.details-main .guide-textes-details{
+    height:86%;
+    width:50%;
+    box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
+    margin-left:90px;
+    padding-right:30px;
+    /* background-color: black; */
+}
+
+.guide-textes-details .details-1{
+    height:50%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:200px;
+
+}
+
+.guide-textes-details .details-2{
+    height:50%;
+    width:100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap:200px;
+    padding-left:140px;
+}
+
+.guide-textes-details h5{
+font-weight:normal;
+}

@@ -92,12 +92,11 @@ function GuideHome() {
               Status :
               {guide.block ? (
                 <span className="text-success" style={{ marginLeft: "12px" }}>
-                  {" "}
                   Not Acitve
                 </span>
               ) : (
                 <span className="text-success" style={{ marginLeft: "12px" }}>
-                  {" "}
+                  
                   Active
                 </span>
               )}
