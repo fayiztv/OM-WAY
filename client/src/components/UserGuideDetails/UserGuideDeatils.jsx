@@ -44,6 +44,7 @@ function UserGuideDeatils() {
   const handlePaginationClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  
 
   return (
     <div className="user-main">
