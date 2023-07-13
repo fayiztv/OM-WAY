@@ -1,72 +1,71 @@
-.user-main .details-main{
-    width:95%;
-    height:500px;
-    margin:40px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.user-main .details-main {
+  width: 95%;
+  height: 500px;
+  margin: 40px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.user-main .guide-details-packages{
-    width:95%;
-    height:fit-content;
-    margin:40px;
-    margin-top: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.user-main .guide-details-packages {
+  width: 95%;
+  height: fit-content;
+  margin: 40px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-card {
-    background-color: white;
-    padding: 3rem;
-    box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
-  }
-
-.details-main .guide-textes-details{
-    height:86%;
-    width:50%;
-    box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
-    margin-left:90px;
-    padding-right:30px;
+  background-color: white;
+  padding: 3rem;
+  box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
 }
 
-.guide-textes-details .details-1{
-    height:50%;
-    width:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:200px;
-
+.details-main .guide-textes-details {
+  height: 86%;
+  width: 50%;
+  box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
+  margin-left: 90px;
+  padding-right: 30px;
 }
 
-.guide-details-packages .pkgs-body{
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    padding-top:50px;
+.guide-textes-details .details-1 {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
 }
 
-.guide-textes-details .details-2{
-    height:50%;
-    width:100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap:200px;
-    padding-left:140px;
+.guide-details-packages .pkgs-body {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
 }
 
-.guide-textes-details h5{
-font-weight:normal;
+.guide-textes-details .details-2 {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 200px;
+  padding-left: 140px;
+}
+
+.guide-textes-details h5 {
+  font-weight: normal;
 }
 
 .pagination2 {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }

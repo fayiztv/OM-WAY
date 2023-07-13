@@ -7,7 +7,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
 
-
 function UserGuideDeatils() {
   const [guide, setGuide] = useState([]);
   const [refresh, setRefresh] = useState(false);
@@ -23,14 +22,13 @@ function UserGuideDeatils() {
 
         if (!data.err) {
           setGuide(data.guide);
-          setPackages(data.packages)
+          setPackages(data.packages);
         }
       } catch (err) {
         console.log(err);
       }
     })();
   }, [refresh]);
-
 
   const count = packages.length;
 
@@ -51,9 +49,7 @@ function UserGuideDeatils() {
     <div className="user-main">
       <UserNavbar />
       <div className="details-main">
-        <div
-          className="profile-card"
-        >
+        <div className="profile-card">
           <div className="profile-image" style={{ marginBottom: "30px" }}>
             <img
               className="img-fluid rounded-circle"
@@ -89,42 +85,67 @@ function UserGuideDeatils() {
           </div>
         </div>
         <div className="guide-textes-details">
-            <div className="details-1">
-                <div className="details-name">
-                <div className="text-wrapper-4"><h6>First Name</h6></div>
-                <div className="text-wrapper-5"><h6>{guide.firstName}</h6></div>
-                </div>
-                <div className="details-name">
-                <div className="text-wrapper-4"><h6>Last Name</h6></div>
-                <div className="text-wrapper-5"><h6>{guide.lastName}</h6></div>
-                </div>
+          <div className="details-1">
+            <div className="details-name">
+              <div className="text-wrapper-4">
+                <h6>First Name</h6>
+              </div>
+              <div className="text-wrapper-5">
+                <h6>{guide.firstName}</h6>
+              </div>
             </div>
-            <div className="details-2">
-            <div className="details-name"style={{paddingLeft:'30px'}}>
-                <div className="text-wrapper-4"><h6>Contact</h6></div>
-                <div className="text-wrapper-5"><h6>{guide.contact}</h6></div>
-                <div className="text-wrapper-4"><h6 style={{marginTop:'35px'}}>Rating</h6></div>
-                <div className="text-wrapper-4"><h6>Rating</h6></div>
-
-                </div>
-                <div className="details-name" style={{paddingLeft:'0'}}>
-                <div className="text-wrapper-4"><h6>About</h6></div>
-                <div className="text-wrapper-5"><h6>{guide.about}</h6></div>
-                </div>
+            <div className="details-name">
+              <div className="text-wrapper-4">
+                <h6>Last Name</h6>
+              </div>
+              <div className="text-wrapper-5">
+                <h6>{guide.lastName}</h6>
+              </div>
             </div>
+          </div>
+          <div className="details-2">
+            <div className="details-name" style={{ paddingLeft: "30px" }}>
+              <div className="text-wrapper-4">
+                <h6>Contact</h6>
+              </div>
+              <div className="text-wrapper-5">
+                <h6>{guide.contact}</h6>
+              </div>
+              <div className="text-wrapper-4">
+                <h6 style={{ marginTop: "35px" }}>Rating</h6>
+              </div>
+              <div className="text-wrapper-4">
+                <h6>Rating</h6>
+              </div>
+            </div>
+            <div className="details-name" style={{ paddingLeft: "0" }}>
+              <div className="text-wrapper-4">
+                <h6>About</h6>
+              </div>
+              <div className="text-wrapper-5">
+                <h6>{guide.about}</h6>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="packages-head" style={{marginLeft:'200px',bottom:'0',marginTop:'10px'}}>
-          <h3>Packages by  {guide.firstName}</h3>
-        </div>
+      <div
+        className="packages-head"
+        style={{ marginLeft: "200px", bottom: "0", marginTop: "10px" }}
+      >
+        <h3>Packages by {guide.firstName}</h3>
+      </div>
       <div className="guide-details-packages">
-      <div className="pkgs-body">
+        <div className="pkgs-body">
           <Row>
             {/* <Col sm={6} md={6} > */}
             {currentPackage.map((item, index) => {
               return (
                 <Link to={"/package-details/" + item._id}>
-                  <div className="pkg-details" style={{width:'500px',marginLeft:'60px'}}>
+                  <div
+                    className="pkg-details"
+                    style={{ width: "500px", marginLeft: "60px" }}
+                  >
                     <div className="pkg-image">
                       <img src={item.image && item.image.url} alt="" />
                     </div>
