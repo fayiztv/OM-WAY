@@ -69,10 +69,13 @@ function UserGuides() {
               return (
                 
                 <Col sm={6} md={4} >
-                    <Link style={{height:'70%'}} to={"/guide-details/" + item._id}>
+                  <Link style={{height:'70%'}} to={"/guide-details/" + item._id}>
                   <div className="guides-card">
                     <div className="guide-profile">
-                      <img src={profile} alt="" />
+                      <div className="guide-image">
+                      
+                      <img src={item.image ? item.image :profile} alt="" />
+                      </div>
                     </div>
                     <div className="guide-detials" style={{marginTop:'15px'}}>
                       <p>

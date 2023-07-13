@@ -7,6 +7,8 @@ import { TextField } from "@mui/material";
 
 function UserPackageDetails() {
   const [packages, setPackages] = useState([]);
+  const [guideId, setGuideId] = useState([]);
+  const [guide, setGuide] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const { id } = useParams();
   const [guestes, setGuestes] = useState("");
@@ -22,35 +24,50 @@ function UserPackageDetails() {
         const { data } = await axios.get("/user/package-details/" + id);
 
         if (!data.err) {
-          console.log(data.packages);
           setPackages(data.packages);
-          console.log(packages);
+          setGuideId(data.packages.guideId)
         }
       } catch (err) {
         console.log(err);
       }
     })();
   }, [refresh]);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        if(guideId){
+          const { data } = await axios.get("/user/package-details-guide/" + guideId);
+          if (!data.err) {
+            console.log(data.guide);
+            setGuide(data.guide);
+          }
+        }
+
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [guideId]);
+
   return (
     <div className="user-main">
       <UserNavbar />
-      <div className="details-main">
-        <div className="package-img-btn">
-          <div className="img">
+      <div className="package-details-main">
+        <div className="package-img">
             <img src={packages.image && packages.image.url} alt="" />
-          </div>
         </div>
         <div className="package-details">
-          <h5>{packages.destionation}</h5>
-          <br />
-          <h4>{packages.price}/- Per person</h4>
-          <h5>
+          <h3 style={{marginRight:'100px'}}>{packages.destionation}</h3>
+          <div className="price">
+          <h3 style={{marginRight:'5px'}}>{packages.price}/- </h3><h5> Per person</h5>
+          </div>
+          <h6>
             {packages.days} Days , {packages.nights} Nights
-          </h5>
-          <h5>Activites : {packages.activites}</h5>
-          <h5>Places : {packages.places}</h5>
-          <h6>{packages.descrption}</h6>
-          <br />
+          </h6>
+          <h6>Activites : {packages.activites}</h6>
+          <h6>Places : {packages.places}</h6>
+          <h6 style={{marginBottom:'30px'}}>{packages.descrption}</h6>
           <p>select guestes</p>
           <select
             className="dropdown"
@@ -68,7 +85,6 @@ function UserPackageDetails() {
             <option value="option3">9 Persons</option>
             <option value="option3">10 Persons</option>
           </select>
-          <br />
           <p>select your starting date</p>
           <input type="date" className="date" value={date}  onChange={(e) => setDate(e.target.value)} />
           <div className="btnn">

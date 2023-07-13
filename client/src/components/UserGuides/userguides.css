@@ -48,12 +48,12 @@
   }
 
 .guides-card .guide-profile{
-    height:100%;
+    height:100px;
     width:170px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:13px;
+    margin-right:10px;
 }
 .guides-card .guide-details{
     height:100%;
@@ -64,9 +64,14 @@
     justify-content:end;
 }
 
-.guide-profile img{
-    height:60%;
-    width:45%;
+.guide-profile .guide-image{
+    height:90%;
+    width:55%;
+    border-radius:100%;
+}
+.guide-profile .guide-image img{
+    height:100%;
+    width:100%;
     border-radius:100%;
 }
 

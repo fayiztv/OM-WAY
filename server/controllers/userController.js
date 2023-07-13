@@ -30,6 +30,12 @@ export async function getUserPackageDetails(req,res){
    res.json({err:false,packages})
 }
 
+export async function userPackageGuide(req,res){
+    const id = req.params.id
+    const guide = await GuideModel.findById(id).lean()
+   res.json({err:false,guide})
+}
+
 export async function getUserGuideDetails(req,res){
     const id = req.params.id
     const guide = await GuideModel.findById(id).lean()

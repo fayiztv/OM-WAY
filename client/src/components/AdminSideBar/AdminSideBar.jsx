@@ -10,12 +10,6 @@ function AdminSideBar() {
 <div className="sidebar">
 <ul className="sidebar-nav">
   <li className="sidebar-item">
-    <Link to="/admin/dashboard" className="sidebar-link">
-      <FontAwesomeIcon icon={faChartBar} className="sidebar-icon" />
-      Dashboard
-    </Link>
-  </li>
-  <li className="sidebar-item">
     <Link to="/admin/users" className="sidebar-link">
       <FontAwesomeIcon icon={faUsers} className="sidebar-icon" />
       Customers
