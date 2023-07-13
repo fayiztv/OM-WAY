@@ -1,12 +1,4 @@
-/* .sidebar{
-    position: absolute;
-    width: 260px;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;   
-    background: #262552;
-    box-shadow: 5px 5px 17px rgba(255, 255, 255, 0.02);
-} */
+
 .sidebar {
     background-color: #ffffff; /* Set your desired background color */
     color: #fff; /* Set your desired text color */

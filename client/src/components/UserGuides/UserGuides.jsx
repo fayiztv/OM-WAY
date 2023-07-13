@@ -90,7 +90,7 @@ function UserGuides() {
                       </p>
                     </div>
                   </div>
-                    </Link>
+                  </Link>
                 </Col>
               );
             })}

@@ -3,12 +3,16 @@ import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import { useParams } from "react-router-dom";
 import "./packagedetails.css";
-import { TextField } from "@mui/material";
+import profile from "../../assets/images/face1.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function UserPackageDetails() {
   const [packages, setPackages] = useState([]);
   const [guideId, setGuideId] = useState([]);
   const [guide, setGuide] = useState([]);
+  const [flage, setFlage] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const { id } = useParams();
   const [guestes, setGuestes] = useState("");
@@ -25,7 +29,8 @@ function UserPackageDetails() {
 
         if (!data.err) {
           setPackages(data.packages);
-          setGuideId(data.packages.guideId)
+          setGuideId(data.packages.guideId);
+          setFlage(true);
         }
       } catch (err) {
         console.log(err);
@@ -36,14 +41,15 @@ function UserPackageDetails() {
   React.useEffect(() => {
     (async function () {
       try {
-        if(guideId){
-          const { data } = await axios.get("/user/package-details-guide/" + guideId);
+        if (flage === true) {
+          const { data } = await axios.get(
+            "/user/package-details-guide/" + guideId
+          );
           if (!data.err) {
             console.log(data.guide);
             setGuide(data.guide);
           }
         }
-
       } catch (err) {
         console.log(err);
       }
@@ -55,19 +61,20 @@ function UserPackageDetails() {
       <UserNavbar />
       <div className="package-details-main">
         <div className="package-img">
-            <img src={packages.image && packages.image.url} alt="" />
+          <img src={packages.image && packages.image.url} alt="" />
         </div>
         <div className="package-details">
-          <h3 style={{marginRight:'100px'}}>{packages.destionation}</h3>
+          <h3 style={{ marginRight: "100px" }}>{packages.destionation}</h3>
           <div className="price">
-          <h3 style={{marginRight:'5px'}}>{packages.price}/- </h3><h5> Per person</h5>
+            <h3 style={{ marginRight: "5px" }}>{packages.price}/- </h3>
+            <h5> Per person</h5>
           </div>
           <h6>
             {packages.days} Days , {packages.nights} Nights
           </h6>
           <h6>Activites : {packages.activites}</h6>
           <h6>Places : {packages.places}</h6>
-          <h6 style={{marginBottom:'30px'}}>{packages.descrption}</h6>
+          <h6 style={{ marginBottom: "20px" }}>{packages.descrption}</h6>
           <p>select guestes</p>
           <select
             className="dropdown"
@@ -86,10 +93,37 @@ function UserPackageDetails() {
             <option value="option3">10 Persons</option>
           </select>
           <p>select your starting date</p>
-          <input type="date" className="date" value={date}  onChange={(e) => setDate(e.target.value)} />
+          <input
+            type="date"
+            className="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
           <div className="btnn">
             <button>book now</button>
           </div>
+        
+        <Link style={{ height: "70%" }} to={"/guide-details/" + guide._id}>
+          <div className="guides-card">
+            <div className="guide-profile">
+              <div className="guide-image">
+                <img src={guide.image ? guide.image : profile} alt="" />
+              </div>
+            </div>
+            <div className="guide-detials" style={{ marginTop: "15px" }}>
+              <p>
+                Name : {guide.firstName} <br />
+                Contact : {guide.contact} <br /> Ratings:
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <br />
+              </p>
+            </div>
+          </div>
+        </Link>
         </div>
       </div>
     </div>
