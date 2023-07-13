@@ -4,11 +4,17 @@ import "./userguidedetails.css";
 import { useParams } from "react-router-dom";
 import profile from "../../assets/images/face1.jpg";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Row from "react-bootstrap/esm/Row";
+
 
 function UserGuideDeatils() {
   const [guide, setGuide] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const { id } = useParams();
+  const [packages, setPackages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [packagesPerPage] = useState(4);
 
   React.useEffect(() => {
     (async function () {
@@ -17,12 +23,29 @@ function UserGuideDeatils() {
 
         if (!data.err) {
           setGuide(data.guide);
+          setPackages(data.packages)
         }
       } catch (err) {
         console.log(err);
       }
     })();
   }, [refresh]);
+
+
+  const count = packages.length;
+
+  const indexOfLastpackage = currentPage * packagesPerPage;
+  const indexOfFirstpackage = indexOfLastpackage - packagesPerPage;
+  const currentPackage = packages.slice(
+    indexOfFirstpackage,
+    indexOfLastpackage
+  );
+  const startingNumber = (currentPage - 1) * packagesPerPage;
+  const calculateSiNo = (index) => startingNumber + index;
+
+  const handlePaginationClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="user-main">
@@ -91,6 +114,58 @@ function UserGuideDeatils() {
             </div>
         </div>
       </div>
+      <div className="packages-head" style={{marginLeft:'200px',bottom:'0',marginTop:'10px'}}>
+          <h3>Packages by  {guide.firstName}</h3>
+        </div>
+      <div className="guide-details-packages">
+      <div className="pkgs-body">
+          <Row>
+            {/* <Col sm={6} md={6} > */}
+            {currentPackage.map((item, index) => {
+              return (
+                <Link to={"/package-details/" + item._id}>
+                  <div className="pkg-details" style={{width:'500px',marginLeft:'60px'}}>
+                    <div className="pkg-image">
+                      <img src={item.image && item.image.url} alt="" />
+                    </div>
+                    <div className="pkg-textes">
+                      <h5>{item.destionation}</h5>
+                      <h4>{item.price}</h4>
+                      <p>
+                        {item.days} Days , {item.nights} Nights
+                      </p>
+                      <p>{item.descrption}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+            {/* </Col> */}
+          </Row>
+        </div>
+      </div>
+      {packages && (
+        <div className="pagination2">
+          {Array.from(Array(Math.ceil(count / packagesPerPage)).keys()).map(
+            (pageNumber) => (
+              <button
+                style={{
+                  width: "50px",
+                  height: "40px",
+                  paddingBottom: "35px",
+                  marginRight: "10px",
+                  backgroundColor: "#147E7D",
+                }}
+                key={pageNumber}
+                onClick={() => handlePaginationClick(pageNumber + 1)}
+                disabled={currentPage === pageNumber + 1}
+              >
+                {pageNumber + 1}
+              </button>
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -33,8 +33,10 @@ export async function getUserPackageDetails(req,res){
 export async function getUserGuideDetails(req,res){
     const id = req.params.id
     const guide = await GuideModel.findById(id).lean()
-   res.json({err:false,guide})
+    const packages=await PackageModel.find({guideId:id}).lean()
+   res.json({err:false,guide,packages})
 }
+
 
 export async function getUserProfileEdit(req,res){
     const id=req.params.id
@@ -51,3 +53,4 @@ export async function getUserProfileEdit(req,res){
     }})
     return res.json({error:false})
   }
+

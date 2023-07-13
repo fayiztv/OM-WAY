@@ -19,8 +19,6 @@ function UserPackages() {
   const [name, setName] = useState("");
   const [sortingOption, setSortingOption] = useState("");
 
-  
-  
 
   React.useEffect(() => {
     (async function () {
