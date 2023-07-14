@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAcceptRegistration, getAdminGuides, getAdminRegistrations, getAdminUsers, getBlockGuide, getBlockUser, getRejectRegistration, getunBlockGuide, getunBlockUser } from '../controllers/adminController.js';
+import { getAcceptRegistration, getAdminComplaints, getAdminGuides, getAdminRegistrations, getAdminUsers, getBlockGuide, getBlockUser, getRejectRegistration, getunBlockGuide, getunBlockUser } from '../controllers/adminController.js';
 
 const router = express.Router()
 
@@ -12,5 +12,6 @@ router.patch('/guide/unblock',getunBlockGuide)
 router.get('/registrations',getAdminRegistrations)
 router.patch('/registration/accept',getAcceptRegistration)
 router.post('/registration/reject',getRejectRegistration)
+router.get('/complaints',getAdminComplaints)
 
 export default router

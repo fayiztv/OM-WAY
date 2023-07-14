@@ -1,5 +1,6 @@
 import GuideModel from "../models/GuideModel.js";
 import UserModel from "../models/UserModel.js";
+import ComplaintModel from "../models/ComplaintModel.js";
 import sentMail from '../helpers/sentMail.js'
 import sentRejection from '../helpers/SentRejection.js'
 
@@ -114,6 +115,17 @@ export async function getRejectRegistration(req, res) {
         let Sent = await sentRejection(guide.email,message)
         await GuideModel.deleteOne({_id:id})
         res.json({ err: false })
+    } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+}
+
+export async function getAdminComplaints(req, res) {
+
+    try {
+        let complaints = await ComplaintModel.find().lean()
+        res.json(complaints)
+
     } catch (err) {
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
