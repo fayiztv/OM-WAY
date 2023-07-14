@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addComplaint,
   getUserGuideDetails,
   getUserGuides,
   getUserHome,
@@ -20,5 +21,6 @@ router.get("/packages", getUserPackages);
 router.get("/package-details/:id", getUserPackageDetails);
 router.get("/package-details-guide/:id", userPackageGuide);
 router.get("/guide-details/:id", getUserGuideDetails);
+router.post("/complaint", addComplaint);
 
 export default router;
