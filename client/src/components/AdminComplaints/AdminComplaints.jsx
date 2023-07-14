@@ -5,7 +5,7 @@ import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import "../AdminRegistrations/registraions.css";
 
 function AdminRegistrations() {
-  const [complaintsList, setComplaintsList] = useState([""]);
+  const [complaints, setComplaints] = useState([""]);
   const [refresh, setRefresh] = useState(false);
 
   React.useEffect(() => {
@@ -14,7 +14,7 @@ function AdminRegistrations() {
         const { data } = await axios.get("/admin/complaints");
      
         if (!data.err) {
-          setComplaintsList(data);
+          setComplaints(data);
         }
       } catch (err) {
         console.log(err);
@@ -45,24 +45,13 @@ function AdminRegistrations() {
                   <thead className="thead-dark">
                     <tr className="table-head">
                       <th scope="col">SI No</th>
-                      <th scope="col">User Email</th>
-                      <th scope="col">Guide</th>
+                      <th scope="col">User Name</th>
+                      <th scope="col">Guide Email</th>
                       <th scope="col">Description</th>
                       {/* <th scope="col">Action</th> */}
                     </tr>
                   </thead>
-                  <tbody>
-                    {complaintsList.map((item, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{item.description}</td>
-                          <td>{item.description}</td>
-                          <td style={{ width: "430px" }}>{item.description}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
+                  
                 </table>
               </div>
             </div>

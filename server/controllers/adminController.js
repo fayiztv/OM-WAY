@@ -123,7 +123,7 @@ export async function getRejectRegistration(req, res) {
 export async function getAdminComplaints(req, res) {
 
     try {
-        let complaints = await ComplaintModel.find().lean()
+        let complaints = await ComplaintModel.find({}).populate('userId').populate('guideId').lean()
         res.json(complaints)
 
     } catch (err) {

@@ -9,10 +9,6 @@ const schema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Guide'
     },
-    type:{
-        type:String,
-        default:""
-    },
     complaintId:{
         type:String,
         default:"ComplaintId"+Date.now()
