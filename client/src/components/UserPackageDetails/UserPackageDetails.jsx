@@ -7,6 +7,7 @@ import profile from "../../assets/images/face1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { AiFillRightCircle } from "react-icons/ai";
 
 function UserPackageDetails() {
   const [packages, setPackages] = useState([]);
@@ -66,15 +67,15 @@ function UserPackageDetails() {
         <div className="package-details">
           <h3 style={{ marginRight: "100px" }}>{packages.destionation}</h3>
           <div className="price">
-            <h3 style={{ marginRight: "5px" }}>{packages.price}/- </h3>
-            <h5> Per person</h5>
+            <h3 style={{ marginRight: "10px" }}>₹ {packages.price}</h3>
+            <h5> /- Per person</h5>
           </div>
           <h6>
-            {packages.days} Days , {packages.nights} Nights
+          <AiFillRightCircle style={{ marginRight: "10px" }}/>  {packages.days} Days , {packages.nights} Nights
           </h6>
-          <h6>Activites : {packages.activites}</h6>
-          <h6>Places : {packages.places}</h6>
-          <h6 style={{ marginBottom: "20px" }}>{packages.descrption}</h6>
+          <h6> <AiFillRightCircle style={{ marginRight: "10px" }}/> Activites : {packages.activites}</h6>
+          <h6> <AiFillRightCircle style={{ marginRight: "10px" }}/> Places : {packages.places}</h6>
+          <h6 style={{ marginBottom: "20px" }}><AiFillRightCircle style={{ marginRight: "10px" }}/> {packages.descrption}</h6>
           <p>select guestes</p>
           <select
             className="dropdown"

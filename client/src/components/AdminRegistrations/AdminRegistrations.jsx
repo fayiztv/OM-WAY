@@ -4,7 +4,7 @@ import AdminHeader from "../AdminHeader/AdminHeader";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import "./registraions.css";
 import Swal from "sweetalert2";
-import Rejection from "../../modals/Rejection";
+import Rejection from "../../modals/Rejection/Rejection";
 
 function AdminRegistrations() {
   const [registrationsList, setRegistrationsList] = useState([""]);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./usernavbar.css";
 import logo from "../../assets/images/logo.png";
@@ -8,9 +8,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import Complaint from "../../modals/Complaint/Complaint";
 
 
 const UserNavbar = () => {
+
+  const [showModal, setShowModal]= useState(false)
 
   const user=useSelector((state)=>{
     return state.user.detials
@@ -36,6 +39,8 @@ const UserNavbar = () => {
 }
 
   return (
+    <div className="div">
+
     <nav className="user-navbar">
       <div className="logo">
         <img src={logo} alt="" />
@@ -61,10 +66,17 @@ const UserNavbar = () => {
           title={user.name}
           >
           <NavDropdown.Item><Link to={'/edit-profile/'+user._id}>Profile</Link></NavDropdown.Item>
+          <NavDropdown.Item onClick={()=>{setShowModal(true)}}>Register complaint</NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </div>
     </nav>
+    {
+      showModal &&
+      <Complaint setShowModal={setShowModal}/>
+    }
+    </div>
+    
   );
 };
 
