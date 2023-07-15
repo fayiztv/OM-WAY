@@ -46,7 +46,6 @@ function UserPackageDetails() {
       if(price) {
         
         const { data } = await axios.post("user/book-package", {price:price});
-        console.log(data);
         if (!data.error) {
           handleRazorPay(data.order);
         }
@@ -65,7 +64,7 @@ function UserPackageDetails() {
         description: "Package Amount",
         order_id: order.id,
         handler: async (response) => {
-            const { data } = await axios.post("/user/payment/verify", { response, selectedDate,guideId, packageId:packages._Id, userId , price:price, guestes });
+            const { data } = await axios.post("/user/payment/verify", { response, selectedDate,guideId, packageId:packages._id, userId , price:price, guestes });
             if(data.err){
                 Swal.fire({
                     icon: 'error',
@@ -78,7 +77,7 @@ function UserPackageDetails() {
                     'Successfully Booked',
                     'success'
                   )
-                  navigate("/bookings")
+                  navigate("/bookings/"+userId)
             }
             setRefresh(!refresh)
         }

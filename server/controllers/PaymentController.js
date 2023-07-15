@@ -41,7 +41,6 @@ export async function verifyPayment(req, res) {
       guestes,
     } = req.body;
 
-
     let body = response.razorpay_order_id + "|" + response.razorpay_payment_id;
 
     var expectedSignature = crypto

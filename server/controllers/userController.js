@@ -3,6 +3,7 @@ import UserModel from "../models/UserModel.js";
 import GuideModel from "../models/GuideModel.js";
 import ComplaintModel from "../models/ComplaintModel.js";
 import escapeStringRegexp from "escape-string-regexp";
+import BookingModel from "../models/BookingModel.js";
 
 export async function getUserHome(req, res) {
   const name = req.query.name ?? "";
@@ -84,5 +85,17 @@ export async function addComplaint(req, res) {
   } catch (error) {
     console.log(error);
     res.json({ err: true, message: "something went wrong", error });
+  }
+}
+
+export async function getUserBookings(req,res){
+  try{
+    const id=req.params.id
+    const bookings = await BookingModel.find({userId:id}).populate('guideId').populate('packageId').lean()
+    console.log(bookings);
+    res.json({err:false,bookings})
+  }catch(err){
+    console.log(err);
+    res.json({ err: true, message: "something went wrong", err });
   }
 }

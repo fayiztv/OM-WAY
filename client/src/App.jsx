@@ -27,6 +27,7 @@ import UserPackageDetails from "./components/UserPackageDetails/UserPackageDetai
 import UserEditProfile from "./components/UserEditProfile/UserEditProfile";
 import GuideEditProfile from "./components/GuideEditProfile/GuideEditProfile";
 import UserGuideDeatils from "./components/UserGuideDetails/UserGuideDeatils";
+import UserBookings from "./components/UserBookings/UserBookings";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2004/";
@@ -87,6 +88,7 @@ function App() {
             <Route path="/packages" element={<UserPackages />} />
             <Route path="/package-details/:id" element={<UserPackageDetails />} />
             <Route path="/guide-details/:id" element={<UserGuideDeatils />} />
+            <Route path="/bookings/:id" element={<UserBookings />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/sign-up" element={<Navigate to="/" />} />
           </>

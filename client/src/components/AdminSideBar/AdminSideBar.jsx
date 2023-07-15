@@ -12,7 +12,7 @@ function AdminSideBar() {
   <li className="sidebar-item">
     <Link to="/admin/users" className="sidebar-link">
       <FontAwesomeIcon icon={faUsers} className="sidebar-icon" />
-      Customers
+      Users
     </Link>
   </li>
   <li className="sidebar-item">

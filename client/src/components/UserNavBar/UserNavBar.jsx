@@ -55,7 +55,7 @@ const UserNavbar = () => {
             <Link to="/packages">Packages</Link>
           </li>
           <li>
-            <Link to="/bookings">Bookings</Link>
+            <Link to={"/bookings/"+user._id}>Bookings</Link>
           </li>
         </ul>
       </div>

@@ -96,7 +96,7 @@ function UserPackages() {
             >
               <MenuItem value={sortingOption}>
               </MenuItem>
-              <MenuItem value="all">None</MenuItem>
+              <MenuItem value="all">Default</MenuItem>
               <MenuItem value="highToLow">Hight to low</MenuItem>
               <MenuItem value="lowToHigh">Low to high</MenuItem>
             </Select>
