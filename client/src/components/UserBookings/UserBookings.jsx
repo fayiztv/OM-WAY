@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Container, Row } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import './userbookings.css'
 import UserNavbar from '../UserNavBar/UserNavBar';
 import InputLabel from "@mui/material/InputLabel";
@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 function UserBookings() {
     const [bookingList,setBookingList]=useState([""])
-    const [filteringOption, setFilteringOption] = useState("");
+    const [filterStatus, setFilterStatus] = useState('all');
     const user=useSelector((state)=>{
       return state.user.detials
   
@@ -30,7 +30,18 @@ function UserBookings() {
         }
       })()
   },[])
-  console.log(bookingList.length);
+
+  const filteredBookings = bookingList.filter((booking) => {
+    if (filterStatus === 'all') {
+      return true;
+    }
+    return booking.status === filterStatus;
+  });
+
+  const handleFilterChange = (e) => {
+    setFilterStatus(e);
+  };
+
   return (
     <div className="user-main">
     <UserNavbar />
@@ -45,23 +56,23 @@ function UserBookings() {
     <div className="bookings-head">     
           <h3>BOOKINGS</h3>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small" className="sort">
-            <InputLabel id="demo-select-small-label">Filter bookings</InputLabel>
+            <InputLabel id="demo-select-small-label"></InputLabel>
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
-              value={filteringOption}
-              onChange={(e) => setFilteringOption(e.target.value)}
+              value={filterStatus}
+              onChange={(e) => handleFilterChange(e.target.value)}
             >
-              <MenuItem value={filteringOption}>
+              <MenuItem value={filterStatus}>
               </MenuItem>
-              <MenuItem value="all">Default</MenuItem>
-              <MenuItem value="highToLow">Hight to low</MenuItem>
-              <MenuItem value="lowToHigh">Low to high</MenuItem>
+              <MenuItem value="all">All</MenuItem>
+              <MenuItem value="upcoming">Upcoming</MenuItem>
+              <MenuItem value="completed">Completed</MenuItem>
             </Select>
           </FormControl>
         </div>
             <div className="bookings-body">
-              {bookingList.map((item,index)=>{
+              {filteredBookings.map((item,index)=>{
                 return(
                   <div className="user-bookings">
                     {

@@ -1,5 +1,6 @@
 import packageModel from "../models/PackageModel.js";
 import GuideModel from "../models/GuideModel.js";
+import BookingModel from "../models/BookingModel.js";
 import cloudinary from "../config/cloudinary.js";
 
 export async function addPackage(req, res) {
@@ -122,5 +123,16 @@ export async function guideEditAvatar(req , res) {
     res.json({err: true})
   }
 
+}
+
+export async function getGuideBookings(req,res){
+  try{
+    const id=req.params.id
+    const bookings = await BookingModel.find({guideId:id}).populate('userId').populate('packageId').lean()
+    res.json({err:false,bookings})
+  }catch(err){
+    console.log(err);
+    res.json({ err: true, message: "something went wrong", err });
+  }
 }
 
