@@ -51,7 +51,18 @@ function AdminRegistrations() {
                       {/* <th scope="col">Action</th> */}
                     </tr>
                   </thead>
-                  
+                  <tbody>
+                    {complaints.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{item.userId?.name}</td>
+                          <td>{item.guideId?.email}</td>
+                          <td style={{ width: "400px" }}>{item.description}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
                 </table>
               </div>
             </div>

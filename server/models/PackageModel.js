@@ -4,7 +4,7 @@ const packageSchema = new mongoose.Schema({
     type: String,
   },
   price: {
-    type: String,
+    type: Number,
   },
   activites: {
     type: String,
@@ -33,5 +33,5 @@ const packageSchema = new mongoose.Schema({
   },
 });
 
-const packageModel = mongoose.model("packages",packageSchema);
-export default packageModel;
+const PackageModel = mongoose.model("Package",packageSchema);
+export default PackageModel;

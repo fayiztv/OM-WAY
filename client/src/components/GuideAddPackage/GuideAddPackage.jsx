@@ -29,7 +29,7 @@ function GuideAddPackage() {
   const validForm = () => {
     if (
       destionation.trim() === "" ||
-      price.trim() === "" ||
+      price === "" ||
       activites.trim() === "" ||
       days === "" ||
       nights === "" ||
@@ -131,7 +131,7 @@ function GuideAddPackage() {
                   label="Price"
                   placeholder="Enter package's price"
                   variant="standard"
-                  type="text"
+                  type="number"
                   fullWidth
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}

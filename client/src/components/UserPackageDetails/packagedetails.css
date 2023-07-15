@@ -32,16 +32,22 @@
 }
 .btnn button{
     background-color: #147E7D;
-    width:70%;
+    width:50%;
+    padding-bottom:30px;
     margin-top:20px;
     height:40px;
+    border: none;
+}
+
+.btnn button:hover{
+    border: none;
 }
 
 .package-details .price{
     display: flex;
     align-items: center;
-    margin-bottom:10px;
-    margin-top:10px;
+    margin-bottom:5px;
+    margin-top:5px;
 }
 
 .package-details-main .package-details{
@@ -61,12 +67,11 @@
     width:30%;
     color:#ffff;
     padding-left:5px;
-    margin-bottom:20px;
 }
 .package-details .date{
     background-color: #147E7D;
     border-radius:5px;
-    width:30%;
+    width:50%;
     height:30px;
     border: none;
     top: 0;
@@ -122,3 +127,7 @@
     width:100%;
     border-radius:100%;
 }
+
+.date::placeholder {
+    color: white;
+  }

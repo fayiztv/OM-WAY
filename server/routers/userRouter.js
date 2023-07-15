@@ -10,6 +10,7 @@ import {
   userEditProfile,
   userPackageGuide,
 } from "../controllers/userController.js";
+import { paymentOrder, verifyPayment } from "../controllers/PaymentController.js";
 
 const router = express.Router();
 
@@ -22,5 +23,8 @@ router.get("/package-details/:id", getUserPackageDetails);
 router.get("/package-details-guide/:id", userPackageGuide);
 router.get("/guide-details/:id", getUserGuideDetails);
 router.post("/complaint", addComplaint);
+router.post('/book-package',paymentOrder)
+router.post('/payment/verify',verifyPayment)
+
 
 export default router;
