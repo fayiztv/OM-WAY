@@ -92,7 +92,6 @@ export async function getUserBookings(req,res){
   try{
     const id=req.params.id
     const bookings = await BookingModel.find({userId:id}).populate('guideId').populate('packageId').lean()
-    console.log(bookings);
     res.json({err:false,bookings})
   }catch(err){
     console.log(err);

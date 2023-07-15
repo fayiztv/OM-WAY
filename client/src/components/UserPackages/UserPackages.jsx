@@ -114,7 +114,7 @@ function UserPackages() {
                     </div>
                     <div className="pkg-textes">
                       <h5>{item.destionation}</h5>
-                      <h4>{item.price}</h4>
+                      <h4> ₹ {item.price}</h4>
                       <p>
                         {item.days} Days , {item.nights} Nights
                       </p>

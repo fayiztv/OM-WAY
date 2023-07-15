@@ -103,6 +103,7 @@ function App() {
           <Route path='/package-details/:id' element={<Navigate to='/login'/>}/>
           <Route path='/guide-details/:id' element={<Navigate to='/login'/>}/>
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
+          <Route path='/bookings/:id' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginpage/>} />
           <Route path='/sign-up' element={<UserSignupPage/>}/>
           <Route path='/forgot-password' element={<UserForgotPage/>}/>
