@@ -11,6 +11,7 @@ import Select from "@mui/material/Select";
 
 function GuideBookings() {
   const [bookingList,setBookingList]=useState([""])
+  const [filterStatus, setFilterStatus] = useState('all');
 
   const guide = useSelector((state)=>{
     return state.guide.detials
@@ -27,6 +28,12 @@ function GuideBookings() {
     })()
 },[])
 
+const filteredBookings = bookingList.filter((booking) => {
+  if (filterStatus === 'all') {
+    return true;
+  }
+  return booking.status === filterStatus;
+});
 
 const handleFilterChange = (e) => {
   setFilterStatus(e);
@@ -37,12 +44,26 @@ const handleFilterChange = (e) => {
       <div style={{display:'flex',flexDirection:'column',width:'90%',marginLeft:'60px'}} className="overlap-4">
       <div className="bookings-head">     
           <h3>BOOKINGS</h3>
-
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small" className="sort">
+            <InputLabel id="demo-select-small-label"></InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              value={filterStatus}
+              onChange={(e) => handleFilterChange(e.target.value)}
+            >
+              <MenuItem value={filterStatus}>
+              </MenuItem>
+              <MenuItem value="all">All</MenuItem>
+              <MenuItem value="upcoming">Upcoming</MenuItem>
+              <MenuItem value="completed">Completed</MenuItem>
+            </Select>
+          </FormControl>
         </div>
 
 
             <div className="guide-packages-body">
-              {bookingList.map((item,index)=>{
+              {filteredBookings.map((item,index)=>{
                 return(
                   <div className="guide-packages">
                     {
