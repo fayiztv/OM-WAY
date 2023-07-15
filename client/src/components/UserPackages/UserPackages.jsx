@@ -51,8 +51,7 @@ function UserPackages() {
       sortPackagesHighToLow();
     }
     else  if (sortingOption === 'all') {
-      const sortedPackages= packages.slice().sort(() => Math.random() - 0.5);
-      setPackages(sortedPackages)
+      setRefresh(!refresh)
     }
   }, [sortingOption]);
 

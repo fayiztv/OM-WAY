@@ -60,3 +60,20 @@
     padding-left:20px;
     padding-top:20px;
 }
+.status{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    flex-direction:column;
+    justify-content: center;
+    text-decoration: none;
+    width:600px;
+}
+
+.completed{
+    color:none;
+
+}
+.upcoming{
+    color: #147E7D;
+}
