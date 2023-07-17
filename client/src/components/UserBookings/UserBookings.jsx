@@ -118,7 +118,7 @@ function UserBookings() {
                     </p>
 
                     {item.status == "completed" && (
-                      <Link to={"/servicehistory/" + item._id}>
+                      <Link to={"/booking-details/" + item._id}>
                         view detials
                       </Link>
                     )}

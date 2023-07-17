@@ -98,3 +98,14 @@ export async function getUserBookings(req,res){
     res.json({ err: true, message: "something went wrong", err });
   }
 }
+
+export async function getUserBookingDetails(req,res){
+  try{
+    const id=req.params.id
+    const booking = await BookingModel.find({_id:id}).populate('guideId').populate('userId').populate('packageId').lean()
+    res.json({err:false,booking})
+  }catch(err){
+    console.log(err);
+    res.json({ err: true, message: "something went wrong", err });
+  }
+}

@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addComplaint,
+  getUserBookingDetails,
   getUserBookings,
   getUserGuideDetails,
   getUserGuides,
@@ -18,6 +19,7 @@ const router = express.Router();
 router.get("/home", getUserHome);
 router.get("/edit-profile/:id", getUserProfileEdit);
 router.get("/bookings/:id", getUserBookings);
+router.get("/booking-details/:id", getUserBookingDetails);
 router.post("/edit-profile/", userEditProfile);
 router.get("/guides", getUserGuides);
 router.get("/packages", getUserPackages);

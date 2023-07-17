@@ -109,10 +109,6 @@ function GuideBookings() {
                   >
                     {item.status}
                   </p>
-
-                  {item.status == "completed" && (
-                    <Link to={"/servicehistory/" + item._id}>view detials</Link>
-                  )}
                 </div>
               </div>
             );

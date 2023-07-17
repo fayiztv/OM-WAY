@@ -21,7 +21,7 @@ function UserPackageDetails() {
   const [refresh, setRefresh] = useState(false);
   const { id } = useParams();
   const [guestes, setGuestes] = useState(1);
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState('');
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const disabledDate = new Date();
@@ -39,17 +39,12 @@ function UserPackageDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validForm()) {
-
-      setPrice(packages.price * guestes);  
-
-      if(price) {
-        
-        const { data } = await axios.post("user/book-package", {price:price});
+    if (validForm()) {        
+        const { data } = await axios.post("user/book-package", {price:packages.price*guestes});
         if (!data.error) {
           handleRazorPay(data.order);
         }
-      }
+      
     }
   };
 
@@ -64,7 +59,7 @@ function UserPackageDetails() {
         description: "Package Amount",
         order_id: order.id,
         handler: async (response) => {
-            const { data } = await axios.post("/user/payment/verify", { response, selectedDate,guideId, packageId:packages._id, userId , price:price, guestes });
+            const { data } = await axios.post("/user/payment/verify", { response, selectedDate,guideId, packageId:packages._id, userId , price:packages.price*guestes, guestes });
             if(data.err){
                 Swal.fire({
                     icon: 'error',
@@ -210,7 +205,7 @@ function UserPackageDetails() {
               className="date"
             />
             <div className="btnn">
-              <button type="submit" disabled={!validForm()}>
+              <button type="submit" onClick={()=>handleSubmit} disabled={!validForm()}>
                 book now
               </button>
             </div>
