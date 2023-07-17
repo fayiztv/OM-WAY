@@ -15,7 +15,6 @@ function GuidePackages() {
   const [refresh, setRefresh] = useState(false);
   
   const guide=useSelector((state)=>{
-    console.log(state.guide.detials);
     return state.guide.detials
   });
 

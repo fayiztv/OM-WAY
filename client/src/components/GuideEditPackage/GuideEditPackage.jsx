@@ -7,6 +7,7 @@ import GuideHeader from "../GuideHeader/GuideHeader";
 import { TextField } from "@mui/material";
 import "../GuideAddPackage/addpackage.css";
 import { ClipLoader } from "react-spinners";
+import Swal from "sweetalert2";
 
 function EditPackage() {
   const [destionation, setDestination] = useState("");
@@ -26,7 +27,7 @@ function EditPackage() {
   const validForm = () => {
     if (
       destionation.trim() === "" ||
-      price.trim() === "" ||
+      price === "" ||
       activites.trim() === "" ||
       days === "" ||
       nights === "" ||
@@ -69,6 +70,7 @@ function EditPackage() {
     e.preventDefault();
     if (validForm()) {
       if (!loading.submit) {
+        setLoading({ ...loading, submit: true });
         let { data } = await axios.post("/guide/edit-package", {
           destionation,
           price,
@@ -84,9 +86,12 @@ function EditPackage() {
           dispatch({ type: "refresh" });
           return navigate("/guide/packages");
         } else {
-          setErrMessage(data.message);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: data.message,
+          });
         }
-        console.log(loading);
         setLoading({ ...loading, submit: false });
       }
     }

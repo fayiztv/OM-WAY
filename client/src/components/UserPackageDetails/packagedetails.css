@@ -35,6 +35,10 @@
     margin-top:20px;
     height:40px;
     border: none;
+    align-items: center;
+    display: flex;
+    gap:10px;
+    justify-content: center;
 }
 
 .btnn button:hover{

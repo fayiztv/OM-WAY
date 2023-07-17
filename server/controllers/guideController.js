@@ -23,7 +23,7 @@ export async function addPackage(req, res) {
     res.json({ err: false });
   } catch (err) {
     console.log(err);
-    res.json({ err: true, error: err, message: "Something Went Wrong" });
+    res.json({ err: true, error: err, message: "Please add a image" });
   }
 }
 
@@ -75,8 +75,7 @@ export async function postEditPackage(req, res) {
 
     return res.json({ err: false });
   } catch (err) {
-    return res.json({ err: true, message: "Something went wrong", error: err });
-    console.log(err);
+    return res.json({ err: true, message: "Please add a image", error: err });
   }
 }
 

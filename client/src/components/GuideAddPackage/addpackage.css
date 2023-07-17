@@ -63,4 +63,12 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    display: flex;
+    gap:10px;
+}
+
+.submit-buttonn button{
+    justify-content: center;
+    display: flex;
+    gap:10px;
 }

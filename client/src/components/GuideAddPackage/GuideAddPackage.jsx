@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import Swal from "sweetalert2";
 
 function GuideAddPackage() {
   const [destionation, setDestination] = useState("");
@@ -72,6 +73,7 @@ function GuideAddPackage() {
     e.preventDefault();
     if (validForm()) {
       if (!loading.submit) {
+        setLoading({ ...loading, submit: true });
       let { data } = await axios.post("/guide/add-package", {
         destionation,
         price,
@@ -88,7 +90,11 @@ function GuideAddPackage() {
         dispatch({ type: "refresh" });
         navigate("/guide/packages");
       } else {
-        setErrMessage(data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: data.message,
+        });
       }
       setLoading({ ...loading, submit: false });
     }
@@ -218,7 +224,7 @@ function GuideAddPackage() {
               </div>
             </div>
             <div className="submit-buttonn">
-              <button type="submit" disabled={!validForm()}>
+              <button  type="submit" disabled={!validForm()}>
                 submit
                 <ClipLoader size={20} color="white" loading={loading.submit} />
               </button>
