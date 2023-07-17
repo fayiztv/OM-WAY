@@ -27,13 +27,11 @@
 }
 
 .btnn{
-    margin-top:5px;
     margin-bottom:20px;
 }
 .btnn button{
     background-color: #147E7D;
     width:50%;
-    padding-bottom:30px;
     margin-top:20px;
     height:40px;
     border: none;

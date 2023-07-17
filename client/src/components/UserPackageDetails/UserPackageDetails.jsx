@@ -24,8 +24,10 @@ function UserPackageDetails() {
   const [guestes, setGuestes] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const disabledDate = new Date();
-  disabledDate.setDate(disabledDate.getDate() + 7);
-
+  disabledDate.setDate(disabledDate.getDate() + 6);
+  const [loading, setLoading] = useState({
+    submit: false,
+  });
   const navigate = useNavigate();
   const user = useSelector((state) => {
     return state.user.detials;
@@ -36,6 +38,7 @@ function UserPackageDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validForm()) {
+      if (!loading.submit) {
         setLoading({ ...loading, submit: true });
         const { data } = await axios.post("user/book-package", {
           price: packages.price * guestes,
@@ -44,6 +47,7 @@ function UserPackageDetails() {
           handleRazorPay(data.order);
         }
         setLoading({ ...loading, submit: false });
+      }
     }
   };
 
@@ -60,7 +64,8 @@ function UserPackageDetails() {
           response,
           selectedDate,
           guideId,
-          packageId: packages._id,
+          packageId: packages._id,    /* padding-bottom:30px; */
+
           userId,
           price: packages.price * guestes,
           guestes,
@@ -206,6 +211,7 @@ function UserPackageDetails() {
                 disabled={!validForm()}
               >
                 book now
+                <ClipLoader size={20} color="white" loading={loading.submit} />
               </button>
             </div>
           </form>
