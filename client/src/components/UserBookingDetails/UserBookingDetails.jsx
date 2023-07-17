@@ -130,7 +130,32 @@ function UserBookingDetails() {
               </div>
             </div>
             <div className="rating-review">
-
+            <TextField
+                id="outlined-multiline-flexible"
+                label="Add Review"
+                multiline
+                fullwidth
+                maxRows={4}
+                minRows={2}
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+              />
+              <div className="rating-star">
+                <Rating
+                  name="read-only"
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                  size="large"
+                />
+                <button
+                className="rating-btn"
+                  style={{marginTop:'20px'}}
+                  disabled={rating === "" || review === ""}
+                  onClick={handleSubmitReview}
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         </div>
