@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./packagedetails.css";
 import profile from "../../assets/images/face1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { ClipLoader } from "react-spinners";
 
 function UserPackageDetails() {
   const [packages, setPackages] = useState([]);
@@ -21,76 +22,73 @@ function UserPackageDetails() {
   const [refresh, setRefresh] = useState(false);
   const { id } = useParams();
   const [guestes, setGuestes] = useState(1);
-  const [price, setPrice] = useState('');
-  const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const disabledDate = new Date();
   disabledDate.setDate(disabledDate.getDate() + 7);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const user = useSelector((state) => {
     return state.user.detials;
   });
 
-
   const userId = user._id;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validForm()) {        
-        const { data } = await axios.post("user/book-package", {price:packages.price*guestes});
+    if (validForm()) {
+        setLoading({ ...loading, submit: true });
+        const { data } = await axios.post("user/book-package", {
+          price: packages.price * guestes,
+        });
         if (!data.error) {
           handleRazorPay(data.order);
         }
-      
+        setLoading({ ...loading, submit: false });
     }
   };
 
-  
   const handleRazorPay = (order) => {
-  
     const options = {
-        key: "rzp_test_O512t3FLY9WNji",
-        amount: order.amount,
-        currency: order.currency,
-        name: "onmyway",
-        description: "Package Amount",
-        order_id: order.id,
-        handler: async (response) => {
-            const { data } = await axios.post("/user/payment/verify", { response, selectedDate,guideId, packageId:packages._id, userId , price:packages.price*guestes, guestes });
-            if(data.err){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: data.message,
-                })
-            }else{
-                Swal.fire(
-                    'Success!',
-                    'Successfully Booked',
-                    'success'
-                  )
-                  navigate("/bookings/"+userId)
-            }
-            setRefresh(!refresh)
+      key: "rzp_test_O512t3FLY9WNji",
+      amount: order.amount,
+      currency: order.currency,
+      name: "onmyway",
+      description: "Package Amount",
+      order_id: order.id,
+      handler: async (response) => {
+        const { data } = await axios.post("/user/payment/verify", {
+          response,
+          selectedDate,
+          guideId,
+          packageId: packages._id,
+          userId,
+          price: packages.price * guestes,
+          guestes,
+        });
+        if (data.err) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: data.message,
+          });
+        } else {
+          Swal.fire("Success!", "Successfully Booked", "success");
+          navigate("/bookings/" + userId);
         }
-    }
+        setRefresh(!refresh);
+      },
+    };
     var rzp1 = new window.Razorpay(options);
     rzp1.open();
-    rzp1.on('payment.failed', (response) => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: response.error.description,
-        })
-        setRefresh(!refresh)
-
-    })
-
-}
-
+    rzp1.on("payment.failed", (response) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: response.error.description,
+      });
+      setRefresh(!refresh);
+    });
+  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -139,8 +137,6 @@ function UserPackageDetails() {
     }
     return true;
   }
-
-
 
   return (
     <div className="user-main">
@@ -205,7 +201,10 @@ function UserPackageDetails() {
               className="date"
             />
             <div className="btnn">
-              <button type="submit" onClick={()=>handleSubmit} disabled={!validForm()}>
+              <button
+                type="submit"
+                disabled={!validForm()}
+              >
                 book now
               </button>
             </div>

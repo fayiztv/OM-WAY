@@ -4,6 +4,7 @@ import GuideModel from "../models/GuideModel.js";
 import ComplaintModel from "../models/ComplaintModel.js";
 import escapeStringRegexp from "escape-string-regexp";
 import BookingModel from "../models/BookingModel.js";
+import RatingModel from "../models/RatingModel.js";
 
 export async function getUserHome(req, res) {
   const name = req.query.name ?? "";
@@ -110,4 +111,26 @@ export async function getUserBookingDetails(req,res){
   }
 }
 
+export async function userGuideRating(req, res) {
+  try {
+      const { guideId,userId, rating, review } = req.body;
+      await RatingModel.updateOne({ userId,guideId}, {
+          rating, review
+      }, { upsert: true })
+      return res.json({ err: false })
+  } catch (err) {
+      console.log(err)
+      res.json({ err: true, err, message: "something went wrong" })
+  }
+}
 
+export async function getGuideRating(req, res) {
+  try {
+      const id = req.params.id
+      const rating =  await RatingModel.findOne({userId:id})
+      return res.json({ err: false ,rating})
+  } catch (err) {
+      console.log(err)
+      res.json({ err: true, err, message: "something went wrong" })
+  }
+}

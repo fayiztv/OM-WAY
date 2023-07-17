@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./userbookingdetails.css";
 import UserNavbar from "../UserNavBar/UserNavBar";
-import { Link, useParams } from "react-router-dom";
-import { Avatar, Rating, setRef, TextField } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Rating,TextField } from "@mui/material";
+import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 function UserBookingDetails() {
   const [booking, setBooking] = useState();
@@ -11,6 +13,12 @@ function UserBookingDetails() {
   const [rating, setRating] = useState("");
   const [refresh, setRefresh] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate()
+
+  const user=useSelector((state)=>{
+    return state.user.detials
+
+  });
 
   useEffect(() => {
     (async function () {
@@ -21,11 +29,21 @@ function UserBookingDetails() {
     })();
   }, [refresh]);
 
+  useEffect(() => {
+    (async function () {
+      let { data } = await axios.get("/user/guide-rating/" + user._id);
+      if (!data.err) {
+        setRating(data.rating.rating);
+        setReview(data.rating.review);
+      }
+    })();
+  }, [refresh]);
+
   const guideId = booking?.guideId;
   const userId = booking?.userId;
   const handleSubmitReview = async () => {
     if (rating !== "" && review !== "") {
-      const data = await axios.post("/user/rating", {
+      const data = await axios.post("/user/guide-rating", {
         review,
         rating,
         guideId,

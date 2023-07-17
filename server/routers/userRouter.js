@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addComplaint,
+  getGuideRating,
   getUserBookingDetails,
   getUserBookings,
   getUserGuideDetails,
@@ -10,9 +11,13 @@ import {
   getUserPackages,
   getUserProfileEdit,
   userEditProfile,
+  userGuideRating,
   userPackageGuide,
 } from "../controllers/userController.js";
-import { paymentOrder, verifyPayment } from "../controllers/PaymentController.js";
+import {
+  paymentOrder,
+  verifyPayment,
+} from "../controllers/PaymentController.js";
 
 const router = express.Router();
 
@@ -27,8 +32,9 @@ router.get("/package-details/:id", getUserPackageDetails);
 router.get("/package-details-guide/:id", userPackageGuide);
 router.get("/guide-details/:id", getUserGuideDetails);
 router.post("/complaint", addComplaint);
-router.post('/book-package',paymentOrder)
-router.post('/payment/verify',verifyPayment)
-
+router.post("/book-package", paymentOrder);
+router.post("/payment/verify", verifyPayment);
+router.post("/guide-rating", userGuideRating);
+router.get("/guide-rating/:id", getGuideRating);
 
 export default router;
