@@ -25,17 +25,20 @@ function UserBookingDetails() {
   const userId = booking?.userId;
   const handleSubmitReview = async () => {
     if (rating !== "" && review !== "") {
-      const data = await axios.post('/user/rating',{
-        review,rating,guideId,userId
-      })
+      const data = await axios.post("/user/rating", {
+        review,
+        rating,
+        guideId,
+        userId,
+      });
       if (!data.err) {
         Swal.fire("Success!", "Review Added Successfull", "success");
-      }else{
+      } else {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: data.message,
-          })
+          icon: "error",
+          title: "Oops...",
+          text: data.message,
+        });
       }
       setRefresh(!refresh);
     }
@@ -130,7 +133,7 @@ function UserBookingDetails() {
               </div>
             </div>
             <div className="rating-review">
-            <TextField
+              <TextField
                 id="outlined-multiline-flexible"
                 label="Add Review"
                 multiline
@@ -148,8 +151,8 @@ function UserBookingDetails() {
                   size="large"
                 />
                 <button
-                className="rating-btn"
-                  style={{marginTop:'20px'}}
+                  className="rating-btn"
+                  style={{ marginTop: "20px" }}
                   disabled={rating === "" || review === ""}
                   onClick={handleSubmitReview}
                 >

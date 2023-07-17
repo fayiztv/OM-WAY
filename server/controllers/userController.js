@@ -109,3 +109,5 @@ export async function getUserBookingDetails(req,res){
     res.json({ err: true, message: "something went wrong", err });
   }
 }
+
+
