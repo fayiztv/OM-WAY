@@ -1,5 +1,5 @@
 import express from "express";
-import { addPackage, deletePackage, getGuideBookings, getGuidePackages, getGuideProfileEdit, getPackageEdit, guideEditAvatar, postEditPackage, postGuideEditProfile } from "../controllers/guideController.js";
+import { addPackage, deletePackage, getGuideBookings, getGuidePackages, getGuideProfileEdit, getPackageEdit, guideEditAvatar, postEditPackage, postGuideEditProfile, setCompleted, setUpcoming } from "../controllers/guideController.js";
 const router = express.Router()
 
 router.post('/add-package',addPackage)
@@ -10,6 +10,8 @@ router.post('/edit-package',postEditPackage)
 router.get('/edit-profile/:id',getGuideProfileEdit)
 router.post('/edit-profile',postGuideEditProfile)
 router.patch('/update-avatar',guideEditAvatar)
-router.get("/bookings/:id", getGuideBookings);
+router.get("/bookings/:id", getGuideBookings)
+router.patch('/booking/completed',setCompleted)
+router.patch('/booking/upcoming',setUpcoming)
 
 export default router 

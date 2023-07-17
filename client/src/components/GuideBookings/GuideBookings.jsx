@@ -9,10 +9,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function GuideBookings() {
   const [bookingList, setBookingList] = useState([""]);
   const [filterStatus, setFilterStatus] = useState("all");
+  const [refresh, setRefresh] = useState(false);
+  const [status, setStatus] = useState();
 
   const guide = useSelector((state) => {
     return state.guide.detials;
@@ -27,7 +30,7 @@ function GuideBookings() {
         setBookingList(data.bookings);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   const filteredBookings = bookingList.filter((booking) => {
     if (filterStatus === "all") {
@@ -39,6 +42,41 @@ function GuideBookings() {
   const handleFilterChange = (e) => {
     setFilterStatus(e);
   };
+
+  async function setUpcoming(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "set status as upcoming",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#2C457E",
+      cancelButtonColor: " #9BA4B5",
+      confirmButtonText: "Yes, Sure!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.patch("/guide/booking/upcoming", { id });
+        setRefresh(!refresh);
+      }
+    });
+  }
+
+  async function setCompleted(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Set status as completed",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#2C457E",
+      cancelButtonColor: " #9BA4B5",
+      confirmButtonText: "Yes, Sure!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.patch("/guide/booking/completed", { id });
+        setRefresh(!refresh);
+      }
+    });
+  }
+
   return (
     <div className="GUID-HOME">
       <GuideHeader />
@@ -90,25 +128,55 @@ function GuideBookings() {
                     {item.packageId?.days} Days ,{" "}
                     <span style={{ marginLeft: "9px" }}>
                       {" "}
-                      Starting date :{" "}
+                      {item.status == "completed"
+                        ? "Started date : "
+                        : "Starting date : "}
                       <span style={{ color: "#147E7D" }}>
                         {new Date(item.bookedDate).toLocaleDateString()}
                       </span>
                     </span>
                   </p>
                   <p>Activites : {item.packageId?.activites}</p>
-                  <p>User Name : {item.userId?.name}</p>
+                  <p>
+                    User Name : {item.userId?.name}{" "}
+                    <span style={{ marginLeft: "10px" }}>
+                      status :{" "}
+                      <span
+                        className={
+                          item.status == "completed" ? "completed" : "upcoming"
+                        }
+                      >
+                        {item.status}
+                      </span>
+                    </span>
+                  </p>
                 </div>
                 <div className="status">
-                  <p
-                    className={
-                      item.status == "completed"
-                        ? "completed"
-                        : "upcoming"
-                    }
+                  <FormControl
+                    sx={{ m: 1, minWidth: 120 }}
+                    size="small"
+                    className="sort"
                   >
-                    {item.status}
-                  </p>
+                    <InputLabel id="demo-select-small-label"></InputLabel>
+                    <Select
+                      labelId="demo-select-small-label"
+                      id="demo-select-small"
+                      value={item.status}
+                    >
+                      <MenuItem
+                        onClick={() => setUpcoming(item._id)}
+                        value="upcoming"
+                      >
+                        Upcoming
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => setCompleted(item._id)}
+                        value="completed"
+                      >
+                        Completed
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
               </div>
             );

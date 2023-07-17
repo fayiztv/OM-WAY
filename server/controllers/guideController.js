@@ -135,3 +135,23 @@ export async function getGuideBookings(req,res){
   }
 }
 
+export async function setUpcoming(req, res) {
+  try{
+      const id = req.body.id
+      await BookingModel.findByIdAndUpdate(id, { $set: { status: 'upcoming' } }).lean()
+      return  res.json({err: false })
+  } catch (err) {
+      return res.json({ err: true, message: "Something went wrong", error: err })
+  }
+}
+
+export async function setCompleted(req, res) {
+  try{
+      const id = req.body.id
+      await BookingModel.findByIdAndUpdate(id, { $set: { status: 'completed' } }).lean()
+      return  res.json({err: false })
+  } catch (err) {
+      return res.json({ err: true, message: "Something went wrong", error: err })
+  }
+}
+

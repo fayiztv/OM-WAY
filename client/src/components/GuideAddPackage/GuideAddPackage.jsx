@@ -214,8 +214,8 @@ function GuideAddPackage() {
               <div className="login-row w-100 mt-3">
                 <TextField
                   className="textarea"
-                  label="Images"
-                  placeholder="Add images"
+                  label="Image"
+                  placeholder="Add image"
                   variant="standard"
                   type="file"
                   fullWidth

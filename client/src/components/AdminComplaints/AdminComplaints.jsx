@@ -48,7 +48,7 @@ function AdminRegistrations() {
                       <th scope="col">User Name</th>
                       <th scope="col">Guide Email</th>
                       <th scope="col">Description</th>
-                      {/* <th scope="col">Action</th> */}
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -59,6 +59,7 @@ function AdminRegistrations() {
                           <td>{item.userId?.name}</td>
                           <td>{item.guideId?.email}</td>
                           <td style={{ width: "400px" }}>{item.description}</td>
+                          <td><button style={{width:'100px'}}>send Mail</button></td>
                         </tr>
                       );
                     })}

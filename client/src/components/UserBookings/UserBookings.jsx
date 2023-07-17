@@ -95,7 +95,9 @@ function UserBookings() {
                       {item.packageId?.days} Days ,{" "}
                       <span style={{ marginLeft: "9px" }}>
                         {" "}
-                        Starting date :{" "}
+                        {item.status == "completed"
+                        ? "Started date : "
+                        : "Starting date : "}
                         <span style={{ color: "#147E7D" }}>
                           {new Date(item.bookedDate).toLocaleDateString()}
                         </span>
