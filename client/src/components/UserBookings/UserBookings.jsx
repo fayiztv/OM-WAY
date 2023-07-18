@@ -14,12 +14,12 @@ import { Link } from "react-router-dom";
 function UserBookings() {
   const [bookingList, setBookingList] = useState([""]);
   const [filterStatus, setFilterStatus] = useState("all");
+  const [refresh, setRefresh] = useState(false);
   const user = useSelector((state) => {
     return state.user.detials;
   });
 
   const id = user._id;
-
   useEffect(() => {
     (async function () {
       let { data } = await axios.get("/user/bookings/" + id);
@@ -27,7 +27,7 @@ function UserBookings() {
         setBookingList(data.bookings);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   const filteredBookings = bookingList.filter((booking) => {
     if (filterStatus === "all") {

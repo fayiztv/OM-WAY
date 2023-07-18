@@ -45,10 +45,18 @@ export async function userPackageGuide(req, res) {
 }
 
 export async function getUserGuideDetails(req, res) {
+  let totalRating = 0;
+
   const id = req.params.id;
+  const reviews = await RatingModel.find({guideId: req.params.id }).populate('userId').lean()
+  for (let item of reviews) {
+    totalRating += item.rating
+}
+  let reviewCount =  reviews.length != 0 ? reviews.length : 1;
+  const rating = totalRating / reviewCount;
   const guide = await GuideModel.findById(id).lean();
   const packages = await PackageModel.find({ guideId: id }).lean();
-  res.json({ err: false, guide, packages });
+  res.json({ err: false, guide, packages,rating,reviews });
 }
 
 export async function getUserProfileEdit(req, res) {
@@ -118,17 +126,6 @@ export async function userGuideRating(req, res) {
           rating, review
       }, { upsert: true })
       return res.json({ err: false })
-  } catch (err) {
-      console.log(err)
-      res.json({ err: true, err, message: "something went wrong" })
-  }
-}
-
-export async function getGuideRating(req, res) {
-  try {
-      const id = req.params.id
-      const rating =  await RatingModel.findOne({userId:id})
-      return res.json({ err: false ,rating})
   } catch (err) {
       console.log(err)
       res.json({ err: true, err, message: "something went wrong" })

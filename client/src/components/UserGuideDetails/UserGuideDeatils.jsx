@@ -6,6 +6,7 @@ import profile from "../../assets/images/face1.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
+import { Rating } from "@mui/material";
 
 function UserGuideDeatils() {
   const [guide, setGuide] = useState([]);
@@ -14,6 +15,8 @@ function UserGuideDeatils() {
   const [packages, setPackages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [packagesPerPage] = useState(4);
+  const [rating, setRating] = useState("")
+  const [reviews, setReviews] = useState([])
 
   React.useEffect(() => {
     (async function () {
@@ -23,6 +26,8 @@ function UserGuideDeatils() {
         if (!data.err) {
           setGuide(data.guide);
           setPackages(data.packages);
+          setRating(data.rating)
+          setReviews(data.reviews)
         }
       } catch (err) {
         console.log(err);
@@ -62,7 +67,7 @@ function UserGuideDeatils() {
           <p className="profile-status">
             Status :
             {guide.block ? (
-              <span className="text-success" style={{ marginLeft: "12px" }}>
+              <span className="text-danger" style={{ marginLeft: "12px" }}>
                 Not Acitve
               </span>
             ) : (
@@ -116,7 +121,7 @@ function UserGuideDeatils() {
                 <h6 style={{ marginTop: "35px" }}>Rating</h6>
               </div>
               <div className="text-wrapper-4">
-                <h6>Rating</h6>
+                {rating && < Rating name="read-only" value={rating} readOnly size='small' />}
               </div>
             </div>
             <div className="details-name" style={{ paddingLeft: "0" }}>

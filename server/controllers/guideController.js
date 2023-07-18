@@ -1,6 +1,7 @@
 import packageModel from "../models/PackageModel.js";
 import GuideModel from "../models/GuideModel.js";
 import BookingModel from "../models/BookingModel.js";
+import RatingModel from "../models/RatingModel.js";
 import cloudinary from "../config/cloudinary.js";
 
 export async function addPackage(req, res) {
@@ -153,5 +154,11 @@ export async function setCompleted(req, res) {
   } catch (err) {
       return res.json({ err: true, message: "Something went wrong", error: err })
   }
+}
+
+export async function guideReviews(req, res) {
+  const id = req.params.id;
+  const reviews = await RatingModel.find({ guideId: id }).populate("userId").lean();
+  res.json({ err: false, reviews });
 }
 

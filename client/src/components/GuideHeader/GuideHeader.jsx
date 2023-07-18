@@ -23,10 +23,6 @@ function GuideHeader() {
       }
     });
   }
-
-  // const guide = useSelector((state) => {
-  //   return state.guide.detials;
-  // });
   return (
     <div className="overlap">
       <div className="group">

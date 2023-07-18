@@ -29,16 +29,6 @@ function UserBookingDetails() {
     })();
   }, [refresh]);
 
-  useEffect(() => {
-    (async function () {
-      let { data } = await axios.get("/user/guide-rating/" + user._id);
-      if (!data.err) {
-        setRating(data.rating.rating);
-        setReview(data.rating.review);
-      }
-    })();
-  }, [refresh]);
-
   const guideId = booking?.guideId;
   const userId = booking?.userId;
   const handleSubmitReview = async () => {
@@ -95,7 +85,7 @@ function UserBookingDetails() {
                 Status : <span>{booking?.status}</span>
               </p>
               <p>
-                Booked Date :{" "}
+                Package started Date :{" "}
                 <span>
                   {new Date(booking?.bookedDate).toLocaleDateString()}
                 </span>

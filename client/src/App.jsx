@@ -89,7 +89,7 @@ function App() {
             <Route path="/packages" element={<UserPackages />} />
             <Route path="/package-details/:id" element={<UserPackageDetails />} />
             <Route path="/guide-details/:id" element={<UserGuideDeatils />} />
-            <Route path="/bookings/:id" element={<UserBookings />} />
+            <Route path="/bookings" element={<UserBookings />} />
             <Route path="/booking-details/:id" element={<UserBookingDetails />} />
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/sign-up" element={<Navigate to="/" />} />
@@ -105,7 +105,7 @@ function App() {
           <Route path='/package-details/:id' element={<Navigate to='/login'/>}/>
           <Route path='/guide-details/:id' element={<Navigate to='/login'/>}/>
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
-          <Route path='/bookings/:id' element={<Navigate to='/login'/>}/>
+          <Route path='/bookings' element={<Navigate to='/login'/>}/>
           <Route path='/booking-details/:id' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginpage/>} />
           <Route path='/sign-up' element={<UserSignupPage/>}/>

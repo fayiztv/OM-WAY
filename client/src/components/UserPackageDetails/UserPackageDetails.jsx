@@ -24,7 +24,7 @@ function UserPackageDetails() {
   const [guestes, setGuestes] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const disabledDate = new Date();
-  disabledDate.setDate(disabledDate.getDate() + 6);
+  disabledDate.setDate(disabledDate.getDate() + -2);
   const [loading, setLoading] = useState({
     submit: false,
   });
@@ -64,8 +64,7 @@ function UserPackageDetails() {
           response,
           selectedDate,
           guideId,
-          packageId: packages._id,    /* padding-bottom:30px; */
-
+          packageId: packages._id,
           userId,
           price: packages.price * guestes,
           guestes,

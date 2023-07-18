@@ -80,12 +80,8 @@ function UserGuides() {
                     <div className="guide-detials" style={{marginTop:'15px'}}>
                       <p>
                         Name : {item.firstName} <br />
-                        Contact : {item.contact} <br /> Ratings:
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
+                        Contact : {item.contact} <br />
+                        Member since : {new Date(item.createdAt).toString().slice(4, 16)}
                         <br />
                       </p>
                     </div>
