@@ -5,6 +5,7 @@ import ComplaintModel from "../models/ComplaintModel.js";
 import escapeStringRegexp from "escape-string-regexp";
 import BookingModel from "../models/BookingModel.js";
 import RatingModel from "../models/RatingModel.js";
+import sentCancelMail from '../helpers/sentCancelMail.js'
 
 export async function getUserHome(req, res) {
   const name = req.query.name ?? "";
