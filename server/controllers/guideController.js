@@ -162,5 +162,13 @@ export async function guideReviews(req, res) {
   res.json({ err: false, reviews });
 }
 
-
+export async function deleteBooking(req, res) {
+  try {
+    const id = req.body.id;
+    await BookingModel.deleteOne({ _id: id });
+    res.json({ err: false });
+  } catch (err) {
+    return res.json({ err: true, message: "Something went wrong", error: err });
+  }
+}
 
