@@ -3,6 +3,7 @@ import UserModel from "../models/UserModel.js";
 import ComplaintModel from "../models/ComplaintModel.js";
 import sentMail from '../helpers/sentMail.js'
 import sentRejection from '../helpers/SentRejection.js'
+import SentComplaint from '../helpers/sentComplaint.js'
 
 export async function getAdminUsers(req, res) {
 
@@ -127,6 +128,25 @@ export async function getAdminComplaints(req, res) {
         res.json(complaints)
 
     } catch (err) {
+        return res.json({ err: true, message: "Something went wrong", error: err })
+    }
+}
+
+export async function AdminSentComplaint(req, res) {
+    try{
+        const guideid = req.body.guideid
+        const id = req.body.id
+        const message = req.body.text
+        const complaint = req.body.complaint
+        const guide = await GuideModel.findOne({ _id: guideid }).lean()
+        let Sent = await SentComplaint(guide.email,message,complaint)
+        const com = await ComplaintModel.updateOne(
+            { _id: id },
+            { $set: { mailsent: true } }
+          )
+        res.json({ err: false })
+    } catch (err) {
+        console.log(err);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }

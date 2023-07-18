@@ -3,10 +3,15 @@ import React, { useState } from "react";
 import AdminHeader from "../AdminHeader/AdminHeader";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import "../AdminRegistrations/registraions.css";
+import Complaint from "../../modals/AdminComplaint/AdminComplaint";
 
 function AdminRegistrations() {
   const [complaints, setComplaints] = useState([""]);
+  const [complaint, setComplaint] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [guideId, setGuideId] = useState(null);
+  const [id, setId] = useState(null);
 
   React.useEffect(() => {
     (async function () {
@@ -21,6 +26,13 @@ function AdminRegistrations() {
       }
     })();
   }, [refresh]);
+
+  async function SentMail(guideid,description,id) {
+    setGuideId(guideid)
+    setComplaint(description)
+    setId(id)
+    setShowModal(true);
+  }
 
   return (
     <div className="container-scroller">
@@ -59,12 +71,16 @@ function AdminRegistrations() {
                           <td>{item.userId?.name}</td>
                           <td>{item.guideId?.email}</td>
                           <td style={{ width: "400px" }}>{item.description}</td>
-                          <td><button style={{width:'100px'}}>send Mail</button></td>
+                          {item.mailsent === false ? <td><button onClick={() => SentMail(item.guideId?._id,item.description,item._id)}  style={{width:'100px'}}>send Mail</button></td>
+                          :
+                          <td>Mail sented</td>
+                          }
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
+                <div className="modals">{showModal && <Complaint setShowModal={setShowModal} guideid={guideId} id={id} complaint={complaint} />}</div>
               </div>
             </div>
           </div>

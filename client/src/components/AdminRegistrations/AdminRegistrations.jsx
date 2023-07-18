@@ -12,7 +12,8 @@ function AdminRegistrations() {
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState(null);
 
-  React.useEffect(() => {
+                <div className="modals">{showModal && <Rejection setShowModal={setShowModal} id={userId} />}</div>
+                React.useEffect(() => {
     (async function () {
       try {
         const { data } = await axios.get("/admin/registrations?name=" + name);

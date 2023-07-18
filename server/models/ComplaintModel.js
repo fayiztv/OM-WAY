@@ -17,6 +17,10 @@ const schema = new mongoose.Schema({
         type:String,
         required:true
     },
+    mailsent:{
+        type:Boolean,
+        default:false
+    }
     
 },{timestamps:true })
 
