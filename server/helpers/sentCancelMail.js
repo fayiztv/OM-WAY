@@ -1,0 +1,37 @@
+import nodemailer from 'nodemailer'
+
+export default function sentCancelMail(email){
+    return new Promise((resolve, reject)=>{
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+              user: 'onmyway748@gmail.com',
+              pass: 'hzbaitdnhtinozef',
+            },
+          });
+      
+            var mailOptions={
+              from: 'onmyway748@gmail.com',
+              to: email,
+              subject: "onmyWay Cancellation Message",
+              html: `
+              <h1>it seems you have cancelled your booking </h1>
+              <h2>so for you payment refund please contact this number '9865234845'</h2>
+              <h3>keep booking</h3>
+              `,
+            }
+        
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.log("error", error, info)
+                reject(error)
+
+              } else {
+                console.log("sent")
+                resolve({success:true, message:"Email sent successfull"})
+              }
+            });
+    })
+}

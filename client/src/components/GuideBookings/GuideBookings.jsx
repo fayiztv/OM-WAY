@@ -10,12 +10,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function GuideBookings() {
   const [bookingList, setBookingList] = useState([""]);
   const [filterStatus, setFilterStatus] = useState("all");
   const [refresh, setRefresh] = useState(false);
-  const [status, setStatus] = useState();
 
   const guide = useSelector((state) => {
     return state.guide.detials;
@@ -72,6 +73,23 @@ function GuideBookings() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios.patch("/guide/booking/completed", { id });
+        setRefresh(!refresh);
+      }
+    });
+  }
+
+  async function deleteBooking(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Delete this package",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#2C457E",
+      cancelButtonColor: " #9BA4B5",
+      confirmButtonText: "Yes, Sure!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.patch("/guide/booking/delete", { id });
         setRefresh(!refresh);
       }
     });
@@ -152,31 +170,38 @@ function GuideBookings() {
                   </p>
                 </div>
                 <div className="status">
-                  <FormControl
-                    sx={{ m: 1, minWidth: 120 }}
-                    size="small"
-                    className="sort"
-                  >
-                    <InputLabel id="demo-select-small-label"></InputLabel>
-                    <Select
-                      labelId="demo-select-small-label"
-                      id="demo-select-small"
-                      value={item.status}
-                    >
-                      <MenuItem
-                        onClick={() => setUpcoming(item._id)}
-                        value="upcoming"
-                      >
-                        Upcoming
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => setCompleted(item._id)}
-                        value="completed"
-                      >
-                        Completed
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
+
+                  {
+                    item.status !== "cancelled" ?
+                     <FormControl
+                     sx={{ m: 1, minWidth: 120 }}
+                     size="small"
+                     className="sort"
+                   >
+                     <InputLabel id="demo-select-small-label"></InputLabel>
+                     <Select
+                       labelId="demo-select-small-label"
+                       id="demo-select-small"
+                       value={item.status}
+                     >
+                       <MenuItem
+                         onClick={() => setUpcoming(item._id)}
+                         value="upcoming"
+                       >
+                         Upcoming
+                       </MenuItem>
+                       <MenuItem
+                         onClick={() => setCompleted(item._id)}
+                         value="completed"
+                       >
+                         Completed
+                       </MenuItem>
+                     </Select>
+                   </FormControl>
+                   : 
+                   <button><FontAwesomeIcon onClick={()=>{deleteBooking(item._id)}} icon={faTrashAlt} /></button>  
+                  }
+                 
                 </div>
               </div>
             );

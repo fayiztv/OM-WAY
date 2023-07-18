@@ -149,3 +149,16 @@ export async function userGuideRating(req, res) {
       res.json({ err: true, err, message: "something went wrong" })
   }
 }
+
+export async function cancelbooking(req, res) {
+  try{
+    const id = req.body.id
+    const userId = req.body.userId
+    const user = await UserModel.findOne({ _id: userId }).lean()
+      await BookingModel.findByIdAndUpdate(id, { $set: { status: 'cancelled' } }).lean()
+      let Sent = await sentCancelMail(user.email)
+      return  res.json({err: false })
+  } catch (err) {
+      return res.json({ err: true, message: "Something went wrong", error: err })
+  }
+}

@@ -1,4 +1,4 @@
-import packageModel from "../models/PackageModel.js";
+import PackageModel from "../models/PackageModel.js";
 import GuideModel from "../models/GuideModel.js";
 import BookingModel from "../models/BookingModel.js";
 import RatingModel from "../models/RatingModel.js";
@@ -20,7 +20,7 @@ export async function addPackage(req, res) {
       folder: "onmyWay",
     });
 
-    const packages = await packageModel.create({ ...req.body, image });
+    const packages = await PackageModel.create({ ...req.body, image });
     res.json({ err: false });
   } catch (err) {
     console.log(err);
@@ -30,14 +30,14 @@ export async function addPackage(req, res) {
 
 export async function getGuidePackages(req, res) {
   const id = req.params.id;
-  const packages = await packageModel.find({ guideId: id }).lean();
+  const packages = await PackageModel.find({ guideId: id }).lean();
   res.json({ err: false, packages });
 }
 
 export async function deletePackage(req, res) {
   try {
     const id = req.body.id;
-    await packageModel.deleteOne({ _id: id });
+    await PackageModel.deleteOne({ _id: id });
     res.json({ err: false });
   } catch (err) {
     return res.json({ err: true, message: "Something went wrong", error: err });
@@ -47,7 +47,7 @@ export async function deletePackage(req, res) {
 export async function getPackageEdit(req, res) {
   const id = req.params.id;
 
-  const packages = await packageModel.findById(id).lean();
+  const packages = await PackageModel.findById(id).lean();
   res.json(packages);
 }
 
@@ -61,7 +61,7 @@ export async function postEditPackage(req, res) {
       folder: "onmyWay",
     });
 
-    await packageModel.findByIdAndUpdate(id, {
+    await PackageModel.findByIdAndUpdate(id, {
       $set: {
         destination,
         price,
@@ -161,4 +161,6 @@ export async function guideReviews(req, res) {
   const reviews = await RatingModel.find({ guideId: id }).populate("userId").lean();
   res.json({ err: false, reviews });
 }
+
+
 

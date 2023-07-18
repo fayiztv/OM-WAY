@@ -24,7 +24,7 @@ function UserPackageDetails() {
   const [guestes, setGuestes] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const disabledDate = new Date();
-  disabledDate.setDate(disabledDate.getDate() + -5);
+  disabledDate.setDate(disabledDate.getDate() + 6);
   const [loading, setLoading] = useState({
     submit: false,
   });

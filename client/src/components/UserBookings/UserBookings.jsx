@@ -10,6 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import notFoundImg from "../../assets/images/notFound.png";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function UserBookings() {
   const [bookingList, setBookingList] = useState([""]);
@@ -19,15 +20,33 @@ function UserBookings() {
     return state.user.detials;
   });
 
-  const id = user._id;
+  const userId = user._id;
   useEffect(() => {
     (async function () {
-      let { data } = await axios.get("/user/bookings/" + id);
+      let { data } = await axios.get("/user/bookings/" + userId);
       if (!data.err) {
         setBookingList(data.bookings);
       }
     })();
   }, [refresh]);
+
+  async function cancel(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "cancel this booking",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#2C457E",
+      cancelButtonColor: " #9BA4B5",
+      confirmButtonText: "Yes, Sure!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.post("/user/booking/cancel", { id ,userId });
+        setRefresh(!refresh);
+      }
+    });
+  }
+
 
   const filteredBookings = bookingList.filter((booking) => {
     if (filterStatus === "all") {
@@ -75,6 +94,7 @@ function UserBookings() {
                 <MenuItem value="all">All</MenuItem>
                 <MenuItem value="upcoming">Upcoming</MenuItem>
                 <MenuItem value="completed">Completed</MenuItem>
+                <MenuItem value="cancelled">Cancelled</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -109,6 +129,10 @@ function UserBookings() {
                     </Link>
                   </div>
                   <div className="status">
+
+                    {
+                      item.status === "upcoming"  ? <button style={{marginBottom:'10px'}} onClick={() => cancel(item._id)}>cancel</button> : ""
+                    }
                     <p
                       className={
                         item.status == "completed"

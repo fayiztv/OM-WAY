@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addComplaint,
+  cancelbooking,
   checkGuideAvailability,
   getUserBookingDetails,
   getUserBookings,
@@ -36,5 +37,6 @@ router.post("/book-package", paymentOrder);
 router.post("/payment/verify", verifyPayment);
 router.post("/guide-rating", userGuideRating);
 router.post("/guide/available", checkGuideAvailability)
+router.post("/booking/cancel", cancelbooking);
 
 export default router;
