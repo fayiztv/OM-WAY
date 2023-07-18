@@ -21,6 +21,10 @@ const schema = new mongoose.Schema({
         type: Date,
         required:true
     },
+    bookEndDate:{
+        type: Date,
+        required:true
+    },
     guestes:{
         type:Number,
         required:true

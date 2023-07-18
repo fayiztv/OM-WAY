@@ -24,7 +24,7 @@ function UserPackageDetails() {
   const [guestes, setGuestes] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const disabledDate = new Date();
-  disabledDate.setDate(disabledDate.getDate() + -2);
+  disabledDate.setDate(disabledDate.getDate() + -5);
   const [loading, setLoading] = useState({
     submit: false,
   });
@@ -38,6 +38,17 @@ function UserPackageDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validForm()) {
+      const {data:bookingAvailable}= await axios.post("/user/guide/available", {
+        date:selectedDate, days:packages.days, id:guideId
+      })
+      if(bookingAvailable.booking){
+        Swal.fire({
+          icon: "error",
+          title: "please change date",
+          text: "Guide is not availbale on this date ",
+        });
+        return;
+      }
       if (!loading.submit) {
         setLoading({ ...loading, submit: true });
         const { data } = await axios.post("user/book-package", {
@@ -68,6 +79,7 @@ function UserPackageDetails() {
           userId,
           price: packages.price * guestes,
           guestes,
+          days:packages.days
         });
         if (data.err) {
           Swal.fire({
@@ -77,7 +89,7 @@ function UserPackageDetails() {
           });
         } else {
           Swal.fire("Success!", "Successfully Booked", "success");
-          navigate("/bookings/" + userId);
+          navigate("/bookings");
         }
         setRefresh(!refresh);
       },

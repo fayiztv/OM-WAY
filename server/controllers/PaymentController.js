@@ -39,6 +39,7 @@ export async function verifyPayment(req, res) {
       userId,
       price,
       guestes,
+      days
     } = req.body;
 
     let body = response.razorpay_order_id + "|" + response.razorpay_payment_id;
@@ -51,6 +52,7 @@ export async function verifyPayment(req, res) {
     if (expectedSignature === response.razorpay_signature) {
       const booking = await BookingModel.create({
         bookedDate:selectedDate,
+        bookEndDate:new Date(new Date().setDate(new Date(selectedDate).getDate() + days+2)),
         guideId,
         payment: response,
         packageId,

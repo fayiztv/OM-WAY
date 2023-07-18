@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import GuideHeader from "../GuideHeader/GuideHeader";
 import { useSelector } from "react-redux";
+import { Rating } from "@mui/material";
 
 function GuideReviews() {
   const [reviews, setReviews] = useState([""]);
@@ -16,7 +17,6 @@ function GuideReviews() {
     (async function () {
       try {
         const { data } = await axios.get("/guide/reviews/"+id)
-        console.log(data);
         if (!data.err) {
           setReviews(data.reviews);
         }
@@ -25,6 +25,7 @@ function GuideReviews() {
       }
     })();
   }, [refresh]);
+
   return (
     <div className="GUID-HOME">
       <GuideHeader />
@@ -37,14 +38,13 @@ function GuideReviews() {
               className="col-lg-6 grid-margin stretch-card"
             >
               <div
-                // style={{ paddingBottom: "20px",marginLeft:'0' }}
                 className="table-responsive"
               >
                 <table className="table table-hover mt-5">
                   <thead className="thead-dark">
                     <tr className="table-head">
                       <th scope="col">SI No</th>
-                      <th scope="col">Name</th>
+                      <th scope="col">User name</th>
                       <th scope="col">Rating</th>
                       <th scope="col">Review</th>
                     </tr>
@@ -55,7 +55,9 @@ function GuideReviews() {
                         <tr key={index}>
                           <td>{index + 1}</td>
                           <td>{item.userId?.name}</td>
-                          <td>{item.rating}</td>
+                          {
+                            item.rating&&  <td>{< Rating name="read-only" value={item.rating} readOnly size='small' />}</td>
+                          }
                           <td>{item.review}</td>
                         </tr>
                       );

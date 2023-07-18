@@ -119,6 +119,24 @@ export async function getUserBookingDetails(req,res){
   }
 }
 
+export async function checkGuideAvailability(req,res){
+  try{
+    const {id, date, days}=req.body
+    const booking = await BookingModel.findOne({
+      $and: [
+          { bookEndDate: { $gte: new Date(new Date(new Date(date).setHours(0, 0, 0, 0)).setDate(new Date(date).getDate())) } },
+          { bookedDate: { $lte: new Date(new Date(new Date(date).setHours(0, 0, 0, 0)).setDate(new Date(date).getDate() + days+2)) } },
+          { guideId:id}
+      ]
+  })
+    res.json({err:false,booking})
+  }catch(err){
+    console.log(err);
+    res.json({ err: true, message: "something went wrong", err });
+  }
+}
+
+
 export async function userGuideRating(req, res) {
   try {
       const { guideId,userId, rating, review } = req.body;

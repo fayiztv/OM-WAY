@@ -72,7 +72,7 @@ function GuidePackages() {
                   
                   <div className="guide-packages-details">
                       <h6>{item.destionation}</h6>
-                      <h5>{item.price}</h5>
+                      <h5> ₹ {item.price}</h5>
                       <p>{item.days} Days  , Destintaions : {item.places}</p>
                       <p>Activites : {item.activites}</p>
                       <p>{item.descrption}</p>
