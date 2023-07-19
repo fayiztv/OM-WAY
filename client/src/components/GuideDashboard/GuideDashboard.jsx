@@ -113,54 +113,48 @@ function GuideDashboard() {
         <div className="overlap-4">
           <div className="details">
 
-          <Col md={4}>
-            <div className="dash-item">
-              <div className="dash-item-desc">
+            <div className="dash">
+              <div className="dash-desc">
                 <b>Total Booking</b>
-                <h3>{dashboardData.totalBooking}</h3>
+                <h3 >{dashboardData.totalBooking}</h3>
               </div>
-              <div className="dash-item icon">
+              <div className="dash-icon">
                 <div className="icon-div">
                   <FcTodoList className="icon" />
                 </div>
               </div>
             </div>
-          </Col>
-          <Col md={4}>
-            <div className="dash-item">
-              <div className="dash-item-desc">
+            <div className="dash">
+              <div className="dash-desc">
                 <b>Total Revenue</b>
                 <h3>{dashboardData.totalRevenue}</h3>
               </div>
-              <div className="dash-item icon">
+              <div className="dash-icon">
                 <div className="icon-div">
                   <FcMoneyTransfer className="icon" />
                 </div>
               </div>
             </div>
-          </Col>
-          <Col md={4}>
-            <div className="dash-item">
-              <div className="dash-item-desc">
+
+            <div className="dash">
+              <div className="dash-desc">
                 <b>Total Packages</b>
                 <h3>{dashboardData.totalPackages}</h3>
               </div>
-              <div className="dash-item icon">
+              <div className="dash-icon">
                 <div className="icon-div">
                   <FcAdvance className="icon" />
                 </div>
               </div>
             </div>
-          </Col>
           </div>
-
           <Chart
             options={state.options}
             series={state.series}
             type="area"
-            className={"w-100 dashboard-chart"}
+            className={"w-90 h-80 chart"}
             height={300}
-          />
+            />
         </div>
       </div>
     </div>

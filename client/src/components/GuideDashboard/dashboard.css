@@ -1,10 +1,27 @@
 .details {
     display: flex;
-    padding:20px;
+    height:140px;
+    justify-content: center;
+    align-items: center;
 }
 
-.details .dash-item{
-    background-color: aqua;
+.details .dash{
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
     width:350px;
+    height:100px;
     display: flex;
+    margin:50px;
+    justify-content: center;
+    align-items: center;
+}
+.dash .dash-desc{
+    width:50%;
+}
+
+.dash .icon-div{
+    width:50%;
+}
+
+.chart{
+    margin:70px;
 }
