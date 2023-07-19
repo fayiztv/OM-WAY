@@ -53,6 +53,8 @@ function UserHome() {
           <div className="packages-details">
             {packages.map((item, index) => {
               return (
+                <Link to={"/package-details/" +item._id}>
+
                 <Card sx={{ maxWidth: 280, marginRight: "20px" }}>
                   <CardActionArea className="card">
                     <CardMedia
@@ -64,11 +66,12 @@ function UserHome() {
                     <CardContent>
                       <h3>{item.destionation}</h3>
                       <p>
-                        Explore with your guids <br></br> make the trip amezing
+                        Explore with your guids <br></br> make the trip amazing
                       </p>
                     </CardContent>
                   </CardActionArea>
                 </Card>
+                      </Link>
               );
             })}
           </div>

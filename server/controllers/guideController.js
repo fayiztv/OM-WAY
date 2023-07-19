@@ -3,6 +3,58 @@ import GuideModel from "../models/GuideModel.js";
 import BookingModel from "../models/BookingModel.js";
 import RatingModel from "../models/RatingModel.js";
 import cloudinary from "../config/cloudinary.js";
+import mongoose from "mongoose";
+
+export async function guideDashboard(req, res) {
+  try {
+    const guideId = req.params.id;
+    const totalPackages = await PackageModel.find({ guideId: guideId }).count();
+    const booking = await BookingModel.aggregate([
+      {
+        $match: {
+          guideId: new mongoose.Types.ObjectId(guideId),
+          status: "completed"
+        },
+      },
+      {
+        $group: {
+          _id: "totalBokingDetails",
+          totalBooking: { $sum: 1 },
+          totalRevenue: { $sum: "$price" },
+        },
+      },
+    ]);
+
+    const monthlyDataArray = await BookingModel.aggregate([
+      {
+        $match: {
+          guideId:  new mongoose.Types.ObjectId(guideId),
+          status: "completed"
+        },
+      },
+      {
+        $group: {
+          _id: { $month: "$bookedDate" },
+          totalRevenue: { $sum: "$price" },
+        },
+      },
+    ]);
+    let monthlyDataObject = {};
+    monthlyDataArray.map((item) => {
+      monthlyDataObject[item._id] = item.totalRevenue;
+    });
+
+    let monthlyData = [];
+    for (let i = 1; i <= 12; i++) {
+      monthlyData[i - 1] = monthlyDataObject[i] ?? 0;
+    }
+
+    res.json({ err: false, totalPackages, booking: booking[0], monthlyData });
+  } catch (err) {
+    console.log(err);
+    res.json({ message: "somrthing went wrong", error: err, err: true });
+  }
+}
 
 export async function addPackage(req, res) {
   try {
@@ -106,7 +158,7 @@ export async function postGuideEditProfile(req, res) {
   }
 }
 
-export async function guideEditAvatar(req , res) {
+export async function guideEditAvatar(req, res) {
   try {
     const guideImage = await cloudinary.uploader.upload(req.body.image, {
       folder: "onmyWay",
@@ -114,51 +166,58 @@ export async function guideEditAvatar(req , res) {
 
     const updatedGuide = await GuideModel.findOneAndUpdate(
       { _id: req.body.id },
-      { $set: { image: guideImage.url } },
+      { $set: { image: guideImage.url } }
     );
-    res.json({err: false})
-
+    res.json({ err: false });
   } catch (error) {
     console.log(error);
-    res.json({err: true})
+    res.json({ err: true });
   }
-
 }
 
-export async function getGuideBookings(req,res){
-  try{
-    const id=req.params.id
-    const bookings = await BookingModel.find({guideId:id}).populate('userId').populate('packageId').lean()
-    res.json({err:false,bookings})
-  }catch(err){
+export async function getGuideBookings(req, res) {
+  try {
+    const id = req.params.id;
+    const bookings = await BookingModel.find({ guideId: id })
+      .populate("userId")
+      .populate("packageId")
+      .lean();
+    res.json({ err: false, bookings });
+  } catch (err) {
     console.log(err);
     res.json({ err: true, message: "something went wrong", err });
   }
 }
 
 export async function setUpcoming(req, res) {
-  try{
-      const id = req.body.id
-      await BookingModel.findByIdAndUpdate(id, { $set: { status: 'upcoming' } }).lean()
-      return  res.json({err: false })
+  try {
+    const id = req.body.id;
+    await BookingModel.findByIdAndUpdate(id, {
+      $set: { status: "upcoming" },
+    }).lean();
+    return res.json({ err: false });
   } catch (err) {
-      return res.json({ err: true, message: "Something went wrong", error: err })
+    return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
 
 export async function setCompleted(req, res) {
-  try{
-      const id = req.body.id
-      await BookingModel.findByIdAndUpdate(id, { $set: { status: 'completed' } }).lean()
-      return  res.json({err: false })
+  try {
+    const id = req.body.id;
+    await BookingModel.findByIdAndUpdate(id, {
+      $set: { status: "completed" },
+    }).lean();
+    return res.json({ err: false });
   } catch (err) {
-      return res.json({ err: true, message: "Something went wrong", error: err })
+    return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
 
 export async function guideReviews(req, res) {
   const id = req.params.id;
-  const reviews = await RatingModel.find({ guideId: id }).populate("userId").lean();
+  const reviews = await RatingModel.find({ guideId: id })
+    .populate("userId")
+    .lean();
   res.json({ err: false, reviews });
 }
 
@@ -171,4 +230,3 @@ export async function deleteBooking(req, res) {
     return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
-

@@ -1,0 +1,10 @@
+.details {
+    display: flex;
+    padding:20px;
+}
+
+.details .dash-item{
+    background-color: aqua;
+    width:350px;
+    display: flex;
+}

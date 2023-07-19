@@ -21,6 +21,7 @@ import GuidePackages from "./components/GuidePackages/GuidePackages";
 import GuideBookings from "./components/GuideBookings/GuideBookings";
 import GuideReviews from "./components/GuideReviews/GuideReviews";
 import GuideAddPackage from "./components/GuideAddPackage/GuideAddPackage";
+import GuideDashboard from "./components/GuideDashboard/GuideDashboard";
 import GuideEditPackage from "./components/GuideEditPackage/GuideEditPackage";
 import UserPackages from "./components/UserPackages/UserPackages";
 import UserPackageDetails from "./components/UserPackageDetails/UserPackageDetails";
@@ -116,7 +117,8 @@ function App() {
         {
           guide.login && 
           <>
-          <Route path="/guide" element={<GuideHomePage/>}/>
+          <Route path="/guide/profile" element={<GuideHomePage/>}/>
+          <Route path="/guide" element={<GuideDashboard/>}/>
           <Route path="/guide/edit-profile/:id" element={<GuideEditProfile/>}/>
           <Route path="/guide/packages" element={<GuidePackages/>}/>
           <Route path="/guide/add-package" element={<GuideAddPackage/>}/>
@@ -131,6 +133,7 @@ function App() {
         {
           guide.login === false &&
           <>
+          <Route path="/guide/profile" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/packages" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/add-package" element={<Navigate to="/guide/login"/>}/>

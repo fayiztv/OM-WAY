@@ -7,6 +7,7 @@ import {
   getGuidePackages,
   getGuideProfileEdit,
   getPackageEdit,
+  guideDashboard,
   guideEditAvatar,
   guideReviews,
   postEditPackage,
@@ -29,5 +30,6 @@ router.patch("/booking/completed", setCompleted);
 router.patch("/booking/upcoming", setUpcoming);
 router.get("/reviews/:id", guideReviews);
 router.patch("/booking/delete", deleteBooking);
+router.get("/dashboard/:id",guideDashboard)
 
 export default router;

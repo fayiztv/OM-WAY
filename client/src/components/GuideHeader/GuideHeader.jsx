@@ -2,9 +2,17 @@ import axios from 'axios';
 import React from 'react'
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function GuideHeader() {
+
+  const guide=useSelector((state)=>{
+    return state.guide.detials
+
+  });
   const dispatch = useDispatch();
   async function handleLogout(e) {
     e.preventDefault();
@@ -28,7 +36,7 @@ function GuideHeader() {
       <div className="group">
       <ul className="nav-links">
           <li>
-            <Link to="/guide">Profile</Link>
+            <Link to="/guide">Dashboard</Link>
           </li>
           <li>
             <Link to="/guide/packages">Packages</Link>
@@ -41,8 +49,15 @@ function GuideHeader() {
           </li>
         </ul>
       </div>
-      <div className="overlap-wrapper">
-          <button onClick={handleLogout}>logout</button>
+      <div className="profile">
+          <FontAwesomeIcon className="user-icon" icon={faUser} />
+        <NavDropdown
+          className="nav-dropdown"
+          title={guide.firstName}
+          >
+          <NavDropdown.Item><Link to='/guide/profile'>Profile</Link></NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+        </NavDropdown>
       </div>
     </div>
   );

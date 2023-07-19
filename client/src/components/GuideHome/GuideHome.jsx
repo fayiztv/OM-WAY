@@ -50,7 +50,7 @@ function GuideHome() {
         });
         if (!data.err) {
           dispatch({ type: "refresh" });
-          return navigate("/guide");
+          return navigate("/guide/profile");
         } else {
           console.log(data.err);
         }

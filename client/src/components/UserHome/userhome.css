@@ -42,10 +42,10 @@ body{
 }
 .packages-text-body button{
     border-radius:50px;
-    background-color: #DE6D54;
+    background-color:#147E7D;
 }
 .packages-text-body .textes h2{
-    color:#DE6D54;
+    color:#147E7D;
 }
 .packages-details .card{
     height:300px;

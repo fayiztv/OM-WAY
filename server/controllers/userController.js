@@ -10,7 +10,9 @@ import sentCancelMail from '../helpers/sentCancelMail.js'
 export async function getUserHome(req, res) {
   const name = req.query.name ?? "";
   const escapedName = escapeStringRegexp(name);
-  const packages = await PackageModel.find().limit(3).lean();
+  const packages =  await PackageModel.aggregate([
+    { $sample: { size: 3 } },
+  ])
   res.json({ err: false, packages });
 }
 

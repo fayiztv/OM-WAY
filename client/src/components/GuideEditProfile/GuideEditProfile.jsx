@@ -49,7 +49,7 @@ function UserEditProfile() {
       console.log(data);
       if (!data.error) {
         dispatch({ type: "refresh" });
-        return navigate("/guide");
+        return navigate("/guide/profile");
       } else {
         setErrMessage(data.message);
       }
