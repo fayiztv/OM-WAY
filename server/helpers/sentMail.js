@@ -26,7 +26,6 @@ export default function sentMail(email){
         
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
-                console.log("error", error, info)
                 reject(error)
 
               } else {

@@ -146,7 +146,6 @@ export async function AdminSentComplaint(req, res) {
           )
         res.json({ err: false })
     } catch (err) {
-        console.log(err);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }

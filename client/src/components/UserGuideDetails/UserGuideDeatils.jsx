@@ -146,7 +146,6 @@ function UserGuideDeatils() {
       <div className="guide-details-packages">
         <div className="pkgs-body">
           <Row>
-            {/* <Col sm={6} md={6} > */}
             {currentPackage.map((item, index) => {
               return (
                 <Link to={"/package-details/" + item._id}>
@@ -169,7 +168,6 @@ function UserGuideDeatils() {
                 </Link>
               );
             })}
-            {/* </Col> */}
           </Row>
         </div>
       </div>

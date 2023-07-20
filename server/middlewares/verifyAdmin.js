@@ -15,7 +15,6 @@ const verifyAdmin = async (req,res,next)=>{
         req.admin = admin
         next()
     }catch(err){
-        console.log(err);
         res.json({loggedIn:false,error:err})
     }
 }

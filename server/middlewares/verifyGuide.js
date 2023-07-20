@@ -15,7 +15,6 @@ const verifyGuide = async (req, res, next) => {
         req.guide = guide;
         next()
     } catch (err) {
-        console.log(err)
         res.json({ loggedIn: false, error: err });
     }
 }

@@ -104,7 +104,6 @@ function UserPackages() {
         </div>
         <div className="pkgs-body">
           <Row style={{ marginRight: "170px" }}>
-            {/* <Col sm={6} md={6} > */}
             {currentPackage.map((item, index) => {
               return (
                 <Link to={"/package-details/" + item._id}>
@@ -124,7 +123,6 @@ function UserPackages() {
                 </Link>
               );
             })}
-            {/* </Col> */}
           </Row>
         </div>
       </div>

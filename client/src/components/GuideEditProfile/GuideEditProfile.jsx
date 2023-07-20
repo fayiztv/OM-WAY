@@ -46,7 +46,6 @@ function UserEditProfile() {
         about,
         id,
       });
-      console.log(data);
       if (!data.error) {
         dispatch({ type: "refresh" });
         return navigate("/guide/profile");

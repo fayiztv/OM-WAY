@@ -14,9 +14,6 @@ function AdminHome() {
               <h2>DashBoard</h2>
             <div style={{width:'1000px',marginTop:'30px'}} className="col-lg-6 grid-margin stretch-card">
                 <div style={{paddingBottom:'20px'}} className="table-responsive">
-
-
-
                 </div>
                </div>
             </div>

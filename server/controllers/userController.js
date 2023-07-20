@@ -95,7 +95,6 @@ export async function addComplaint(req, res) {
     res.json({ err: false,complaint });
 
   } catch (error) {
-    console.log(error);
     res.json({ err: true, message: "something went wrong", error });
   }
 }
@@ -106,7 +105,6 @@ export async function getUserBookings(req,res){
     const bookings = await BookingModel.find({userId:id}).populate('guideId').populate('packageId').lean()
     res.json({err:false,bookings})
   }catch(err){
-    console.log(err);
     res.json({ err: true, message: "something went wrong", err });
   }
 }
@@ -117,7 +115,6 @@ export async function getUserBookingDetails(req,res){
     const booking = await BookingModel.find({_id:id}).populate('guideId').populate('userId').populate('packageId').lean()
     res.json({err:false,booking})
   }catch(err){
-    console.log(err);
     res.json({ err: true, message: "something went wrong", err });
   }
 }
@@ -134,7 +131,6 @@ export async function checkGuideAvailability(req,res){
   })
     res.json({err:false,booking})
   }catch(err){
-    console.log(err);
     res.json({ err: true, message: "something went wrong", err });
   }
 }
@@ -148,7 +144,6 @@ export async function userGuideRating(req, res) {
       }, { upsert: true })
       return res.json({ err: false })
   } catch (err) {
-      console.log(err)
       res.json({ err: true, err, message: "something went wrong" })
   }
 }

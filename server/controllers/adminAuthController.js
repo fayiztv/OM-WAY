@@ -32,7 +32,6 @@ export async function adminLogin(req,res){
 
     }catch(err){
         res.json({message:"server error",error:err})
-        console.log(err);
     }
 }
 
@@ -43,7 +42,6 @@ export async function adminLogout(req, res) {
         secure: true,
         sameSite: "none",
     }).json({ message: "logged out", error: false });
-    console.log("logged out");
 }
 
 export async function checkAdminLoggedIn(req, res) {
@@ -62,7 +60,6 @@ export async function checkAdminLoggedIn(req, res) {
     } catch (err) {
 
         res.json({ loggedIn: false, error: err })
-        console.log(err)
 
     }
 }

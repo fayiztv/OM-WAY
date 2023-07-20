@@ -29,7 +29,6 @@ function UserForgot() {
       if (data.err) {
         setErrMessage(data.message);
       } else {
-        console.log(data.user);
         setOtp(true);
       }
     }

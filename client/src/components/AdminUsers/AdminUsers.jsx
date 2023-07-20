@@ -16,9 +16,7 @@ function AdminUsers() {
     (async function () {
       try {
         const { data } = await axios.get("/admin/users?name=" + name);
-        console.log(data);
         if (!data.err) {
-          console.log(data);
           setUsersList(data);
         }
       } catch (err) {
@@ -64,11 +62,6 @@ function AdminUsers() {
   return (
     <div className="container-scroller">
       <AdminHeader />
-      
-      {/* <div
-        style={{ display: "flex" }}
-        className="container-fluid page-body-wrapper"
-      > */}
         <AdminSideBar />
         <div className="main-panel">
           <div className="content-wrapper">
@@ -121,8 +114,10 @@ function AdminUsers() {
               </div>
             </div>
           </div>
+          
+
+
         </div>
-      {/* </div> */}
     </div>
   );
 }

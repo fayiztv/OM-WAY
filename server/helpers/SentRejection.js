@@ -26,11 +26,9 @@ export default function sentRejection(email,message){
         
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
-                console.log("error", error, info)
                 reject(error)
 
               } else {
-                console.log("sent")
                 resolve({success:true, message:"Email sent successfull"})
               }
             });

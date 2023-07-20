@@ -90,9 +90,6 @@ function GuideLogin() {
                       <p className="text-danger">{errMessage}</p>
                     </div>
                   )}
-                  {/* <div className="login-row d-flex mt-1 justify-content-start">
-                    <Link to="/forgot-password">Forgot Password</Link>
-                  </div> */}
                   <div className="login-row">
                     <button
                       type="submit"

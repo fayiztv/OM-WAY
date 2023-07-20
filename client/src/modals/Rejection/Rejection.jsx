@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 
 function Rejection({ setShowModal, id }) {
   const [text, setText] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   async function handleClose() {
     setShowModal(false);
   }
@@ -22,13 +22,17 @@ function Rejection({ setShowModal, id }) {
     if (validForm()) {
       let { data } = await axios.post("/admin/registration/reject", {
         text,
-        id
+        id,
       });
       if (data.err) {
-        console.log(data.err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: data.err.message,
+        });
       } else {
         setShowModal(false);
-        dispatch({type:"refresh"})
+        dispatch({ type: "refresh" });
       }
     }
   };
@@ -49,11 +53,13 @@ function Rejection({ setShowModal, id }) {
           onChange={(e) => setText(e.target.value)}
         />
         <button
-          style={{marginTop:"15px"}}
+          style={{ marginTop: "15px" }}
           className="submitButton"
           onClick={handleSubmit}
           disabled={!validForm()}
-        >submit</button>
+        >
+          submit
+        </button>
       </div>
     </div>
   );

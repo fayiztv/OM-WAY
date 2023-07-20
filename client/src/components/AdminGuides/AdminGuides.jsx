@@ -15,7 +15,6 @@ function AdminGuides() {
     (async function () {
       try {
         const { data } = await axios.get("/admin/guides?name=" + name);
-        console.log(data);
         if (!data.err) {
           setGuidesList(data);
         }
@@ -62,10 +61,6 @@ function AdminGuides() {
   return (
     <div className="container-scroller">
       <AdminHeader />
-      {/* <div
-        style={{ display: "flex" }}
-        className="container-fluid page-body-wrapper"
-      > */}
         <AdminSideBar />
         <div className="main-panel">
           <div className="content-wrapper">
@@ -119,7 +114,6 @@ function AdminGuides() {
             </div>
           </div>
         </div>
-      {/* </div> */}
     </div>
   );
 }

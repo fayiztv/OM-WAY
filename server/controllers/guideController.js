@@ -51,7 +51,6 @@ export async function guideDashboard(req, res) {
 
     res.json({ err: false, totalPackages, booking: booking[0], monthlyData });
   } catch (err) {
-    console.log(err);
     res.json({ message: "somrthing went wrong", error: err, err: true });
   }
 }
@@ -75,7 +74,6 @@ export async function addPackage(req, res) {
     const packages = await PackageModel.create({ ...req.body, image });
     res.json({ err: false });
   } catch (err) {
-    console.log(err);
     res.json({ err: true, error: err, message: "Please add a image" });
   }
 }
@@ -154,7 +152,6 @@ export async function postGuideEditProfile(req, res) {
     });
     return res.json({ error: false });
   } catch (error) {
-    console.log(error);
   }
 }
 
@@ -170,7 +167,6 @@ export async function guideEditAvatar(req, res) {
     );
     res.json({ err: false });
   } catch (error) {
-    console.log(error);
     res.json({ err: true });
   }
 }
@@ -184,7 +180,6 @@ export async function getGuideBookings(req, res) {
       .lean();
     res.json({ err: false, bookings });
   } catch (err) {
-    console.log(err);
     res.json({ err: true, message: "something went wrong", err });
   }
 }

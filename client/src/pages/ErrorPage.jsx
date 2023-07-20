@@ -9,9 +9,6 @@ function ErrorPage() {
         <div class="row">
           <div  class="col-sm-12 div ">
             <div style={{display:'flex',flexDirection:"column",justifyContent:'center',alignItems:'center'}} class="col-sm-10 col-sm-offset-1  text-center">
-                {/* <div className="error-text">
-                <h1 class="text-center ">404</h1>
-                </div> */}
               <div  class="four_zero_four_bg">
               </div>
 

@@ -23,7 +23,6 @@ function GuideAddPackage() {
     submit: false,
   });
   const guide=useSelector((state)=>{
-    console.log(state.guide.detials);
     return state.guide.detials
   });
 

@@ -142,7 +142,7 @@ function UserPackageDetails() {
           }
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*")
       }
     })();
   }, [guideId]);

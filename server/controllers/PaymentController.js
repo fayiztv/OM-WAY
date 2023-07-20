@@ -17,7 +17,6 @@ export async function paymentOrder(req, res) {
     };
     instance.orders.create(options, function (err, order) {
       if (err) {
-        console.log(err);
         res.json({ err: true, message: "server error" });
       } else {
         res.json({ err: false, order });
@@ -25,7 +24,6 @@ export async function paymentOrder(req, res) {
     });
   } catch (error) {
     res.json({ err: true, message: "server error", error });
-    console.log(error);
   }
 }
 
@@ -71,7 +69,6 @@ export async function verifyPayment(req, res) {
       });
     }
   } catch (error) {
-    console.log(error);
     res.json({ error, err: true, message: "somethin went wrong" });
   }
 }

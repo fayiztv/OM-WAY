@@ -20,7 +20,6 @@ export async function guideRegister(req,res){
         return res.json({ err: false })
 
     }catch (err) {
-        console.log(err)
         res.json({ error: err, err: true, message: "something went wrong" })
     }
 }
@@ -59,7 +58,6 @@ export async function guideLogin(req,res){
         }).json({err:false})
 
     }catch(err){
-        console.log(err)
         return res.json({error:true,message:"somthing went wrong"})
     }
 }
@@ -80,7 +78,6 @@ export async function checkGuideLoggedIn(req,res){
         return res.json({guide,loggedIn:true})
 
     }catch(err){
-        console.log(err);
         return res.json({loggedIn:false,error:err})
       }
 }

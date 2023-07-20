@@ -5,6 +5,7 @@ import "../Rejection/rejection.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ClipLoader } from "react-spinners";
+import Swal from "sweetalert2";
 
 function Rejection({ setShowModal,complaint, guideid,id }) {
   const [text, setText] = useState("");
@@ -33,7 +34,11 @@ function Rejection({ setShowModal,complaint, guideid,id }) {
         id
       });
       if (data.err) {
-        console.log(data.err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops..",
+          text: data.err.message,
+        });
       } else {
         setShowModal(false);
         dispatch({type:"refresh"})

@@ -14,7 +14,6 @@ export async function userRegister(req,res){
             return res.json({err:true,message:"User Already Exist"})
         }
         let otp = Math.ceil(Math.random()*10000)
-        console.log(otp)
         let otpSent = await sentOtp(email,otp)
         const token = jwt.sign({
             otp:otp
@@ -28,7 +27,6 @@ export async function userRegister(req,res){
         }).json({ err: false })
 
     }catch(err){
-        console.log(err);
         res.json({ err: true, error: err, message: "something went wrong" })
 
     }
@@ -57,7 +55,6 @@ export async function userRegisterVerify(req,res){
         return res.json({ err: false })
 
     }catch (err) {
-        console.log(err)
         res.json({ error: err, err: true, message: "something went wrong" })
     }
 }
@@ -90,7 +87,6 @@ export async function userLogin(req,res){
         }).json({err:false})
 
     }catch(err){
-        console.log(err)
         return res.json({error:true,message:"somthing went wrong"})
     }
 }
@@ -112,7 +108,6 @@ export async function checkUserLoggedIn(req,res){
         return res.json({user,loggedIn:true})
 
     }catch(err){
-        console.log(err);
         return res.json({loggedIn:false,error:err})
       }
 }
@@ -134,7 +129,6 @@ export async function forgot(req,res){
        }
        let otp = Math.ceil(Math.random() * 10000)
        let otpSent = await sentOtp(email, otp)
-       console.log(otp)
        const token = jwt.sign(
            {
                otp: otp
@@ -164,7 +158,6 @@ export async function verifyForgot(req,res){
         }
         return res.json({ err: false })
     }catch(err){
-        console.log(err)
         res.json({ error: err, err: true, message: "something went wrong" })
     }
 }
@@ -190,7 +183,6 @@ export async function resetUserPassword(req,res){
         })
         return res.json({ err: false })
     }catch (err) {
-        console.log(err)
         res.json({ err: err, err: true, message: "something went wrong" })
     }
 }
