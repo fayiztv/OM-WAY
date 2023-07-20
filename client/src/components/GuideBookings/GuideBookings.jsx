@@ -8,7 +8,7 @@ import "./guidebookings.css";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +17,7 @@ function GuideBookings() {
   const [bookingList, setBookingList] = useState([""]);
   const [filterStatus, setFilterStatus] = useState("all");
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
 
   const guide = useSelector((state) => {
     return state.guide.detials;
@@ -29,6 +30,8 @@ function GuideBookings() {
       let { data } = await axios.get("/guide/bookings/" + id);
       if (!data.err) {
         setBookingList(data.bookings);
+      }else{
+        navigate("/*");
       }
     })();
   }, [refresh]);

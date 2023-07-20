@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import "./userguides.css";
 import profile from "../../assets/images/face1.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,7 @@ function UserGuides() {
   const [currentPage, setCurrentPage] = useState(1);
   const [guidesPerPage] = useState(9);
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async function () {
@@ -27,7 +28,7 @@ function UserGuides() {
           setGuides(data.guides);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh,name]);

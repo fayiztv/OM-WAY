@@ -12,10 +12,12 @@ import {
   FcTodoList,
 } from "react-icons/fc";
 import { FcAdvance } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 function GuideDashboard() {
   const guide = useSelector((state) => {
     return state.guide.detials;
   });
+  const navigate = useNavigate();
 
   const id = guide._id;
 
@@ -101,7 +103,7 @@ function GuideDashboard() {
           });
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, []);

@@ -26,6 +26,8 @@ function UserBookings() {
       let { data } = await axios.get("/user/bookings/" + userId);
       if (!data.err) {
         setBookingList(data.bookings);
+      }else {
+        navigate("/*");
       }
     })();
   }, [refresh]);

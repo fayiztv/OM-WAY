@@ -4,11 +4,13 @@ import AdminHeader from "../AdminHeader/AdminHeader";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import Swal from "sweetalert2";
 import "./user.css"
+import { useNavigate } from "react-router-dom";
 
 
 function AdminUsers() {
   const [usersList, setUsersList] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async function () {
@@ -20,7 +22,7 @@ function AdminUsers() {
           setUsersList(data);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh, name]);

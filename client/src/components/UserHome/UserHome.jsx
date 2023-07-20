@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import banner from "../../assets/images/banner.png";
 import "./userhome.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,6 +12,7 @@ import { CardActionArea } from "@mui/material";
 function UserHome() {
   const [packages, setPackages] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async function () {
@@ -22,7 +23,7 @@ function UserHome() {
           setPackages(data.packages);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh]);

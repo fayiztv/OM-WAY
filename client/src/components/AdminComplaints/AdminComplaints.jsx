@@ -4,6 +4,7 @@ import AdminHeader from "../AdminHeader/AdminHeader";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import "../AdminRegistrations/registraions.css";
 import Complaint from "../../modals/AdminComplaint/AdminComplaint";
+import { useNavigate } from "react-router-dom";
 
 function AdminRegistrations() {
   const [complaints, setComplaints] = useState([""]);
@@ -12,17 +13,18 @@ function AdminRegistrations() {
   const [showModal, setShowModal] = useState(false);
   const [guideId, setGuideId] = useState(null);
   const [id, setId] = useState(null);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("/admin/complaints");
+        const { data } = await axios.get("/admin/complaints")
      
         if (!data.err) {
           setComplaints(data);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*")
       }
     })();
   }, [refresh]);

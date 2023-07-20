@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import GuideHeader from '../GuideHeader/GuideHeader'
 import './guidepackages.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 function GuidePackages() {
   const [packages, setPackages] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
   
   const guide=useSelector((state)=>{
     return state.guide.detials
@@ -46,7 +47,7 @@ function GuidePackages() {
           setPackages(data.packages);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh]);

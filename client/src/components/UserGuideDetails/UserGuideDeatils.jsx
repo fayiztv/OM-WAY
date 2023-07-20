@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import "./userguidedetails.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import profile from "../../assets/images/face1.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -17,6 +17,8 @@ function UserGuideDeatils() {
   const [packagesPerPage] = useState(4);
   const [rating, setRating] = useState("")
   const [reviews, setReviews] = useState([])
+  const navigate = useNavigate();
+
 
   React.useEffect(() => {
     (async function () {
@@ -30,7 +32,7 @@ function UserGuideDeatils() {
           setReviews(data.reviews)
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh]);

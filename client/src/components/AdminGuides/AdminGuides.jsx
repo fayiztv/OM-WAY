@@ -4,10 +4,12 @@ import AdminHeader from "../AdminHeader/AdminHeader";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import "./guides.css"
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function AdminGuides() {
   const [guidesList, setGuidesList] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async function () {
@@ -18,7 +20,7 @@ function AdminGuides() {
           setGuidesList(data);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh, name]);

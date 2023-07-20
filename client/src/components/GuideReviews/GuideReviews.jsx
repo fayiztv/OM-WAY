@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import GuideHeader from "../GuideHeader/GuideHeader";
 import { useSelector } from "react-redux";
 import { Rating } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function GuideReviews() {
   const [reviews, setReviews] = useState([""]);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
 
   const guide = useSelector((state) => {
     return state.guide.detials;
@@ -21,7 +23,7 @@ function GuideReviews() {
           setReviews(data.reviews);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh]);

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import "./userpackages.css";
 import Row from "react-bootstrap/esm/Row";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import InputLabel from "@mui/material/InputLabel";
@@ -18,6 +18,7 @@ function UserPackages() {
   const [packagesPerPage] = useState(4);
   const [name, setName] = useState("");
   const [sortingOption, setSortingOption] = useState("");
+  const navigate = useNavigate();
 
 
   React.useEffect(() => {
@@ -29,7 +30,7 @@ function UserPackages() {
           setPackages(data.packages);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh, name]);

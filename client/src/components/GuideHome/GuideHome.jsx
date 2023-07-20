@@ -11,6 +11,7 @@ function GuideHome() {
   const guide = useSelector((state) => {
     return state.guide.detials;
   });
+  
   const id=guide._id
   const [image, setImage] = useState(null);
   const [finalImage, setFinalImage] = useState(null);
@@ -52,7 +53,7 @@ function GuideHome() {
           dispatch({ type: "refresh" });
           return navigate("/guide/profile");
         } else {
-          console.log(data.err);
+          navigate("/*");
         }
       })();
     }

@@ -125,7 +125,7 @@ function UserPackageDetails() {
           setFlage(true);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh]);

@@ -5,24 +5,28 @@ import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import "./registraions.css";
 import Swal from "sweetalert2";
 import Rejection from "../../modals/Rejection/Rejection";
+import { useNavigate } from "react-router-dom";
 
 function AdminRegistrations() {
   const [registrationsList, setRegistrationsList] = useState([""]);
   const [refresh, setRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
 
-                <div className="modals">{showModal && <Rejection setShowModal={setShowModal} id={userId} />}</div>
-                React.useEffect(() => {
+  <div className="modals">
+    {showModal && <Rejection setShowModal={setShowModal} id={userId} />}
+  </div>;
+  React.useEffect(() => {
     (async function () {
       try {
         const { data } = await axios.get("/admin/registrations?name=" + name);
-     
+
         if (!data.err) {
           setRegistrationsList(data);
         }
       } catch (err) {
-        console.log(err);
+        navigate("/*");
       }
     })();
   }, [refresh, name]);
@@ -45,7 +49,7 @@ function AdminRegistrations() {
   }
 
   async function rejectRegistration(id) {
-    setUserId(id)
+    setUserId(id);
     setShowModal(true);
   }
 
@@ -107,7 +111,11 @@ function AdminRegistrations() {
                     })}
                   </tbody>
                 </table>
-                <div className="modals">{showModal && <Rejection setShowModal={setShowModal} id={userId} />}</div>
+                <div className="modals">
+                  {showModal && (
+                    <Rejection setShowModal={setShowModal} id={userId} />
+                  )}
+                </div>
               </div>
             </div>
           </div>
