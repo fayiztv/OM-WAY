@@ -30,6 +30,7 @@ import GuideEditProfile from "./components/GuideEditProfile/GuideEditProfile";
 import UserGuideDeatils from "./components/UserGuideDetails/UserGuideDeatils";
 import UserBookings from "./components/UserBookings/UserBookings";
 import UserBookingDetails from "./components/UserBookingDetails/UserBookingDetails";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2004/";
@@ -64,6 +65,7 @@ function App() {
           <Route path="/admin/guides" element={<AdminGuidesPage/>}/>
           <Route path="/admin/registrations" element={<AdminRegistrationsPage/>}/>
           <Route path="/admin/complaints" element={<AdminComplaintsPage/>}/>
+          <Route path='/admin/*' element={<ErrorPage/>}/>
           <Route path="/admin/login" element={<Navigate to="/admin/dashboard"/>}/>
           </>
         }
@@ -92,6 +94,7 @@ function App() {
             <Route path="/guide-details/:id" element={<UserGuideDeatils />} />
             <Route path="/bookings" element={<UserBookings />} />
             <Route path="/booking-details/:id" element={<UserBookingDetails />} />
+            <Route path='/*' element={<ErrorPage/>}/>
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/sign-up" element={<Navigate to="/" />} />
           </>
@@ -125,6 +128,7 @@ function App() {
           <Route path="/guide/edit-package/:id" element={<GuideEditPackage/>}/>
           <Route path="/guide/bookings" element={<GuideBookings/>}/>
           <Route path="/guide/reviews" element={<GuideReviews/>}/>
+          <Route path='/guide/*' element={<ErrorPage/>}/>
           <Route path="/guide/login" element={<Navigate to="/guide"/>}/>
           <Route path="/guide/register" element={<Navigate to="/guide"/>}/>
           </>

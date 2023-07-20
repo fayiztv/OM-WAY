@@ -100,6 +100,14 @@ function GuideHome() {
                   Active
                 </span>
               )}
+               <input
+              style={{opacity:'0'}}
+                type="file"
+                name="photo"
+                className="guide-edit-btn"
+                placeholder="edit"
+                onChange={handleImage}
+                />
             </p>
             <p className="profile-member-since">
               Member since:{" "}

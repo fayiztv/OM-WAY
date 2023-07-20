@@ -20,7 +20,7 @@ body{
     height:350px;
     display: flex;
     box-shadow:20px;
-    box-shadow: 3px 3px 41px 34px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 41px 34px rgba(99, 99, 99, 0.1);
     border-radius: 8px;
 }
 .user-main .packages .packages-body .packages-text-body{
@@ -81,5 +81,11 @@ body{
 
   .line{
     width:90%;
+  }
+
+  .user-main .dummy{
+    height:300px;
+    width:100%;
+    background-color: #147E7D;
   }
   

@@ -9,7 +9,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 
-
 function UserHome() {
   const [packages, setPackages] = useState([""]);
   const [refresh, setRefresh] = useState(false);
@@ -33,8 +32,11 @@ function UserHome() {
       <div className="user-banner">
         <img src={banner} alt="" />
       </div>
-      <div data-aos="zoom-in-up" className="packages">
-        <div className="packages-body">
+      <div className="packages">
+        <div
+          data-aos="fade-up"
+          className="packages-body"
+        >
           <div className="packages-text-body">
             <div className="textes">
               <h6>INTRODUCING</h6>
@@ -53,30 +55,35 @@ function UserHome() {
           <div className="packages-details">
             {packages.map((item, index) => {
               return (
-                <Link to={"/package-details/" +item._id}>
-
-                <Card sx={{ maxWidth: 280, marginRight: "20px" }}>
-                  <CardActionArea className="card">
-                    <CardMedia
-                      style={{height:'190px'}}
-                      className="card-area"
-                      component="img"
-                      image={item.image && item.image.url}
-                    />
-                    <CardContent>
-                      <h3>{item.destionation}</h3>
-                      <p>
-                        Explore with your guids <br></br> make the trip amazing
-                      </p>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-                      </Link>
+                <Link to={"/package-details/" + item._id}>
+                  <Card sx={{ maxWidth: 280, marginRight: "20px" }}>
+                    <CardActionArea className="card">
+                      <CardMedia
+                        style={{ height: "190px" }}
+                        className="card-area"
+                        component="img"
+                        image={item.image && item.image.url}
+                      />
+                      <CardContent>
+                        <h3>{item.destionation}</h3>
+                        <p>
+                          Explore with your guids <br></br> make the trip
+                          amazing
+                        </p>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Link>
               );
             })}
           </div>
         </div>
       </div>
+
+      <div className="dummy">
+
+      </div>
+
       <div className="line-body">
         <hr className="line" />
       </div>
