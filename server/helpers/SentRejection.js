@@ -7,13 +7,13 @@ export default function sentRejection(email,message){
             port: 465,
             secure: true,
             auth: {
-              user: 'onmyway748@gmail.com',
-              pass: 'hzbaitdnhtinozef',
+              user: process.env.EMAIL,
+              pass: process.env.PASSWORD,
             },
           });
       
             var mailOptions={
-              from: 'onmyway748@gmail.com',
+              from: process.env.EMAIL,
               to: email,
               subject: "onmyWay Guide Rejection Message",
               html: `

@@ -12,6 +12,7 @@ import guideRouter from './routers/guideRouter.js'
 import verifyAdmin from './middlewares/verifyAdmin.js';
 import verifyUser from './middlewares/verifyUser.js';
 import verifyGuide from './middlewares/verifyGuide.js';
+import 'dotenv/config'
 
 const app=express();
 

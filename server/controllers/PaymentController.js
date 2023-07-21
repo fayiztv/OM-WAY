@@ -1,11 +1,12 @@
 import Razorpay from "razorpay";
 import crypto from "crypto";
 import BookingModel from "../models/BookingModel.js";
-import { log } from "console";
+import 'dotenv/config'
+
 
 let instance = new Razorpay({
-  key_id: "rzp_test_O512t3FLY9WNji",
-  key_secret: "68JveSDBr0P5v5mohPayW9FM",
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
 export async function paymentOrder(req, res) {
@@ -43,7 +44,7 @@ export async function verifyPayment(req, res) {
     let body = response.razorpay_order_id + "|" + response.razorpay_payment_id;
 
     var expectedSignature = crypto
-      .createHmac("sha256", "68JveSDBr0P5v5mohPayW9FM")
+      .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
       .update(body.toString())
       .digest("hex");
 
