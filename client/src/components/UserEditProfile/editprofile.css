@@ -1,0 +1,6 @@
+@media(max-width:800px) {
+    .login-sec img {
+        margin-left:0 !important;
+        margin-top:0 !important;
+    }
+}

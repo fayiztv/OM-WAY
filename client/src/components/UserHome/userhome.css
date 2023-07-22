@@ -15,7 +15,6 @@ body{
     width:100%;
     height:400px; 
     margin-top:20px;
-    background-color: rgb(255, 255, 255);
 }
 
 .user-main .packages .packages-body{
@@ -23,7 +22,7 @@ body{
     height:fit-content;
     display: flex;
     box-shadow:20px;
-    box-shadow: 3px 3px 41px 34px rgba(99, 99, 99, 0.1);
+    box-shadow: 3px 3px 41px 34px rgba(186, 186, 186, 0.1);
     border-radius: 8px;
 }
 .user-main .packages .packages-body .packages-text-body{
@@ -36,7 +35,7 @@ body{
     padding-left:40px;
 }
 .user-main .packages .packages-body .packages-details{
-    height:350px;
+    height:365px;
     width:950px;
     display: flex;
     padding:20px;
@@ -76,7 +75,6 @@ body{
   .user-main .line-body{
     width:100%;
     height:50px;
-    margin-top:40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,6 +143,11 @@ body{
       height: auto;
       width:280px !important;
       margin-top:30px;
+    }
+
+    .footer {
+      margin-top:0;
+      margin-bottom:50px;
     }
 
 

@@ -9,6 +9,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
+import UserBottom from "../UserBottom/UserBottom";
 
 function UserHome() {
   const [packages, setPackages] = useState([""]);
@@ -84,11 +85,7 @@ function UserHome() {
           </div>
         </div>
       </div>
-
-      {/* <div className="dummy">
-
-      </div> */}
-
+      <UserBottom page={'home'}></UserBottom>
       <div className="line-body">
         <hr className="line" />
       </div>

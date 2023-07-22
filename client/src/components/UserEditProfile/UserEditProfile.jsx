@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { TextField } from "@mui/material";
 import loginImage from "/src/assets/images/editprofile.png";
 import "../UserSignup/signup.css";
+import "./editprofile.css"
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -69,8 +70,8 @@ function UserEditProfile() {
           <div className="login-container">
             <Row>
               <Col md={6} sm={4}>
-                <div className="login-sec bg" style={{marginLeft:'200px'}}>
-                  <img src={loginImage} alt="" />
+                <div className="login-sec bg">
+                  <img src={loginImage} style={{marginLeft:'200px',marginTop:'50px'}} alt="" />
                 </div>
               </Col>
               <Col md={6} sm={8}>
