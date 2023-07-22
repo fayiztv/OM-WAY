@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import banner from "../../assets/images/banner.png";
+import banner2 from "../../assets/images/phonebanner.png";
 import "./userhome.css";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
@@ -33,6 +34,9 @@ function UserHome() {
       <div className="user-banner">
         <img src={banner} alt="" />
       </div>
+      <div className="user-phonebanner">
+        <img src={banner2} alt="" />
+      </div>
       <div className="packages">
         <div
           data-aos="fade-up"
@@ -57,15 +61,15 @@ function UserHome() {
             {packages.map((item, index) => {
               return (
                 <Link to={"/package-details/" + item._id}>
-                  <Card sx={{ maxWidth: 280, marginRight: "20px" }}>
-                    <CardActionArea className="card">
+                  <Card className="card-body" style={{marginRight: "20px" }}>
+                    <CardActionArea style={{width:'100%'}} className="card">
                       <CardMedia
-                        style={{ height: "190px" }}
+                        style={{ height: "200px",width:'300px'}}
                         className="card-area"
                         component="img"
                         image={item.image && item.image.url}
                       />
-                      <CardContent>
+                      <CardContent style={{marginLeft:'10px'}}>
                         <h3>{item.destionation}</h3>
                         <p>
                           Explore with your guids <br></br> make the trip
@@ -81,9 +85,9 @@ function UserHome() {
         </div>
       </div>
 
-      <div className="dummy">
+      {/* <div className="dummy">
 
-      </div>
+      </div> */}
 
       <div className="line-body">
         <hr className="line" />

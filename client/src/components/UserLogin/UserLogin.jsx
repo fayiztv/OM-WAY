@@ -96,7 +96,7 @@ function UserLogin() {
                                             </button>
                                     </div>
                                     <div className="login-row mt-3">
-                                        <Link to="/sign-up">Don't Have an Account? Signin</Link>
+                                        <Link to="/sign-up">Don't Have an Account? Signup</Link>
                                     </div>
                                     <div className="login-row mt-3">
                                         <Link to="/guide/register">Register as a Guide? Register</Link>

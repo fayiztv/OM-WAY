@@ -42,3 +42,25 @@
   width:20px;
 }
 
+@media(max-width:800px) {
+
+  .user-navbar .logo img{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .user-navbar {
+    width:100vw;
+  }
+  
+
+  .nav-links {
+    display: none;
+  }
+
+  .profile {
+    margin-right:10px;
+  }
+
+}
+

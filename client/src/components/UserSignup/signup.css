@@ -22,7 +22,7 @@
 }
 
 .login-sec img {
-    max-width: 70%;
+    max-width: 85%;
     max-height: 700px;
     margin-right:200px;
 }
@@ -96,4 +96,13 @@
     .login-box .input div {
         height:50x;
     }
+    .login-box{
+        margin-right:0;
+    }
+    .login-sec{
+        margin-left: 25px;
+    }
+    .login-sec img{
+        margin-right: 0;
+    } 
 }
