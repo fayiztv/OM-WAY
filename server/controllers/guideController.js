@@ -177,6 +177,7 @@ export async function getGuideBookings(req, res) {
     const bookings = await BookingModel.find({ guideId: id })
       .populate("userId")
       .populate("packageId")
+      .sort({ _id: -1 })
       .lean();
     res.json({ err: false, bookings });
   } catch (err) {

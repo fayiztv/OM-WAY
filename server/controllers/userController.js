@@ -102,7 +102,7 @@ export async function addComplaint(req, res) {
 export async function getUserBookings(req,res){
   try{
     const id=req.params.id
-    const bookings = await BookingModel.find({userId:id}).populate('guideId').populate('packageId').lean()
+    const bookings = await BookingModel.find({userId:id}).populate('guideId').populate('packageId').sort({ _id: -1 }).lean()
     res.json({err:false,bookings})
   }catch(err){
     res.json({ err: true, message: "something went wrong", err });
