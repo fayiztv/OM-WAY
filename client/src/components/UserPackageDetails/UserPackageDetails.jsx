@@ -4,8 +4,7 @@ import UserNavbar from "../UserNavBar/UserNavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import "./packagedetails.css";
 import profile from "../../assets/images/face1.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import UserBottom from "../UserBottom/UserBottom";
 import { Link } from "react-router-dom";
 import { AiFillRightCircle } from "react-icons/ai";
 import DatePicker from "react-datepicker";
@@ -216,6 +215,21 @@ function UserPackageDetails() {
               minDate={disabledDate}
               className="date"
             />
+                      <Link style={{ height: "70%" }} to={"/guide-details/" + guide._id}>
+            <div className="guides-card">
+              <div className="guide-profile">
+                <div className="guide-image">
+                  <img src={guide.image ? guide.image : profile} alt="" />
+                </div>
+              </div>
+              <div className="guide-detials" style={{ marginTop: "15px" }}>
+                <p>
+                  Name : {guide.firstName} <br />
+                  Contact : {guide.contact} <br /> 
+                </p>
+              </div>
+            </div>
+          </Link>
             <div className="btnn">
               <button
                 type="submit"
@@ -226,30 +240,9 @@ function UserPackageDetails() {
               </button>
             </div>
           </form>
-
-          <Link style={{ height: "70%" }} to={"/guide-details/" + guide._id}>
-            <div className="guides-card">
-              <div className="guide-profile">
-                <div className="guide-image">
-                  <img src={guide.image ? guide.image : profile} alt="" />
-                </div>
-              </div>
-              <div className="guide-detials" style={{ marginTop: "15px" }}>
-                <p>
-                  Name : {guide.firstName} <br />
-                  Contact : {guide.contact} <br /> Ratings:
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <br />
-                </p>
-              </div>
-            </div>
-          </Link>
         </div>
       </div>
+      <UserBottom page={'packages'}></UserBottom>
     </div>
   );
 }
