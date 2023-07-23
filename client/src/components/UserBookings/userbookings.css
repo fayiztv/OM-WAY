@@ -70,10 +70,81 @@
     width:600px;
 }
 
+.status button{
+    background-color: #147E7D;
+}
+
 .completed{
     color:green;
 
 }
 .upcoming{
     color: #147E7D;
+}
+
+@media (max-width: 800px) {
+
+    .user-main .bookings-main{
+        width:100vw;
+        margin-bottom:70px;
+        margin-left: 0;
+    }
+
+    .bookings-head{
+        width:100vw !important;
+        margin-bottom:10px !important;
+    }
+
+    .bookings-head h3 {
+        margin-left:30px;
+        margin-top:10px;
+    }
+
+    .bookings-head .sort{
+        margin-left:80px;
+    }
+
+    .bookings-body{
+        width:100vw;
+    }
+
+    .bookings-body .user-bookings{
+        margin-left:10px;
+        flex-direction: column;
+        height:fit-content;
+    }
+
+    .user-bookings .guide-package-img{
+        width:100%;
+        margin-left:0;
+    }
+
+    .guide-package-img img{
+        height:90%;
+        width:90%;
+    }
+
+    .guide-packages-details p{
+        margin-bottom:5px;
+        margin-right:7px;
+    }
+
+    .user-bookings .status{
+        width: auto;
+        flex-direction:row;
+        align-items: baseline;
+        margin-left:20px;
+        margin-right:20px;
+        justify-content: space-between;
+    }
+
+    .status button{
+        height:35px;
+        width:200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #147E7D;
+    }
+
 }

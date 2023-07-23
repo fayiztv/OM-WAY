@@ -11,6 +11,7 @@ import Select from "@mui/material/Select";
 import notFoundImg from "../../assets/images/notFound.png";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import UserBottom from "../UserBottom/UserBottom";
 
 function UserBookings() {
   const [bookingList, setBookingList] = useState([""]);
@@ -92,11 +93,9 @@ function UserBookings() {
                 value={filterStatus}
                 onChange={(e) => handleFilterChange(e.target.value)}
               >
-                <MenuItem value={filterStatus}></MenuItem>
                 <MenuItem value="all">All</MenuItem>
                 <MenuItem value="upcoming">Upcoming</MenuItem>
                 <MenuItem value="completed">Completed</MenuItem>
-                <MenuItem value="cancelled">Cancelled</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -157,6 +156,7 @@ function UserBookings() {
           </div>
         </div>
       )}
+      <UserBottom page={'bookings'}></UserBottom>
     </div>
   );
 }
