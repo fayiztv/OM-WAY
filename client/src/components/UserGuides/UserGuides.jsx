@@ -6,8 +6,7 @@ import profile from "../../assets/images/face1.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import UserBottom from "../UserBottom/UserBottom";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -15,9 +14,28 @@ function UserGuides() {
   const [guides, setGuides] = useState([""]);
   const [refresh, setRefresh] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [guidesPerPage] = useState(9);
+  const [guidesPerPage ,setGuidesPerPage] = useState(9);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  
+  React.useEffect(() => {
+    const handleResize = (event) => {
+      if (event.matches) {
+        setGuidesPerPage(4);
+      } else {
+        setGuidesPerPage(9);
+      }
+    };
+
+    const mediaQuery = window.matchMedia('(max-width: 800px)');
+    mediaQuery.addEventListener('change', handleResize);
+
+    handleResize(mediaQuery);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleResize);
+    };
+  }, []);
 
   React.useEffect(() => {
     (async function () {
@@ -116,6 +134,7 @@ function UserGuides() {
         </div>
       )}
       </div>
+      <UserBottom page={'guides'}></UserBottom>
     </div>
   );
 }

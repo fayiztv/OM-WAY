@@ -1,12 +1,10 @@
 import React from "react";
 import {
   RiHome2Fill,
-  RiUser3Fill,
   RiMessageFill,
   RiGroupFill,
-  RiHome2Line
 } from "react-icons/ri";
-import { FaShoppingBag  } from 'react-icons/fa';
+import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./userbottom.css";
 function UserBottom({ page }) {
@@ -27,14 +25,14 @@ function UserBottom({ page }) {
         </div>
         <div className={`bottom-nav-item ${page === "packages" && "active"}`}>
           <Link to="/packages">
-            <FaShoppingBag  className="icon" />
+            <FaShoppingBag className="icon" />
             <span>Packages</span>
           </Link>
         </div>
         <div className={`bottom-nav-item ${page === "profile" && "active"}`}>
           <Link to="/profile">
-            <RiUser3Fill className="icon" />
-            <span>Profile</span>
+            <RiMessageFill className="icon" />
+            <span>Chat</span>
           </Link>
         </div>
       </div>

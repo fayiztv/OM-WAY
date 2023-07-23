@@ -1,96 +1,143 @@
-.user-main .guides-main{
-    height:fit-content;
-    width:100%;
-    margin-left:100px;
-    margin-right:100px;
+.user-main .guides-main {
+  height: fit-content;
+  width: 100%;
+  margin-left: 100px;
+  margin-right: 100px;
 }
-.guides-main .guides-head{
-    display: flex;
-    padding-left:80px;
-    align-items:end;
-    height:70px;
-    width:92%;
-}
-
-.guides-main .guide-body{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top:50px;
+.guides-main .guides-head {
+  display: flex;
+  padding-left: 80px;
+  align-items: end;
+  height: 70px;
+  width: 92%;
 }
 
-.guide-body col{
-    margin-left:80px;
-    margin-bottom:40px;
+.guides-main .guide-body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
 }
 
-.guide-body .guides-card{
-    cursor: pointer;
-    display: flex;
-    flex-direction:row;
-    margin-bottom:40px;
-    /* height:70%; */
-    width:400px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.guide-body col {
+  margin-left: 80px;
+  margin-bottom: 40px;
 }
 
-.guide-body .guides-card:hover{
-    background-color: rgba(0, 0, 0, 0.074);
+.guide-body .guides-card {
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 40px;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.guide-body a{
-    color: #000000cb;
+.guide-body .guides-card:hover {
+  background-color: rgba(0, 0, 0, 0.074);
+}
+
+.guide-body a {
+  color: #000000cb;
 }
 
 .guide-body a:hover {
-    color:#000000cb;
-  }
-
-.guides-card .guide-profile{
-    height:100px;
-    width:170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right:10px;
-}
-.guides-card .guide-details{
-    height:100%;
-    width:300px;
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content:end;
+  color: #000000cb;
 }
 
-.guide-profile .guide-image{
-    height:90%;
-    width:55%;
-    border-radius:100%;
+.guides-card .guide-profile {
+  height: 100px;
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.guide-profile .guide-image img{
-    height:100%;
-    width:100%;
-    border-radius:100%;
+.guides-card .guide-details {
+  height: 100%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
 }
 
-.guides-head .searchbar .MuiInputBase-root{
-    height:40px;
-    margin-bottom:10px;
-    width:300px;
+.guide-profile .guide-image {
+  height: 90%;
+  width: 55%;
+  border-radius: 100%;
+}
+.guide-profile .guide-image img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
 }
 
-.guides-head .searchbar{
-    height:40px;
-    margin-bottom:10px;
-    margin-left:50%;
+.guides-head .searchbar .MuiInputBase-root {
+  height: 40px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.guides-head .searchbar {
+  height: 40px;
+  margin-bottom: 10px;
+  margin-left: 63%;
 }
 
 .paagination {
-    width: 92%;
-    display: flex;
-    align-items: center;
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .guides-head h3 {
+    display: none;
+  }
+
+  .user-main .guides-main {
+    height: fit-content;
+    width: 100%;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  .guides-head {
+    padding-left:0 !important;
+    width:100vw !important;
     justify-content: center;
-    margin-top: 10px;
+    margin-top:10px;
+  }
+
+  .guides-head .searchbar {
+    margin-left:0 !important;
+  }
+
+  .guides-main .guide-body{
+    justify-content:flex-start;
+  }
+
+  .guide-body .guides-card{
+    width:350px;
+    margin-left:15px;
+  }
+
+  .guides-card .guide-profile{
+    width:130px !important;
+    height:90px !important;
+    margin-right:0 !important;
+    margin-top:10px;
+  }
+
+  .guide-profile .guide-image{
+    width:63% !important;
+  }
+
+  .paagination {
+    width:100vw;
+    margin-top: 0px !important;
+    margin-bottom: 100px;
+  }
 }

@@ -100,7 +100,7 @@ function AddComplaint({ setShowModal }) {
             <b>{errMessage}</b>
           </div>
         )}
-        <div className="modal-form-row">
+        <div className="modal-form-row2">
           <button
             type="button"
             onClick={() => setShowModal(false)}
