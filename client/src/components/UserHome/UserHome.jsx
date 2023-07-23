@@ -70,7 +70,7 @@ function UserHome() {
                         component="img"
                         image={item.image && item.image.url}
                       />
-                      <CardContent style={{marginLeft:'10px'}}>
+                      <CardContent>
                         <h3>{item.destionation}</h3>
                         <p>
                           Explore with your guids <br></br> make the trip

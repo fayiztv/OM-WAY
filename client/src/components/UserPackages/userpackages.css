@@ -99,3 +99,96 @@
     width:200px;
     margin-left:50px;
 }
+
+@media (max-width: 800px) {
+
+    .packages-head h3 {
+        display: none;
+    }
+
+    .packages-head {
+        padding-left:0 !important;
+        width:100vw !important;
+        justify-content: center;
+        padding-top:0 !important;
+    }
+
+    .user-main .packages-main {
+        height: fit-content;
+        width: 100%;
+        margin-left:0 !important;
+        margin-right:0 !important;
+    }
+
+    .packages-head .searchbar {
+        margin-left:10px !important;
+    }
+
+    .packages-head .searchbar .MuiInputBase-root{
+        height:40px;
+        margin-bottom:10px;
+        width:200px;
+    }
+
+    .packages-head .sort{
+        margin-bottom:18px;
+        width:100px;
+        margin-left:20px;
+    }
+
+    .pkgs-body a{
+        width:100vw;
+        height:130px;
+        margin-bottom: 5px ;
+    }
+
+    .packages-main .pkgs-body{
+        justify-content: flex-start;
+        padding-top:20px;
+    }
+
+    .pkgs-body .pkg-details{
+        width:90vw;
+        margin-left:20px;
+        height: fit-content;
+        align-items: center;
+        box-shadow: none;
+    }
+
+    .pkg-details .pkg-textes{
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+
+    .pkg-details .pkg-image{
+        height:100px;
+    }
+
+    .pkg-image img{
+        height:100%;
+        width:90%;
+        margin-top:6px;
+    }
+
+    .pkg-textes h5 {
+        font-size: smaller;
+    }
+    .pkg-textes h4 {
+        font-size: smaller;
+    }
+
+    .pkg-textes p {
+        font-size:x-small;
+    }
+
+    .pkgs-body .row{
+        margin-right: 0 !important;
+    }
+
+    .pagination {
+        width:100vw;
+        margin-top: 0px !important;
+        margin-bottom: 100px;
+    }
+
+}

@@ -9,6 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import UserBottom from "../UserBottom/UserBottom";
 import Select from "@mui/material/Select";
 
 function UserPackages() {
@@ -34,6 +35,7 @@ function UserPackages() {
       }
     })();
   }, [refresh, name]);
+  
 
   const sortPackagesLowToHigh = () => {
     const sortedPackages = [...packages].sort((a, b) => parseInt(a.price) - parseInt(b.price));
@@ -117,7 +119,7 @@ function UserPackages() {
                       <p>
                         {item.days} Days , {item.nights} Nights
                       </p>
-                      <p>{item.descrption}</p>
+                      <p className="description">{item.descrption}</p>
                     </div>
                   </div>
                 </Link>
@@ -148,6 +150,7 @@ function UserPackages() {
           )}
         </div>
       )}
+            <UserBottom page={'packages'}></UserBottom>
     </div>
   );
 }

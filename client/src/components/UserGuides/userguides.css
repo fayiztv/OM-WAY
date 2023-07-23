@@ -135,6 +135,10 @@
     width:63% !important;
   }
 
+  .guide-body .row{
+    width:100vw;
+  }
+
   .paagination {
     width:100vw;
     margin-top: 0px !important;
