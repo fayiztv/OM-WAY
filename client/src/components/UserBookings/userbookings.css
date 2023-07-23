@@ -93,6 +93,7 @@
     .bookings-head{
         width:100vw !important;
         margin-bottom:10px !important;
+        padding-top:0 !important;
     }
 
     .bookings-head h3 {

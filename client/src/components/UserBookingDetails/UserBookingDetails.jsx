@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Rating,TextField } from "@mui/material";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import UserBottom from "../UserBottom/UserBottom";
 
 function UserBookingDetails() {
   const [booking, setBooking] = useState();
@@ -84,7 +85,7 @@ function UserBookingDetails() {
             <div className="booking-status">
               <h5 className="text-center">Booking Details</h5>
               <p>
-                Status : <span>{booking?.status}</span>
+                Guestes : <span>{booking?.guestes}</span>
               </p>
               <p>
                 Package started Date :{" "}
@@ -111,7 +112,7 @@ function UserBookingDetails() {
                 Email : <span>{booking?.guideId?.email}</span>
               </p>
               <p>
-                Rating : <span>{}</span>{" "}
+                Rating : <span>{booking?.guideId?.rating && <Rating name="read-only" value={booking.guideId.rating} readOnly size='small'/>}</span>
               </p>
             </div>
           </div>
@@ -173,6 +174,7 @@ function UserBookingDetails() {
           </div>
         </div>
       </div>
+      <UserBottom page={'bookings'}></UserBottom>
     </div>
   );
 }

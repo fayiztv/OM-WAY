@@ -110,3 +110,69 @@
 .upcoming{
     color: #147E7D;
 }
+
+@media (max-width: 800px) {
+
+    .user-main .booking-main{
+        margin-left: 0;
+        margin-right: 0;
+        width:100vw;
+    }
+
+    .booking-main .booking-body{
+        height: fit-content;
+        width:95vw;
+    }
+
+    .booking-user-guide{
+        height: fit-content !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .booking-user-guide .booking-user{
+        display: none;
+    }
+
+    .booking-user-guide .booking-status{
+        width:100%;
+        line-height:30px;
+    }
+
+    .booking-user-guide h5{
+        margin-bottom:20px;
+    }
+
+    .booking-user-guide .booking-guide{
+        width:100%;
+    }
+
+    .booking-body .package-and-rating{
+        height: fit-content;
+        margin-bottom:90px;
+        flex-direction: column;
+    }
+
+    .package-and-rating .p-details{
+        width:100%;
+    }
+
+    .p-details .pkg-main{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pkg-main .guide-package-img img{
+        width:100%;
+    }
+    
+    .pkg-main .guide-packages-details{
+        margin-left: 5px !important;
+    }
+
+    .package-and-rating .rating-review{
+        width:100%;
+    }
+}

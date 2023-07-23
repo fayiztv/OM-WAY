@@ -111,7 +111,7 @@ function UserBookings() {
 
                   <div className="guide-packages-details">
                     <h6>Destination : {item.packageId?.destionation}</h6>
-                    <h5>Total Amount : ₹ {item.price}</h5>
+                    <h6>Total Amount : ₹ {item.price}</h6>
                     <p>
                       {item.packageId?.days} Days ,{" "}
                       <span style={{ marginLeft: "9px" }}>
