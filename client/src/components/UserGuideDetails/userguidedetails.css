@@ -24,6 +24,18 @@
     box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
   }
 
+  .profile-card .name{
+    display: none;
+  }
+
+  .profile-card .contact{
+    display: none;
+  }
+
+  .profile-card .star{
+    display: none;
+  }
+
 .details-main .guide-textes-details{
     height:86%;
     width:50%;
@@ -69,4 +81,58 @@ font-weight:normal;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+
+    .user-main .details-main{
+        margin:0;
+        width:100%;
+    }
+
+    .details-main .guide-textes-details{
+        display: none;
+    }
+
+    .profile-card{
+        margin-top:70px;
+    }
+
+    .profile-card .profile-image{
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-card .profile-status{
+        display: none;
+    }
+
+    .profile-card .name{
+        display:flex;
+    }
+
+    .profile-card .contact{
+        display:flex;
+    }
+
+    .profile-card .star{
+        display:flex;
+    }
+
+    .user-main .guide-details-packages{
+        margin:0;
+        justify-content:flex-start;
+    }
+
+    .pkgs-body .row .pkg-details{
+        width:93vw !important;
+        margin-left:35px !important;
+    }
+
+    .pagination2 {
+        width:100vw;
+        margin-top: 0px !important;
+        margin-bottom: 100px;
+    }
+
 }

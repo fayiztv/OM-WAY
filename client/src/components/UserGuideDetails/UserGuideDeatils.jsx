@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
 import { Rating } from "@mui/material";
+import UserBottom from "../UserBottom/UserBottom";
 
 function UserGuideDeatils() {
   const [guide, setGuide] = useState([]);
@@ -78,19 +79,22 @@ function UserGuideDeatils() {
               </span>
             )}
           </p>
-          <p className="profile-member-since">
-            Member since:{" "}
+          <p className="name">Name : <span className="text-success" style={{ marginLeft: "12px" }}>{guide.firstName}</span></p>
+          <div className="profile-data">
+            <span>Email :</span>
+            <span className="text-success" style={{ marginLeft: "12px" }}>
+              {guide.email}
+            </span>
+          </div>
+          <p className="contact" style={{marginTop:'1rem'}}>Contact : <span className="text-success" style={{ marginLeft: "12px" }}>{guide.contact}</span></p>
+          <p className="star" style={{marginTop:'1rem'}}>Rating : { rating && < Rating style={{ marginLeft: "12px",marginTop:'3px'}} name="read-only" value={rating} readOnly size='small' />}</p>
+           <p className="profile-member-since" style={{marginTop:'1rem'}}>
+            Member since :
             <span style={{ marginLeft: "12px" }} className="text-success">
               {" "}
               {new Date(guide.createdAt).toString().slice(0, 16)}
             </span>
           </p>
-          <div className="profile-data">
-            <span>Email:</span>{" "}
-            <span className="text-success" style={{ marginLeft: "12px" }}>
-              {guide.email}
-            </span>
-          </div>
         </div>
         <div className="guide-textes-details">
           <div className="details-1">
@@ -193,6 +197,7 @@ function UserGuideDeatils() {
           )}
         </div>
       )}
+      <UserBottom page={'guides'}></UserBottom>
     </div>
   );
 }
