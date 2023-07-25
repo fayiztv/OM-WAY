@@ -94,8 +94,8 @@
     cursor: pointer;
     display: flex;
     flex-direction:row;
-    margin-bottom:40px;
     width:400px;
+    margin-top:30px;
     border-radius: 5px;
     box-shadow: 0px 0px 1px 1px rgba(71, 71, 71, 0.581);
 }
@@ -198,8 +198,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 0;
-        margin-top:30px;
     }
 
 }
