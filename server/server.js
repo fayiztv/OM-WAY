@@ -9,6 +9,8 @@ import adminRouter from './routers/adminRouter.js'
 import userRouter from './routers/userRouter.js'
 import guideAuthRouter from './routers/guideAuthRouter.js'
 import guideRouter from './routers/guideRouter.js'
+import chatRouter from './routers/chatRouter.js'
+import MessageRouter from './routers/messageRouter.js'
 import verifyAdmin from './middlewares/verifyAdmin.js';
 import verifyUser from './middlewares/verifyUser.js';
 import verifyGuide from './middlewares/verifyGuide.js';
@@ -20,6 +22,9 @@ app.use(express.json({limit: '50mb'}))
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.resolve()+"/public"))
+
+
+
 app.use(
   cors({
     origin: [ 
@@ -30,12 +35,18 @@ app.use(
 );
 dbConnect();
 
+
+
 app.use('/admin/auth/',adminAuthRouter)
 app.use("/admin",verifyAdmin,adminRouter)
 app.use('/user/auth/',userAuthRouter)
 app.use('/user',verifyUser,userRouter)
 app.use('/guide/auth/',guideAuthRouter)
 app.use('/guide',verifyGuide,guideRouter)
+app.use('/chat',chatRouter)
+app.use('/message',MessageRouter)
+
+
  
 
 

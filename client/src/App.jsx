@@ -31,6 +31,7 @@ import UserGuideDeatils from "./components/UserGuideDetails/UserGuideDeatils";
 import UserBookings from "./components/UserBookings/UserBookings";
 import UserBookingDetails from "./components/UserBookingDetails/UserBookingDetails";
 import ErrorPage from "./pages/ErrorPage";
+import Chat from "./components/Chat/Chat";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:2004/";
@@ -95,6 +96,7 @@ function App() {
             <Route path="/guide-details/:id" element={<UserGuideDeatils />} />
             <Route path="/bookings" element={<UserBookings />} />
             <Route path="/booking-details/:id" element={<UserBookingDetails />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/sign-up" element={<Navigate to="/" />} />

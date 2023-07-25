@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
 import { Rating } from "@mui/material";
 import UserBottom from "../UserBottom/UserBottom";
+import { useSelector } from "react-redux";
 
 function UserGuideDeatils() {
   const [guide, setGuide] = useState([]);
@@ -52,6 +53,31 @@ function UserGuideDeatils() {
   const handlePaginationClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const user=useSelector((state)=>{
+    return state.user.detials
+  });
+
+  
+  const guideId = guide._id
+  const userId = user._id
+
+
+  const handleChat = async()=>{
+    try {
+      const { data } = await axios.post('/chat',{
+        guideId,
+        userId
+      })
+      if (!data.err) {
+        navigate('/chat');
+      } else {
+        console.log(data.err);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
 
   return (
@@ -95,6 +121,7 @@ function UserGuideDeatils() {
               {new Date(guide.createdAt).toString().slice(0, 16)}
             </span>
           </p>
+          <button onClick={handleChat}>chat with me</button>
         </div>
         <div className="guide-textes-details">
           <div className="details-1">

@@ -17,7 +17,6 @@ const UserNavbar = () => {
 
   const user=useSelector((state)=>{
     return state.user.detials
-
   });
   const dispatch=useDispatch();
   async function handleLogout(e) { 

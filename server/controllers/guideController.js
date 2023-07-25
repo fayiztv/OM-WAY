@@ -226,3 +226,14 @@ export async function deleteBooking(req, res) {
     return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
+
+export async function getGuide(req,res){
+  try {
+    const id = req.params.id
+    const guide = await GuideModel.findById({_id:id})
+    res.json({ err: false, guide });
+  } catch (err) {
+    console.log(err);
+    return res.json({ err: true, message: "Something went wrong", error: err });
+  }
+}

@@ -3,6 +3,7 @@ import {
   addPackage,
   deleteBooking,
   deletePackage,
+  getGuide,
   getGuideBookings,
   getGuidePackages,
   getGuideProfileEdit,
@@ -31,5 +32,6 @@ router.patch("/booking/upcoming", setUpcoming);
 router.get("/reviews/:id", guideReviews);
 router.patch("/booking/delete", deleteBooking);
 router.get("/dashboard/:id",guideDashboard)
+router.get("/get-guide/:id",getGuide)
 
 export default router;
