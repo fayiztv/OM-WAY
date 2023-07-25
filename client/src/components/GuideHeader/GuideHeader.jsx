@@ -47,6 +47,9 @@ function GuideHeader() {
           <li>
             <Link to="/guide/reviews">Reviews</Link>
           </li>
+          <li>
+            <Link to="/guide/chat">Chat</Link>
+          </li>
         </ul>
       </div>
       <div className="profile">

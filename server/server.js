@@ -15,6 +15,9 @@ import verifyAdmin from './middlewares/verifyAdmin.js';
 import verifyUser from './middlewares/verifyUser.js';
 import verifyGuide from './middlewares/verifyGuide.js';
 import 'dotenv/config'
+import { Server } from 'socket.io';
+import http from "http"
+
 
 const app=express();
 
@@ -25,6 +28,55 @@ app.use(express.static(path.resolve()+"/public"))
 
 
 
+
+/////////////// socket io ////////////////////
+
+const server = http.createServer(app)
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:4000",
+  },
+});
+
+let acitveUsers = []
+
+io.on("connection",(socket)=>{
+  
+  //add new user
+  socket.on("new-user-add", (newUserId) => {
+    // if user is not added previously
+    if (!acitveUsers.some((user) => user.userId === newUserId)) {
+      acitveUsers.push({ userId: newUserId, socketId: socket.id });
+    }
+    // send all active users to new user
+    io.emit("get-users", acitveUsers);
+  });
+
+  socket.on("disconnect", () => {
+    // remove user from active users
+    acitveUsers = acitveUsers.filter((user) => user.socketId !== socket.id);
+    // send all active users to all users
+    io.emit("get-users", acitveUsers);
+  });
+
+  // send message to a specific user
+  socket.on("send-message", (data) => {
+    console.log('dataaaaa');
+    const { receiverId } = data;
+    const user = acitveUsers.find((user) => user.userId === receiverId);
+    console.log("Sending from socket to :", receiverId)
+    console.log("Data: ", data)
+    if (user) {
+      io.to(user.socketId).emit("recieve-message", data);
+    }
+  });
+})
+
+
+
+////////////////////////////////////////////////
+
 app.use(
   cors({
     origin: [ 
@@ -34,9 +86,6 @@ app.use(
   })
 );
 dbConnect();
-
-
-
 app.use('/admin/auth/',adminAuthRouter)
 app.use("/admin",verifyAdmin,adminRouter)
 app.use('/user/auth/',userAuthRouter)
@@ -50,6 +99,6 @@ app.use('/message',MessageRouter)
  
 
 
-app.listen(2004,()=>{
+server.listen(2004,()=>{
     console.log("server running on port 2004");
 })

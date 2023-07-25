@@ -160,3 +160,14 @@ export async function cancelbooking(req, res) {
       return res.json({ err: true, message: "Something went wrong", error: err })
   }
 }
+
+export async function getUser(req,res){
+  try {
+    const id = req.params.id
+    const user = await UserModel.findById({_id:id})
+    res.json({ err: false, user });
+  } catch (err) {
+    console.log(err);
+    return res.json({ err: true, message: "Something went wrong", error: err });
+  }
+}

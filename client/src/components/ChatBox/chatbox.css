@@ -1,5 +1,5 @@
 .ChatBox-container {
-    background: var(--cardColor);
+    background: rgba(255, 255, 255, 0.64);
     border-radius: 1rem;
     display: grid;
     grid-template-rows: 14vh 60vh 13vh;
@@ -21,7 +21,7 @@
 
 .message {
 
-  background: var(--buttonBg);
+  background: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
   color: white;
   padding: 0.7rem;
   border-radius: 1rem 1rem 1rem 0;
@@ -34,7 +34,7 @@
 
 .message>span:nth-child(2){
     font-size: 0.7rem;
-    color: var(--textColor);
+    color:white;
     align-self: end;
 }
 

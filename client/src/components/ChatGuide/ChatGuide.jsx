@@ -1,21 +1,20 @@
 import React, { useRef, useState } from "react";
-import ChatBox from "../ChatBox/ChatBox";
-import Conversation from "../Conversation/Conversation";
+import ChatBoxGuide from "../ChatBoxGuide/ChatBoxGuide";
+import ConversationGuide from "../ConversationGuide/ConversationGuide";
 // import LogoSearch from "../../components/LogoSearch/LogoSearch";
 // import NavIcons from "../../components/NavIcons/NavIcons";
-import "./chat.css";
+import "../Chat/chat.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import axios from "axios";
-import UserNavbar from "../UserNavBar/UserNavBar";
 
-const Chat = () => {
+const ChatGuide = () => {
   const dispatch = useDispatch();
   const socket = useRef();
 
-  const user=useSelector((state)=>{
-    return state.user.detials
+  const guide=useSelector((state)=>{
+    return state.guide.detials
   });
 
 
@@ -26,29 +25,30 @@ const Chat = () => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   const [receiver , setReceiver] = useState("")
 
+
   // Get the chat in chat section
   useEffect(() => {
     const getChats = async () => {
       try {
-        const { data } = await axios.get('/chat/'+user._id);
+        const { data } = await axios.get('/chat/'+guide._id);
         setChats(data);
       } catch (error) {
         console.log(error);
       }
     };
     getChats();
-  }, [user._id]);
+  }, [guide._id]);
 
 
 
   // Connect to Socket.io
   useEffect(() => {
     socket.current = io("ws://localhost:2004/");
-    socket.current.emit("new-user-add", user._id);
+    socket.current.emit("new-user-add", guide._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
     });
-  }, [user]);
+  }, [guide]);
 
   // Send Message to socket server
   useEffect(() => {
@@ -67,20 +67,18 @@ const Chat = () => {
     );
   }, []);
 
-  console.log(sendMessage,'send message');
-
 
   const checkOnlineStatus = (chat) => {
-    const chatMember = chat.members.find((member) => member !== user._id);
-    const online = onlineUsers.find((user) => user.userId === chatMember);
+    const chatMember = chat.members.find((member) => member !== guide._id);
+    const online = onlineUsers.find((user) => guide.guideId === chatMember);
     return online ? true : false;
   };
 
   return (
-    <div className="user-main">
-      <UserNavbar />
     <div className="Chat">
+      {/* Left Side */}
       <div className="Left-side-chat">
+        {/* <LogoSearch /> */}
         <div className="Chat-container">
           <h2>Chats</h2>
           <div className="Chat-list">
@@ -90,10 +88,10 @@ const Chat = () => {
                   setCurrentChat(chat);
                 }}
               >
-                <Conversation
+                <ConversationGuide
                   key={i}
                   data={chat}
-                  currentUser={user._id}
+                  currentUser={guide._id}
                   online={checkOnlineStatus(chat)}
                 />
               </div>
@@ -108,17 +106,16 @@ const Chat = () => {
         <div style={{ width: "20rem", alignSelf: "flex-end" }}>
           {/* <NavIcons /> */}
         </div>
-        <ChatBox
+        <ChatBoxGuide
           chat={currentChat}
-          currentUser={user._id}
+          currentUser={guide._id}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
           setReceiver={setReceiver}
         />
       </div>
     </div>
-    </div>
   );
 };
 
-export default Chat;
+export default ChatGuide;

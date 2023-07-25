@@ -3,6 +3,7 @@ import {
   addComplaint,
   cancelbooking,
   checkGuideAvailability,
+  getUser,
   getUserBookingDetails,
   getUserBookings,
   getUserGuideDetails,
@@ -38,5 +39,6 @@ router.post("/payment/verify", verifyPayment);
 router.post("/guide-rating", userGuideRating);
 router.post("/guide/available", checkGuideAvailability)
 router.post("/booking/cancel", cancelbooking);
+router.get("/get-user/:id",getUser)
 
 export default router;

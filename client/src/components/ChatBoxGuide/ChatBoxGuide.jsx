@@ -1,87 +1,99 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import "./chatbox.css";
+import "../ChatBox/chatbox.css";
 import { format } from "timeago.js";
-import InputEmoji from "react-input-emoji";
+import InputEmoji from 'react-input-emoji'
 import axios from "axios";
 
-const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setReceiver}) => {
-  const [guideData, setGuideData] = useState(null);
-  const [messages, setMessages] = useState([]);
+const ChatBoxGuide = ({ chat, currentUser, setSendMessage,  receivedMessage , setReceiver}) => {
+  const [userData, setUserData] = useState(null);
+  const [messages, setMessages] = useState([]);;
   const [newMessage, setNewMessage] = useState("");
 
-  console.log('messdfhashfkd',messages);
-
-  const handleChange = (newMessage) => {
-    setNewMessage(newMessage);
-  };
+  const handleChange = (newMessage)=> {
+    setNewMessage(newMessage)
+  }
 
   setReceiver(chat?.members.find((id)=> id !== currentUser))
 
   useEffect(() => {
-    const guideId = chat?.members?.find((id) => id !== currentUser);
-    console.log(guideId, "ghuideid");
-    const getGuideData = async () => {
+    const userId = chat?.members?.find((id) => id !== currentUser);
+    console.log(userId,"userId");
+    const getUserData = async () => {
       try {
-        const { data } = await axios.get("guide/get-guide/" + guideId);
-        console.log(data.guide);
-        setGuideData(data.guide);
+        const { data } = await axios.get("/user/get-user/"+userId);
+        console.log(data.user);
+        setUserData(data.user);
       } catch (error) {
         console.log(error);
       }
     };
-    if (chat !== null) getGuideData();
+    if (chat !== null) 
+    getUserData();
   }, [chat, currentUser]);
 
   // fetch messages
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const { data } = await axios.get("/message/" + chat._id);
+        const { data } = await axios.get("/message/"+chat._id);
         setMessages(data.result);
       } catch (error) {
         console.log(error);
       }
     };
 
-    if (chat !== null) fetchMessages();
+    if (chat !== null) 
+    fetchMessages();
   }, [chat]);
 
+
   // Always scroll to last Message
-  useEffect(() => {
+  useEffect(()=> {
     scroll.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  },[messages])
+
+
 
   // Send Message
-  const handleSend = async (e) => {
-    e.preventDefault();
+  const handleSend = async(e)=> {
+     e.preventDefault()
     const message = {
-      senderId: currentUser,
+      senderId : currentUser,
       text: newMessage,
       chatId: chat._id,
-    };
+  }
 
-    const receiverId = chat.members.find((id) => id !== currentUser);
-    // send message to socket server
-    setSendMessage({ ...message, receiverId });
+  
+  const receiverId = chat.members.find((id)=>id!==currentUser);
+  // send message to socket server
+  console.log(setSendMessage);
+  setSendMessage({...message, receiverId})
 
-    // send message to database
-    try {
-      const { data } = await axios.post("/message", message);
-      console.log('dataaaa',data);
-      setMessages([...messages, data.result]);
-      setNewMessage("");
-    } catch {
-      console.log("error");
-    }
-  };
 
-  // Receive Message from parent component
-  useEffect(() => {
-    if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-      setMessages([...messages, receivedMessage]);
-    }
-  }, [receivedMessage]);
+  // send message to database
+  try {
+    const { data } = await axios.post("/message",message);
+    setMessages([...messages, data.result]);
+    setNewMessage("");
+  }
+  catch
+  {
+    console.log("error")
+  }
+}
+
+// Receive Message from parent component
+useEffect(()=> {
+  if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
+    setMessages([...messages, receivedMessage]);
+  }
+
+},[receivedMessage])
+
+console.log(messages,'mesageeeeeeeeeeee');
+
+
 
   const scroll = useRef();
   const imageRef = useRef();
@@ -95,8 +107,8 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
                 <div>
                   <img
                     src={
-                      guideData?.image?.url
-                        ? guideData.image.url
+                        userData?.profilePicture
+                        ? userData.profilePicture
                         : "defaultProfile.png"
                     }
                     alt="Profile"
@@ -104,7 +116,9 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
                     style={{ width: "50px", height: "50px" }}
                   />
                   <div className="name" style={{ fontSize: "0.9rem" }}>
-                    <span>{guideData?.firstName}</span>
+                    <span>
+                      {userData?.name}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -116,12 +130,10 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
                 }}
               />
             </div>
-            {/* chat-body */}
-            <div className="chat-body">
+            <div className="chat-body" >
               {messages.map((message) => (
                 <>
-                  <div
-                    ref={scroll}
+                  <div ref={scroll}
                     className={
                       message.senderId === currentUser
                         ? "message own"
@@ -137,8 +149,11 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
             {/* chat-sender */}
             <div className="chat-sender">
               <div onClick={() => imageRef.current.click()}>+</div>
-              <InputEmoji value={newMessage} onChange={handleChange} />
-                <button className="send-button button" onClick={handleSend}>Send</button>
+              <InputEmoji
+                value={newMessage}
+                onChange={handleChange}
+              />
+              <div className="send-button button" onClick = {handleSend}>Send</div>
               <input
                 type="file"
                 name=""
@@ -158,4 +173,4 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
   );
 };
 
-export default ChatBox;
+export default ChatBoxGuide;
