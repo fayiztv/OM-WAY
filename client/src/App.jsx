@@ -27,7 +27,7 @@ import UserPackages from "./components/UserPackages/UserPackages";
 import UserPackageDetails from "./components/UserPackageDetails/UserPackageDetails";
 import UserEditProfile from "./components/UserEditProfile/UserEditProfile";
 import GuideEditProfile from "./components/GuideEditProfile/GuideEditProfile";
-import UserGuideDeatils from "./components/UserGuideDetails/UserGuideDeatils";
+import UserGuideDetails from "./components/UserGuideDetails/UserGuideDetails";
 import UserBookings from "./components/UserBookings/UserBookings";
 import UserBookingDetails from "./components/UserBookingDetails/UserBookingDetails";
 import ErrorPage from "./pages/ErrorPage";
@@ -94,7 +94,7 @@ function App() {
             <Route path="/guides" element={<UserGuidesPage />} />
             <Route path="/packages" element={<UserPackages />} />
             <Route path="/package-details/:id" element={<UserPackageDetails />} />
-            <Route path="/guide-details/:id" element={<UserGuideDeatils />} />
+            <Route path="/guide-details/:id" element={<UserGuideDetails />} />
             <Route path="/bookings" element={<UserBookings />} />
             <Route path="/booking-details/:id" element={<UserBookingDetails />} />
             <Route path="/chat" element={<Chat />} />
