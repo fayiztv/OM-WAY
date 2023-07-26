@@ -125,17 +125,44 @@ const ChatBox = ({
             <div className="chat-body">
               {messages.map((message) => (
                 <>
+                {
+                  message.senderId === currentUser ? 
                   <div
-                    ref={scroll}
+                  className="own-message-body">
+                  <div ref={scroll} className="message">
+                    <span>{message.text}</span>{" "}
+                  </div>
+                  <p style={{ fontSize: "10px" }}>
+                    {format(message.createdAt)}
+                  </p>
+                </div>
+                :
+
+                <div
+                className="message-body">
+                <div ref={scroll} className="message">
+                  <span>{message.text}</span>{" "}
+                </div>
+                <p style={{ fontSize: "10px" }}>
+                  {format(message.createdAt)}
+                </p>
+              </div>
+
+                }
+                  {/* <div
                     className={
                       message.senderId === currentUser
-                        ? "message own"
-                        : "message"
+                        ? "own-message-body"
+                        : "message-body"
                     }
                   >
-                    <span>{message.text}</span>{" "}
-                    <span style={{fontSize:'10px'}}>{format(message.createdAt)}</span>
-                  </div>
+                    <div ref={scroll} className="message">
+                      <span>{message.text}</span>{" "}
+                    </div>
+                    <span style={{ fontSize: "10px" }}>
+                      {format(message.createdAt)}
+                    </span>
+                  </div> */}
                 </>
               ))}
             </div>
