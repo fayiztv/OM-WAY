@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./guidehome.css";
 import GuideHeader from "../GuideHeader/GuideHeader.jsx";
-import profile from "../../assets/images/face1.jpg";
+import profile from "../../assets/images/face1.png";
 import { FiEdit2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";

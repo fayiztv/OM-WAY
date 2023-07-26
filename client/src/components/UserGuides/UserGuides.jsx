@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import "./userguides.css";
-import profile from "../../assets/images/face1.jpg";
+import profile from "../../assets/images/face1.png";
 import { Link, useNavigate } from "react-router-dom";
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'

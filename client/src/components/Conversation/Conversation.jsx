@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import profile from "../../assets/images/profile2.png";
+import profile from "../../assets/images/face1.png";
 
 const Conversation = ({ data, currentUser, online }) => {
   const [guideData, setGuideData] = useState(null);
@@ -26,17 +26,22 @@ const Conversation = ({ data, currentUser, online }) => {
   return (
     <>
       <div className="follower conversation">
-        <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
-            src={
-              guideData?.image?guideData.image:profile
-            }
+            src={guideData?.image ? guideData.image : profile}
             alt="Profile"
             className="followerImage"
-            style={{ width: "50px", height: "50px",borderRadius:'100%'}}
-            />
-            {online && <div className="online-dot"></div>}
-          <div className="name" style={{ fontSize: "0.8rem" ,display:'flex',flexDirection:'column'}}>
+            style={{ width: "50px", height: "50px", borderRadius: "100%" }}
+          />
+          {online && <div className="online-dot"></div>}
+          <div
+            className="name"
+            style={{
+              fontSize: "0.8rem",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <span>{guideData?.firstName}</span>
             <span style={{ color: online ? "#51e200" : "" }}>
               {online ? "Online" : "."}
@@ -44,7 +49,9 @@ const Conversation = ({ data, currentUser, online }) => {
           </div>
         </div>
       </div>
-      <hr style={{ width: "85%", border: "0.1px solid #ececec",margin:'0px'}} />
+      <hr
+        style={{ width: "85%", border: "0.1px solid #ececec", margin: "0px" }}
+      />
     </>
   );
 };

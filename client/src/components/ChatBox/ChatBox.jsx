@@ -4,23 +4,26 @@ import "./chatbox.css";
 import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
 import axios from "axios";
-import { MdSend } from 'react-icons/md';
-import profile from "../../assets/images/profile2.png";
-import message from "../../assets/images/message.png"
+import { MdSend } from "react-icons/md";
+import profile from "../../assets/images/face1.png";
+import message from "../../assets/images/message.png";
 
-
-const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setReceiver}) => {
+const ChatBox = ({
+  chat,
+  currentUser,
+  setSendMessage,
+  receivedMessage,
+  setReceiver,
+}) => {
   const [guideData, setGuideData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-
-  console.log('messdfhashfkd',messages);
 
   const handleChange = (newMessage) => {
     setNewMessage(newMessage);
   };
 
-  setReceiver(chat?.members.find((id)=> id !== currentUser))
+  setReceiver(chat?.members.find((id) => id !== currentUser));
 
   useEffect(() => {
     const guideId = chat?.members?.find((id) => id !== currentUser);
@@ -72,7 +75,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
     // send message to database
     try {
       const { data } = await axios.post("/message", message);
-      console.log('dataaaa',data);
+      console.log("dataaaa", data);
       setMessages([...messages, data.result]);
       setNewMessage("");
     } catch {
@@ -88,7 +91,6 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
   }, [receivedMessage]);
 
   const scroll = useRef();
-  const imageRef = useRef();
   return (
     <>
       <div className="ChatBox-container">
@@ -96,29 +98,30 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
           <>
             <div className="chat-header">
               <div className="header-1">
-                
-                  <img
-            src={
-              guideData?.image?guideData.image:profile
-            }
-            alt="Profile"
-            className="followerImage"
-            style={{ width: "50px", height: "50px",borderRadius:'100%',marginLeft:'20px' }}
-            />
-                  <div className="name" style={{ fontSize: "0.9rem" }}>
-                    <span>{guideData?.firstName}</span>
-            </div>
-                  </div>
+                <img
+                  src={guideData?.image ? guideData.image : profile}
+                  alt="Profile"
+                  className="followerImage"
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "100%",
+                    marginLeft: "20px",
+                  }}
+                />
+                <div className="name" style={{ fontSize: "0.9rem" }}>
+                  <span>{guideData?.firstName}</span>
+                </div>
+              </div>
               <hr
                 style={{
                   width: "94%",
                   border: "0.1px solid rgb(186 186 186)",
                   marginTop: "13px",
-                  marginLeft:"20px"
+                  marginLeft: "20px",
                 }}
-                />
+              />
             </div>
-            {/* chat-body */}
             <div className="chat-body">
               {messages.map((message) => (
                 <>
@@ -131,7 +134,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
                     }
                   >
                     <span>{message.text}</span>{" "}
-                    <span>{format(message.createdAt)}</span>
+                    <span style={{fontSize:'10px'}}>{format(message.createdAt)}</span>
                   </div>
                 </>
               ))}
@@ -143,11 +146,10 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
           </>
         ) : (
           <div className="empty-div">
-          <span className="chatbox-empty-message">
-            Tap on a chat to start conversation...
-          </span>
+            <span className="chatbox-empty-message">
+              Tap on a chat to start conversation...
+            </span>
             <img src={message} alt="" />
-            
           </div>
         )}
       </div>

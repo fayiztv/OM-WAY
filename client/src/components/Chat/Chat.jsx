@@ -58,14 +58,12 @@ const Chat = () => {
   // Get the message from socket server
   useEffect(() => {
     socket.current.on("recieve-message", (data) => {
-      console.log(data)
       setReceivedMessage(data);
     }
 
     );
   }, []);
 
-  console.log(sendMessage,'send message');
 
 
   const checkOnlineStatus = (chat) => {

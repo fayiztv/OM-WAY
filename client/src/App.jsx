@@ -115,6 +115,7 @@ function App() {
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
           <Route path='/bookings' element={<Navigate to='/login'/>}/>
           <Route path='/booking-details/:id' element={<Navigate to='/login'/>}/>
+          <Route path='/chat' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginpage/>} />
           <Route path='/sign-up' element={<UserSignupPage/>}/>
           <Route path='/forgot-password' element={<UserForgotPage/>}/>
@@ -150,6 +151,7 @@ function App() {
           <Route path="/guide/bookings" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/reviews" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/edit-profile:/id" element={<Navigate to="/guide/login"/>}/>
+          <Route path="/guide/chat" element={<Navigate to="/guide/login"/>}/>
           <Route path="/guide/login" element={<GuideLoginPage/>}/>
           <Route path="/guide/register" element={<GuideRegisterPage/>}/>
           </>

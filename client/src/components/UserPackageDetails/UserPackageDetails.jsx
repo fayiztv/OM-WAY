@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import UserNavbar from "../UserNavBar/UserNavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import "./packagedetails.css";
-import profile from "../../assets/images/face1.jpg";
+import profile from "../../assets/images/face1.png";
 import UserBottom from "../UserBottom/UserBottom";
 import { Link } from "react-router-dom";
 import { AiFillRightCircle } from "react-icons/ai";

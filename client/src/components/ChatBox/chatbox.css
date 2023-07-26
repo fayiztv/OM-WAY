@@ -20,7 +20,6 @@
     margin-top:40px;
     gap:10px;
     height:100%;
-
 }
 
 .chat-body {
@@ -42,9 +41,8 @@
   }
 
 .message {
-
-  background: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
-  color: white;
+  background-color: #80808038;
+  color: rgb(0, 0, 0);
   padding: 0.7rem;
   border-radius: 1rem 1rem 1rem 0;
   max-width: 28rem;
@@ -56,7 +54,7 @@
 
 .message>span:nth-child(2){
     font-size: 0.7rem;
-    color:white;
+    color:rgb(0, 0, 0);
     align-self: end;
 }
 
@@ -64,7 +62,7 @@
   align-self: flex-end;
   width:fit-content;
   border-radius: 1rem 1rem 0 1rem;
-  background: linear-gradient(98.63deg, #14505C 0%, #11d5bb 100%);
+  background-color: #80808038;
 }
 
 
