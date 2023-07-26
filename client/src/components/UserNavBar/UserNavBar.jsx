@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Complaint from "../../modals/Complaint/Complaint";
-
+import { FaPaperPlane } from 'react-icons/fa';
 
 const UserNavbar = () => {
 
@@ -59,11 +59,13 @@ const UserNavbar = () => {
         </ul>
       </div>
       <div className="profile">
+     <Link to={'/chat'}><FaPaperPlane style={{marginRight:'10px',cursor:'pointer',color:'#147E7D'}}/></Link> 
         <FontAwesomeIcon className="user-icon" icon={faUser} />
         <NavDropdown
           className="nav-dropdown"
           title={user.name}
           >
+          <NavDropdown.Item><Link to={'/chat'}>Messages</Link></NavDropdown.Item>
           <NavDropdown.Item><Link to={'/edit-profile/'+user._id}>Profile</Link></NavDropdown.Item>
           <NavDropdown.Item onClick={()=>{setShowModal(true)}}>Register complaint</NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

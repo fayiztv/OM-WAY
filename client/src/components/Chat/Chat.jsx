@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
 import Conversation from "../Conversation/Conversation";
-// import LogoSearch from "../../components/LogoSearch/LogoSearch";
-// import NavIcons from "../../components/NavIcons/NavIcons";
 import "./chat.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -82,7 +80,7 @@ const Chat = () => {
     <div className="Chat">
       <div className="Left-side-chat">
         <div className="Chat-container">
-          <h2>Chats</h2>
+          <h4 style={{marginTop:'20px',marginLeft:'20px'}}>Messages</h4>
           <div className="Chat-list">
             {chats.map((chat,i) => (
               <div
@@ -101,13 +99,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
-
-      {/* Right Side */}
-
       <div className="Right-side-chat">
-        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
-          {/* <NavIcons /> */}
-        </div>
         <ChatBox
           chat={currentChat}
           currentUser={user._id}

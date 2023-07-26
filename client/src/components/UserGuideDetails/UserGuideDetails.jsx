@@ -113,7 +113,7 @@ function UserGuideDeatils() {
             </span>
           </div>
           <p className="contact" style={{marginTop:'1rem'}}>Contact : <span className="text-success" style={{ marginLeft: "12px" }}>{guide.contact}</span></p>
-          <p className="star" style={{marginTop:'1rem'}}>Rating : { rating && < Rating style={{ marginLeft: "12px",marginTop:'3px'}} name="read-only" value={rating} readOnly size='small' />}</p>
+          <p className="star">Rating : { rating && < Rating style={{ marginLeft: "12px",marginTop:'3px'}} name="read-only" value={rating} readOnly size='small' />}</p>
            <p className="profile-member-since" style={{marginTop:'1rem'}}>
             Member since :
             <span style={{ marginLeft: "12px" }} className="text-success">
@@ -121,7 +121,7 @@ function UserGuideDeatils() {
               {new Date(guide.createdAt).toString().slice(0, 16)}
             </span>
           </p>
-          <button onClick={handleChat}>chat with me</button>
+          <p><button style={{width:'290px',border:'none',backgroundColor:'#137879'}} onClick={handleChat}>Message</button></p>
         </div>
         <div className="guide-textes-details">
           <div className="details-1">
@@ -170,7 +170,7 @@ function UserGuideDeatils() {
       </div>
       <div
         className="packages-head"
-        style={{ marginLeft: "200px", bottom: "0", marginTop: "10px" }}
+        style={{ marginLeft: "200px", bottom: "0" }}
       >
         <h3>Packages by {guide.firstName}</h3>
       </div>
@@ -182,7 +182,7 @@ function UserGuideDeatils() {
                 <Link to={"/package-details/" + item._id}>
                   <div
                     className="pkg-details"
-                    style={{ width: "500px", marginLeft: "60px" }}
+                    style={{ width: "600px", marginLeft: "60px" }}
                   >
                     <div className="pkg-image">
                       <img src={item.image && item.image.url} alt="" />

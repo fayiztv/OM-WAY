@@ -4,6 +4,10 @@ import "./chatbox.css";
 import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
 import axios from "axios";
+import { MdSend } from 'react-icons/md';
+import profile from "../../assets/images/profile2.png";
+import message from "../../assets/images/message.png"
+
 
 const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setReceiver}) => {
   const [guideData, setGuideData] = useState(null);
@@ -91,30 +95,28 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
         {chat ? (
           <>
             <div className="chat-header">
-              <div className="follower">
-                <div>
+              <div className="header-1">
+                
                   <img
-                    src={
-                      guideData?.image?.url
-                        ? guideData.image.url
-                        : "defaultProfile.png"
-                    }
-                    alt="Profile"
-                    className="followerImage"
-                    style={{ width: "50px", height: "50px" }}
-                  />
+            src={
+              guideData?.image?guideData.image:profile
+            }
+            alt="Profile"
+            className="followerImage"
+            style={{ width: "50px", height: "50px",borderRadius:'100%',marginLeft:'20px' }}
+            />
                   <div className="name" style={{ fontSize: "0.9rem" }}>
                     <span>{guideData?.firstName}</span>
+            </div>
                   </div>
-                </div>
-              </div>
               <hr
                 style={{
-                  width: "95%",
-                  border: "0.1px solid #ececec",
-                  marginTop: "20px",
+                  width: "94%",
+                  border: "0.1px solid rgb(186 186 186)",
+                  marginTop: "13px",
+                  marginLeft:"20px"
                 }}
-              />
+                />
             </div>
             {/* chat-body */}
             <div className="chat-body">
@@ -134,24 +136,19 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage , setRecei
                 </>
               ))}
             </div>
-            {/* chat-sender */}
             <div className="chat-sender">
-              <div onClick={() => imageRef.current.click()}>+</div>
               <InputEmoji value={newMessage} onChange={handleChange} />
-                <button className="send-button button" onClick={handleSend}>Send</button>
-              <input
-                type="file"
-                name=""
-                id=""
-                style={{ display: "none" }}
-                ref={imageRef}
-              />
-            </div>{" "}
+              <MdSend className="send-button" onClick={handleSend} />
+            </div>
           </>
         ) : (
+          <div className="empty-div">
           <span className="chatbox-empty-message">
             Tap on a chat to start conversation...
           </span>
+            <img src={message} alt="" />
+            
+          </div>
         )}
       </div>
     </>

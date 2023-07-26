@@ -23,7 +23,6 @@ export async function createChat(req, res) {
         res.json({ err: false, result });
         
     } catch (err) {
-        console.log(err);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 
@@ -38,7 +37,6 @@ export async function userChats(req,res){
         res.status(200).json(chat)
         
     } catch (error) {
-        console.log(error);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }
@@ -52,7 +50,6 @@ export async function findChat(req,res){
         res.status(200).json(chat)
 
     } catch (error) {
-        console.log(error);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }

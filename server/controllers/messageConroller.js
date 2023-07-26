@@ -14,7 +14,6 @@ export async function addMessage(req,res){
         res.json({ err: false, result });
 
     } catch (error) {
-        console.log(error);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }
@@ -26,7 +25,6 @@ export async function getMessage(req,res){
         res.json({ err: false, result });      
         
     } catch (error) {
-        console.log(error);
         return res.json({ err: true, message: "Something went wrong", error: err })
     }
 }
