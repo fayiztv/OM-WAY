@@ -86,11 +86,39 @@
   }
   
   
-  @media screen and (max-width: 768px) {
-   .Chat {
-      grid-template-columns: 16% auto;
-    }
-     .follower.conversation>div>.name{
+
+  @media (max-width: 800px) {
+    .Left-side-chat.hidden {
       display: none;
-     }
+    }
+  
+    .Right-side-chat.hidden {
+      display: none;
+    }
+
+    .Chat{
+      padding-top:10px;
+      padding: 5px !important;
+    }
+    .Left-side-chat{
+      width:98%;
+      margin-left:1%;
+      height:90vh;
+    }
+    .Chat-container{
+      gap: 5px;
+      border-radius:0px;
+    }
+    .Chat-container h4{
+      margin-top: 5px !important;
+      margin-left: 10px;
+    }
+    .Chat-list{
+      gap: 0;
+    }
+
+    .Right-side-chat{
+      margin-right: 0;
+      width:100%;
+    }
   }

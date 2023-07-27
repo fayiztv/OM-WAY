@@ -42,7 +42,7 @@ const UserNavbar = () => {
 
     <nav className="user-navbar">
       <div className="logo">
-        <img src={logo} alt="" />
+        <Link to="/"><img src={logo} alt="" /></Link>
         <ul className="nav-links">
           <li>
             <Link to="/">Home</Link>

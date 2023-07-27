@@ -7,6 +7,8 @@ import axios from "axios";
 import { MdSend } from "react-icons/md";
 import profile from "../../assets/images/face1.png";
 import message from "../../assets/images/message.png";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const ChatBox = ({
   chat,
@@ -14,6 +16,9 @@ const ChatBox = ({
   setSendMessage,
   receivedMessage,
   setReceiver,
+  setShowLeftSideChat,
+  setShowRightSideChat,
+  handleBackClick
 }) => {
   const [guideData, setGuideData] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -90,6 +95,7 @@ const ChatBox = ({
     }
   }, [receivedMessage]);
 
+
   const scroll = useRef();
   return (
     <>
@@ -98,6 +104,8 @@ const ChatBox = ({
           <>
             <div className="chat-header">
               <div className="header-1">
+                <button className="back-button" onClick={handleBackClick} ><AiOutlineArrowLeft size={20}/></button>
+                   
                 <img
                   src={guideData?.image ? guideData.image : profile}
                   alt="Profile"
@@ -106,7 +114,7 @@ const ChatBox = ({
                     width: "50px",
                     height: "50px",
                     borderRadius: "100%",
-                    marginLeft: "20px",
+                    marginLeft:'20px'
                   }}
                 />
                 <div className="name" style={{ fontSize: "0.9rem" }}>
@@ -149,25 +157,11 @@ const ChatBox = ({
               </div>
 
                 }
-                  {/* <div
-                    className={
-                      message.senderId === currentUser
-                        ? "own-message-body"
-                        : "message-body"
-                    }
-                  >
-                    <div ref={scroll} className="message">
-                      <span>{message.text}</span>{" "}
-                    </div>
-                    <span style={{ fontSize: "10px" }}>
-                      {format(message.createdAt)}
-                    </span>
-                  </div> */}
                 </>
               ))}
             </div>
             <div className="chat-sender">
-              <InputEmoji value={newMessage} onChange={handleChange} />
+              <InputEmoji multilene value={newMessage} onChange={handleChange} />
               <MdSend className="send-button" onClick={handleSend} />
             </div>
           </>

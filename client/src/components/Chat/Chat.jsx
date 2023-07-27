@@ -24,6 +24,24 @@ const Chat = () => {
   const [receivedMessage, setReceivedMessage] = useState(null);
   const [receiver , setReceiver] = useState("")
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  const [showLeftSideChat, setShowLeftSideChat] = useState(true);
+  const [showRightSideChat, setShowRightSideChat] = useState(false);
+
+  const handleConversationClick = (chat) => {
+    setCurrentChat(chat);
+    setShowLeftSideChat(false);
+    setShowRightSideChat(true);
+  };
+
+  const handleBackClick = () => {
+    setShowLeftSideChat(true);
+    setShowRightSideChat(false);
+  };
+
+  //////////////////////////////////////////////////////////////////////////////////////////
+
   // Get the chat in chat section
   useEffect(() => {
     const getChats = async () => {
@@ -76,15 +94,21 @@ const Chat = () => {
     <div className="user-main">
       <UserNavbar />
     <div className="Chat">
-      <div className="Left-side-chat">
+
+
+
+
+      {/*     left side chat         */}
+
+      <div className={showLeftSideChat ? "Left-side-chat" : "Left-side-chat hidden"}>
         <div className="Chat-container">
           <h4 style={{marginTop:'20px',marginLeft:'20px'}}>Messages</h4>
           <div className="Chat-list">
             {chats.map((chat,i) => (
               <div
-                onClick={() => {
-                  setCurrentChat(chat);
-                }}
+              onClick={() => {
+                handleConversationClick(chat);
+              }}
               >
                 <Conversation
                   key={i}
@@ -97,13 +121,20 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      <div className="Right-side-chat">
+
+
+        {/*             right side chat          */}
+
+      <div className={showRightSideChat ? "Right-side-chat" : "Right-side-chat hidden"}>
         <ChatBox
           chat={currentChat}
           currentUser={user._id}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
           setReceiver={setReceiver}
+          setShowLeftSideChat={setShowLeftSideChat}
+          setShowRightSideChat={setShowRightSideChat}
+          handleBackClick={handleBackClick}
         />
       </div>
     </div>

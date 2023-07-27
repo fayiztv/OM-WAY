@@ -124,17 +124,30 @@ const ChatBoxGuide = ({
             <div className="chat-body">
               {messages.map((message) => (
                 <>
+                {
+                  message.senderId === currentUser ? 
                   <div
-                    ref={scroll}
-                    className={
-                      message.senderId === currentUser
-                        ? "message own"
-                        : "message"
-                    }
-                  >
+                  className="own-message-body">
+                  <div ref={scroll} className="message">
                     <span>{message.text}</span>{" "}
-                    <span>{format(message.createdAt)}</span>
                   </div>
+                  <p style={{ fontSize: "10px" }}>
+                    {format(message.createdAt)}
+                  </p>
+                </div>
+                :
+
+                <div
+                className="message-body">
+                <div ref={scroll} className="message">
+                  <span>{message.text}</span>{" "}
+                </div>
+                <p style={{ fontSize: "10px" }}>
+                  {format(message.createdAt)}
+                </p>
+              </div>
+
+                }
                 </>
               ))}
             </div>
