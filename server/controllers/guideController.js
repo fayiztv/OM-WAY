@@ -233,7 +233,6 @@ export async function getGuide(req,res){
     const guide = await GuideModel.findById({_id:id})
     res.json({ err: false, guide });
   } catch (err) {
-    console.log(err);
     return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
