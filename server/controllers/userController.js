@@ -21,10 +21,11 @@ export async function getUserGuides(req, res) {
   const escapedName = escapeStringRegexp(name);
   const guides = await GuideModel.find({
     active: true,
+    block:false,
     firstName: new RegExp(escapedName, "i"),
   }).lean();
   res.json({ err: false, guides });
-}
+}     
 
 export async function getUserPackages(req, res) {
   const name = req.query.name ?? "";
@@ -32,7 +33,7 @@ export async function getUserPackages(req, res) {
   const packages = await PackageModel.find({
     destionation: new RegExp(escapedName, "i"),
   }).lean();
-  res.json({ err: false, packages });
+  res.json({ err: false, packages }); 
 }
 
 export async function getUserPackageDetails(req, res) {
