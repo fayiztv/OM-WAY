@@ -108,6 +108,7 @@
     .Chat-container{
       gap: 5px;
       border-radius:0px;
+      /* background-color: #ffff; */
     }
     .Chat-container h4{
       margin-top: 5px !important;

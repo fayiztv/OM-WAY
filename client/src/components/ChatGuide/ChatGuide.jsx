@@ -88,14 +88,14 @@ const ChatGuide = () => {
         </div>
       </div>
       <div className="Right-side-chat">
-      <ChatBoxGuide
-        chat={currentChat}
-        currentUser={guide._id}
-        setSendMessage={setSendMessage}
-        receivedMessage={receivedMessage}
-        setReceiver={setReceiver}
-      />
-    </div>
+        <ChatBoxGuide
+          chat={currentChat}
+          currentUser={guide._id}
+          setSendMessage={setSendMessage}
+          receivedMessage={receivedMessage}
+          setReceiver={setReceiver}
+        />
+      </div>
     </div>
   );
 };

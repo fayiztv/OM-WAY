@@ -55,6 +55,7 @@
     margin-bottom:10px;
     align-self: flex-end;
     margin-right:10px;
+    overflow-wrap: break-word; 
 }
 
 .message-body .message {
@@ -65,6 +66,7 @@
   max-width: 28rem;
   width: fit-content;
   margin-bottom:10px;
+  overflow-wrap: break-word; 
 }
 
 .own-message-body{
@@ -148,6 +150,15 @@
         flex-direction: column;
     }
 
+    .message-body .message{
+        max-width:250px;
+        overflow-wrap: break-word; 
+    }
+
+    .own-message-body .message{
+        max-width:250px;
+        overflow-wrap: break-word; 
+    }
     .chat-body{
         padding: 10px 1px 5px 1px;
         gap:0;

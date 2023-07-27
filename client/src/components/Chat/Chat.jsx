@@ -12,19 +12,18 @@ const Chat = () => {
   const dispatch = useDispatch();
   const socket = useRef();
 
-  const user=useSelector((state)=>{
-    return state.user.detials
+  const user = useSelector((state) => {
+    return state.user.detials;
   });
-
 
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
-  const [receiver , setReceiver] = useState("")
+  const [receiver, setReceiver] = useState("");
 
-  /////////////////////////////////////////////////////////////////////////////////////////
+  // mobile responsive
 
   const [showLeftSideChat, setShowLeftSideChat] = useState(true);
   const [showRightSideChat, setShowRightSideChat] = useState(false);
@@ -40,13 +39,13 @@ const Chat = () => {
     setShowRightSideChat(false);
   };
 
-  //////////////////////////////////////////////////////////////////////////////////////////
+  // end
 
   // Get the chat in chat section
   useEffect(() => {
     const getChats = async () => {
       try {
-        const { data } = await axios.get('/chat/'+user._id);
+        const { data } = await axios.get("/chat/" + user._id);
         setChats(data);
       } catch (error) {
         console.log(error);
@@ -54,8 +53,6 @@ const Chat = () => {
     };
     getChats();
   }, [user._id]);
-
-
 
   // Connect to Socket.io
   useEffect(() => {
@@ -68,21 +65,17 @@ const Chat = () => {
 
   // Send Message to socket server
   useEffect(() => {
-    if (sendMessage!==null) {
-      socket.current.emit("send-message", sendMessage);}
+    if (sendMessage !== null) {
+      socket.current.emit("send-message", sendMessage);
+    }
   }, [sendMessage]);
-
 
   // Get the message from socket server
   useEffect(() => {
     socket.current.on("recieve-message", (data) => {
       setReceivedMessage(data);
-    }
-
-    );
+    });
   }, []);
-
-
 
   const checkOnlineStatus = (chat) => {
     const chatMember = chat.members.find((member) => member !== user._id);
@@ -93,51 +86,50 @@ const Chat = () => {
   return (
     <div className="user-main">
       <UserNavbar />
-    <div className="Chat">
-
-
-
-
-      {/*     left side chat         */}
-
-      <div className={showLeftSideChat ? "Left-side-chat" : "Left-side-chat hidden"}>
-        <div className="Chat-container">
-          <h4 style={{marginTop:'20px',marginLeft:'20px'}}>Messages</h4>
-          <div className="Chat-list">
-            {chats.map((chat,i) => (
-              <div
-              onClick={() => {
-                handleConversationClick(chat);
-              }}
-              >
-                <Conversation
-                  key={i}
-                  data={chat}
-                  currentUser={user._id}
-                  online={checkOnlineStatus(chat)}
-                />
-              </div>
-            ))}
+      <div className="Chat">
+        <div
+          className={
+            showLeftSideChat ? "Left-side-chat" : "Left-side-chat hidden"
+          }
+        >
+          <div className="Chat-container">
+            <h4 style={{ marginTop: "20px", marginLeft: "20px" }}>Messages</h4>
+            <div className="Chat-list">
+              {chats.map((chat, i) => (
+                <div
+                  onClick={() => {
+                    handleConversationClick(chat);
+                  }}
+                >
+                  <Conversation
+                    key={i}
+                    data={chat}
+                    currentUser={user._id}
+                    online={checkOnlineStatus(chat)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+
+        <div
+          className={
+            showRightSideChat ? "Right-side-chat" : "Right-side-chat hidden"
+          }
+        >
+          <ChatBox
+            chat={currentChat}
+            currentUser={user._id}
+            setSendMessage={setSendMessage}
+            receivedMessage={receivedMessage}
+            setReceiver={setReceiver}
+            setShowLeftSideChat={setShowLeftSideChat}
+            setShowRightSideChat={setShowRightSideChat}
+            handleBackClick={handleBackClick}
+          />
+        </div>
       </div>
-
-
-        {/*             right side chat          */}
-
-      <div className={showRightSideChat ? "Right-side-chat" : "Right-side-chat hidden"}>
-        <ChatBox
-          chat={currentChat}
-          currentUser={user._id}
-          setSendMessage={setSendMessage}
-          receivedMessage={receivedMessage}
-          setReceiver={setReceiver}
-          setShowLeftSideChat={setShowLeftSideChat}
-          setShowRightSideChat={setShowRightSideChat}
-          handleBackClick={handleBackClick}
-        />
-      </div>
-    </div>
     </div>
   );
 };

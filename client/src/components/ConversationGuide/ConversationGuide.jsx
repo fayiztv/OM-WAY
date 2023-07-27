@@ -50,8 +50,13 @@ const ConversationGuide = ({ data, currentUser, online }) => {
         </div>
       </div>
       <hr
-        style={{ width: "96%", border: "0.1px solid rgb(186 186 186)", marginTop: "0",marginLeft:'7px' }}
-        />
+        style={{
+          width: "96%",
+          border: "0.1px solid rgb(186 186 186)",
+          marginTop: "0",
+          marginLeft: "7px",
+        }}
+      />
     </>
   );
 };

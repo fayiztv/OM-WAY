@@ -30,7 +30,6 @@ const ChatBoxGuide = ({
     const getUserData = async () => {
       try {
         const { data } = await axios.get("/user/get-user/" + userId);
-        console.log(data.user);
         setUserData(data.user);
       } catch (error) {
         console.log(error);
@@ -69,7 +68,6 @@ const ChatBoxGuide = ({
 
     const receiverId = chat.members.find((id) => id !== currentUser);
     // send message to socket server
-    console.log(setSendMessage);
     setSendMessage({ ...message, receiverId });
 
     // send message to database
@@ -124,30 +122,25 @@ const ChatBoxGuide = ({
             <div className="chat-body">
               {messages.map((message) => (
                 <>
-                {
-                  message.senderId === currentUser ? 
-                  <div
-                  className="own-message-body">
-                  <div ref={scroll} className="message">
-                    <span>{message.text}</span>{" "}
-                  </div>
-                  <p style={{ fontSize: "10px" }}>
-                    {format(message.createdAt)}
-                  </p>
-                </div>
-                :
-
-                <div
-                className="message-body">
-                <div ref={scroll} className="message">
-                  <span>{message.text}</span>{" "}
-                </div>
-                <p style={{ fontSize: "10px" }}>
-                  {format(message.createdAt)}
-                </p>
-              </div>
-
-                }
+                  {message.senderId === currentUser ? (
+                    <div className="own-message-body">
+                      <div ref={scroll} className="message">
+                        <span>{message.text}</span>{" "}
+                      </div>
+                      <p style={{ fontSize: "10px" }}>
+                        {format(message.createdAt)}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="message-body">
+                      <div ref={scroll} className="message">
+                        <span>{message.text}</span>{" "}
+                      </div>
+                      <p style={{ fontSize: "10px" }}>
+                        {format(message.createdAt)}
+                      </p>
+                    </div>
+                  )}
                 </>
               ))}
             </div>
