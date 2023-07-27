@@ -21,6 +21,14 @@ const ChatBox = ({
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
+  const validbtn = ()=>{
+    if(newMessage.trim() === ""){
+      return false
+    }else{
+      return true
+    }
+  }
+
   const handleChange = (newMessage) => {
     setNewMessage(newMessage);
   };
@@ -156,7 +164,7 @@ const ChatBox = ({
                 value={newMessage}
                 onChange={handleChange}
               />
-              <MdSend className="send-button" onClick={handleSend} />
+              <button className="send-button" disabled={!validbtn()} onClick={handleSend}><MdSend size={20} className="send" /></button>
             </div>
           </>
         ) : (

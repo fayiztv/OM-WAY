@@ -31,7 +31,7 @@ a {
 
 button:disabled {
   background: none;
-  background-color: #14505c4d !important;
+  background-color: #14505c4d;
 }
 .admin-home{
   max-height: 100vh;

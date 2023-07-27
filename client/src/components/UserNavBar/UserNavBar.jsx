@@ -9,7 +9,8 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Complaint from "../../modals/Complaint/Complaint";
-import { FaPaperPlane } from 'react-icons/fa';
+import gif from "../../assets/images/direct.gif"
+import icon from "../../assets/images/profile.gif"
 
 const UserNavbar = () => {
 
@@ -59,9 +60,12 @@ const UserNavbar = () => {
         </ul>
       </div>
       <div className="profile">
-     <Link to={'/chat'}><FaPaperPlane style={{marginRight:'10px',cursor:'pointer',color:'#147E7D'}}/></Link> 
+     {/* <Link to={'/chat'}><FaPaperPlane style={{marginRight:'10px',cursor:'pointer',color:'#147E7D'}}/></Link>  */}
+     <Link to={'/chat'}><img style={{height:'38px',width:'38px'}} src={gif} alt="" /></Link> 
         <FontAwesomeIcon className="user-icon" icon={faUser} />
+        {/* <img className="user-icon" style={{height:'32px',width:'32px'}} src={icon} alt="" /> */}
         <NavDropdown
+          
           className="nav-dropdown"
           title={user.name}
           >

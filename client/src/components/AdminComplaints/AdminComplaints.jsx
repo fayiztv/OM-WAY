@@ -75,7 +75,7 @@ function AdminRegistrations() {
                           <td style={{ width: "400px" }}>{item.description}</td>
                           {item.mailsent === false ? <td><button onClick={() => SentMail(item.guideId?._id,item.description,item._id)}  style={{width:'100px'}}>send Mail</button></td>
                           :
-                          <td>Mail sented</td>
+                          <td>Mail Delivered</td>
                           }
                         </tr>
                       );

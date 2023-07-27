@@ -128,9 +128,11 @@
 }
 
 .send-button{
-    height:30px;
-    width:30px;
+    height:35px;
+    width:40px;
     margin-right:20px;
+    padding-right:30px;
+    border: none;
 }
 
 .header-1 .back-button{
@@ -143,7 +145,20 @@
     display: none;
 }
 
+.send-button :disabled{
+    background-color:white !important;
+}
+
+.send{
+    margin-left:-4px;
+    margin-top:-10px;
+}
+
 @media (max-width: 800px) {
+
+    .send-button{
+        margin-right: 0;
+    }
 
     .header-1 .back-button{
         display: flex;

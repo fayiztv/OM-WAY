@@ -12,6 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { ClipLoader } from "react-spinners";
+import gif from "../../assets/images/sleep.gif"
+import gif2 from "../../assets/images/calendar.gif"
 
 function UserPackageDetails() {
   const [packages, setPackages] = useState([]);
@@ -42,9 +44,10 @@ function UserPackageDetails() {
       })
       if(bookingAvailable.booking){
         Swal.fire({
-          icon: "error",
-          title: "please change date",
-          text: "Guide is not availbale on this date ",
+          title: "Oopss...",
+          html: `
+          <img src="${gif}" alt="Sleep GIF" width="200px" />
+          <h5>Guide is not availbale on this date<h5/>`,
         });
         return;
       }
@@ -206,7 +209,8 @@ function UserPackageDetails() {
             <span style={{ color: "#147E7D" }}>
               *note : kids under 10 years of age can enjoy free entry.
             </span>
-            <p style={{ marginTop: "10px" }}>select your starting date</p>
+            <p style={{ marginTop: "10px" ,marginBottom:'15px' }}>select your starting date</p>
+            <img style={{height:'35px',width:'38px'}} src={gif2} alt="" />
             <DatePicker
               placeholderText="choose date"
               dateFormat="dd/MM/yyyy"
@@ -226,6 +230,7 @@ function UserPackageDetails() {
                 <p>
                   Name : {guide.firstName} <br />
                   Contact : {guide.contact} <br /> 
+                  Member since : {new Date(guide.createdAt).toString().slice(4, 16)}
                 </p>
               </div>
             </div>
