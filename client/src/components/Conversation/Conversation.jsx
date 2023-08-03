@@ -43,7 +43,7 @@ const Conversation = ({ data, currentUser, online }) => {
           >
             <span>{guideData?.firstName}</span>
             <span style={{ color: online ? "#51e200" : "" }}>
-              {online ? "Online" : "."}
+              {online ? "Online" : "offline"}
             </span>
           </div>
         </div>
