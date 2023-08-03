@@ -36,7 +36,7 @@ const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
     origin: ["http://localhost:4000", 
-    // "https://omway.netlify.app"
+    "https://omway.netlify.app"
   ]
   },
 });
@@ -80,7 +80,7 @@ app.use(
   cors({
     origin: [ 
       "http://localhost:4000",
-      // "https://omway.netlify.app"
+      "https://omway.netlify.app"
     ],
     credentials: true,
   })
