@@ -245,7 +245,6 @@ export async function editImage(req, res) {
     );
     res.json({ err: false });
   } catch (err) {
-    console.log(err);
     res.json({ err: true });
   }
 }

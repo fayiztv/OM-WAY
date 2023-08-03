@@ -95,13 +95,13 @@ function GuidePackages() {
           Swal.fire({
             icon: "success",
             title: "yaayy..",
-            text: "updated",
+            text: "image updated",
           });
         } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "wrong",
+            text: "somthing went wrong",
           });
         }
       })();

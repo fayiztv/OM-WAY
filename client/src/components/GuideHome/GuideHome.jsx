@@ -6,6 +6,7 @@ import profile from "../../assets/images/face1.png";
 import { FiEdit2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function GuideHome() {
   const guide = useSelector((state) => {
@@ -50,10 +51,19 @@ function GuideHome() {
           image: finalImage,id
         });
         if (!data.err) {
+          Swal.fire({
+            icon: "success",
+            title: "yaayy..",
+            text: "image updated",
+          });
           dispatch({ type: "refresh" });
           return navigate("/guide/profile");
         } else {
-          navigate("/*");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "somthing went wrong",
+          });
         }
       })();
     }
