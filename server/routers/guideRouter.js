@@ -3,6 +3,7 @@ import {
   addPackage,
   deleteBooking,
   deletePackage,
+  editImage,
   getGuide,
   getGuideBookings,
   getGuidePackages,
@@ -26,6 +27,7 @@ router.post("/edit-package", postEditPackage);
 router.get("/edit-profile/:id", getGuideProfileEdit);
 router.post("/edit-profile", postGuideEditProfile);
 router.patch("/update-avatar", guideEditAvatar);
+router.patch("/update-image", editImage);
 router.get("/bookings/:id", getGuideBookings);
 router.patch("/booking/completed", setCompleted);
 router.patch("/booking/upcoming", setUpcoming);

@@ -107,10 +107,6 @@ export async function postEditPackage(req, res) {
     const { destination, price, activites, days, nights, places, descrption } =
       req.body;
 
-    const image = await cloudinary.uploader.upload(req.body.packageImage, {
-      folder: "onmyWay",
-    });
-
     await PackageModel.findByIdAndUpdate(id, {
       $set: {
         destination,
@@ -120,7 +116,6 @@ export async function postEditPackage(req, res) {
         nights,
         places,
         descrption,
-        image,
       },
     });
 
@@ -236,3 +231,22 @@ export async function getGuide(req,res){
     return res.json({ err: true, message: "Something went wrong", error: err });
   }
 }
+
+export async function editImage(req, res) {
+  try {
+    const packageImage = await cloudinary.uploader.upload(req.body.image, {
+      folder: "onmyWay",
+    });
+    let id = req.body.packageId
+
+    const updatedImage = await PackageModel.findOneAndUpdate(
+      { _id:id },
+      { $set: { image: packageImage } }
+    );
+    res.json({ err: false });
+  } catch (err) {
+    console.log(err);
+    res.json({ err: true });
+  }
+}
+

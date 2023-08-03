@@ -19,7 +19,6 @@ const Conversation = ({ data, currentUser, online }) => {
         console.log(error);
       }
     };
-
     getGuideData();
   }, []);
 

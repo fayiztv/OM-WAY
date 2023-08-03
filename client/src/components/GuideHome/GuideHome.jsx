@@ -66,7 +66,7 @@ function GuideHome() {
         <div className="overlap-4">
           <div
             className="profile-card"
-            style={{ marginLeft: "120px", marginTop: "20px" }}
+            style={{ marginLeft: "120px", marginTop: "20px",width:'30%'}}
           >
             <div className="profile-image">
              

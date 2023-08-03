@@ -17,8 +17,6 @@ function EditPackage() {
   const [nights, setNights] = useState("");
   const [places, setPlaces] = useState();
   const [descrption, setDescrption] = useState("");
-  const [image, setImage] = useState(null);
-  const [finalImage, setFinalImage] = useState(null);
   const [errMessage, setErrMessage] = useState("");
   const [loading, setLoading] = useState({
     submit: false,
@@ -42,30 +40,6 @@ function EditPackage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isValidFileUploaded = (file) => {
-    const validExtensions = ["png", "jpeg", "jpg"];
-    const fileExtension = file.type.split("/")[1];
-    return validExtensions.includes(fileExtension);
-  };
-
-  const handleImage = (e) => {
-    if (isValidFileUploaded(e.target.files[0])) {
-      setImage(e.target.files[0]);
-      setErrMessage("");
-      ImageTOBase(e.target.files[0]);
-    } else {
-      setErrMessage("Invalid File type");
-    }
-  };
-
-  const ImageTOBase = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setFinalImage(reader.result);
-    };
-  };
-
   async function handleSubmit(e) {
     e.preventDefault();
     if (validForm()) {
@@ -79,7 +53,6 @@ function EditPackage() {
           nights,
           places,
           descrption,
-          packageImage: finalImage,
           id,
         });
         if (!data.error) {
@@ -109,6 +82,8 @@ function EditPackage() {
       setDescrption(data.descrption);
     })();
   }, []);
+
+  
 
   return (
     <div className="GUID-HOME">
@@ -218,17 +193,6 @@ function EditPackage() {
                   fullWidth
                   value={descrption}
                   onChange={(e) => setDescrption(e.target.value)}
-                />
-              </div>
-              <div className="login-row w-100 mt-3">
-                <TextField
-                  className="textarea"
-                  label="Images"
-                  placeholder="Add images"
-                  variant="standard"
-                  type="file"
-                  fullWidth
-                  onChange={handleImage}
                 />
               </div>
             </div>
