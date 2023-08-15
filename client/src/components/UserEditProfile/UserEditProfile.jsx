@@ -97,7 +97,7 @@ function UserEditProfile() {
                         label="Email"
                         variant="standard"
                         type="email"
-                        disabled
+                        // disabled
                         fullWidth
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}

@@ -42,7 +42,6 @@ function UserPackageDetails() {
       const {data:bookingAvailable}= await axios.post("/user/guide/available", {
         date:selectedDate, days:packages.days, id:guideId
       })
-      console.log(bookingAvailable);
       if(bookingAvailable.booking){
         Swal.fire({
           title: "Oopss...",

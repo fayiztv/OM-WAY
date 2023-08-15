@@ -34,6 +34,20 @@ function UserLogin() {
         setLoading({...loading, submit:false})
     }
 
+    const demoLogin=async(e)=>{
+        e.preventDefault();
+        setLoading({ ...loading, submit: true })
+        let tempEmail="tvfayiztv@gmail.com"
+        let tempPassword="111"
+        const { data } = await axios.post("/user/auth/login", { email:tempEmail, password:tempPassword });
+        if (data.err) {
+            setErrMessage(data.message)
+        } else {
+            dispatch({ type: "refresh" })
+        }
+        setLoading({ ...loading, submit: false })
+    }
+
     return (
         <div className="login-main">
             <Row>
@@ -95,6 +109,14 @@ function UserLogin() {
                                             <ClipLoader size={20} color="white" loading={loading.submit} />
                                             </button>
                                     </div>
+                                    <div className="login-row">
+                                    <button type='submit' onClick={demoLogin} >
+                                            Demo Login
+                                    </button>
+                                    </div>
+
+
+                                    
                                     <div className="login-row mt-3">
                                         <Link to="/sign-up">Don't Have an Account? Signup</Link>
                                     </div>
