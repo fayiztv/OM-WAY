@@ -182,7 +182,7 @@ function UserGuideDeatils() {
                 <Link to={"/package-details/" + item._id}>
                   <div
                     className="pkg-details"
-                    style={{ width: "600px", marginLeft: "60px" }}
+                    style={{ width: "600px", marginLeft: "39px" }}
                   >
                     <div className="pkg-image">
                       <img src={item.image && item.image.url} alt="" />
