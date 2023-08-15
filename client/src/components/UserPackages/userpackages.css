@@ -149,7 +149,7 @@
 
     .pkgs-body .pkg-details{
         width:90vw;
-        margin-left:20px !important;
+        margin-left:27px;
         height:320px;
         display: flex;
         flex-direction: column;
