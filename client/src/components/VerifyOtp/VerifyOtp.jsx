@@ -24,7 +24,6 @@ function VerifyOtp(props) {
       otp,
       ...props.data,
     });
-    console.log(otp);
     if (data.err) {
       setErrMessage(data.message);
     } else {
