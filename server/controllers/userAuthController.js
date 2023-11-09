@@ -24,7 +24,7 @@ export async function userRegister(req,res){
             secure: true,
             maxAge: 1000 * 60,
             sameSite: "none",
-        }).json({ err: false })
+        }).json({ err: false , otp })
 
     }catch(err){
         res.json({ err: true, error: err, message: "something went wrong" })
