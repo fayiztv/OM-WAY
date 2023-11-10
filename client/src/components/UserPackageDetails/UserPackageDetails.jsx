@@ -24,8 +24,8 @@ function UserPackageDetails() {
   const { id } = useParams();
   const [guestes, setGuestes] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
-  // const disabledDate = new Date();
-  // disabledDate.setDate(disabledDate.getDate() + 6);
+  const disabledDate = new Date();
+  disabledDate.setDate(disabledDate.getDate() + 6);
   const [loading, setLoading] = useState({
     submit: false,
   });
@@ -216,7 +216,7 @@ function UserPackageDetails() {
               dateFormat="dd/MM/yyyy"
               selected={selectedDate}
               onChange={handleDateChange}
-              // minDate={disabledDate}
+              minDate={disabledDate}
               className="date"
             />
                       <Link style={{ height: "70%" }} to={"/guide-details/" + guide._id}>
