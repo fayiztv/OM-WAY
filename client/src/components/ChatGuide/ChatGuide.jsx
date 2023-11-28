@@ -37,7 +37,8 @@ const ChatGuide = () => {
 
   // Connect to Socket.io
   useEffect(() => {
-    socket.current = io("https://onmyway.perfumemart.store/");
+    // socket.current = io("https://onmyway.perfumemart.store/"); 
+    socket.current = io("https://omway.onrender.com/");
     socket.current.emit("new-user-add", guide._id);
     socket.current.on("get-users", (guides) => {
       setOnlineUsers(guides);

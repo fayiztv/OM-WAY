@@ -35,7 +35,8 @@ import Chat from "./components/Chat/Chat";
 import ChatGuide from "./components/ChatGuide/ChatGuide";
 
 function App() {
-  axios.defaults.baseURL = "https://omway.perfumemart.store/";
+  // axios.defaults.baseURL = "https://omway.perfumemart.store/";
+  axios.defaults.baseURL = "https://omway.onrender.com/";
   // axios.defaults.baseURL = "http://localhost:2004";
   axios.defaults.withCredentials = true;
   const { user, admin, guide ,refresh } = useSelector(
