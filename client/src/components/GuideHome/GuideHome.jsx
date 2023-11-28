@@ -46,10 +46,13 @@ function GuideHome() {
   }
   useEffect(() => {
     if (finalImage) {
-      (async function () {
+      (async  () => {
         let { data } = await axios.patch("/guide/update-avatar", {
           image: finalImage,id
         });
+
+        console.log(data);
+
         if (!data.err) {
           Swal.fire({
             icon: "success",
