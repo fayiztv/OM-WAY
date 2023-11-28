@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 async function dbConnect() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1/onmyway');
+    await mongoose.connect(process.env.MONGOURI);
     console.log('Database connected');
   } catch (err) {
     console.error('Database error:\n', err);
